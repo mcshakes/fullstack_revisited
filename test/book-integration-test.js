@@ -38,6 +38,22 @@ function teardownDB() {
 
 describe("Books API Resource", function() {
 
+  before(function() {
+    return runServer(TEST_DATABASE_URL);
+  })
+
+  beforeEach(function() {
+    return seedBooks();
+  })
+
+  afterEach(function() {
+    return teardownDB();
+  })
+
+  after(function() {
+    return closeServer();
+  })
+
   describe("POST endpoint", function() {
 
     it("should add a new book", function() {
@@ -59,7 +75,9 @@ describe("Books API Resource", function() {
           expect(res.body).to.include.keys(
             "id", "title", "author"
           );
-          expect(res.body.author).to.equal(newBook.author)
+          expect(res.body.author).to.equal(
+            `${newBook.author.firstName} ${newBook.author.lastName}`
+          );
           expect(res.body.id).to.not.be.null;
           return Book.findById(res.body.id);
         })
