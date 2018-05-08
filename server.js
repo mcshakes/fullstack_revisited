@@ -29,8 +29,9 @@ app.post("/books", (req, res) => {
       title: req.body.title,
       author: req.body.author
     })
-    .then(book => res.status(201).json(book.serialize()))
+    .then(book => res.status(201).json(book.serialize())) // NOTE not happy with this. try calling a POST request
     .catch(err => {
+
       console.log(err);
       // res.status(500).json({ message: 'Internal server error' });
     })
