@@ -11,6 +11,8 @@ mongoose.Promise = global.Promise;
 const app = express();
 app.use(bodyParser.json());
 
+let server;
+
 function runServer(databaseUrl, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
