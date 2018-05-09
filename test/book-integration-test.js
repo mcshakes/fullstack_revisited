@@ -87,4 +87,53 @@ describe("Books API Resource", function() {
         })
     })
   }); // End of POST endpoint
+
+  describe("GET endpoint", function() {
+
+    it("should return all existing books for user", function() {
+      let res;
+
+      return chai.request(app)
+      .get("/books")
+      .then(function(_res) {
+        res = _res;
+        expect(res).to.have.status(200);
+        expect(res.body.books).to.have.length.of.above(1);
+        return Book.count();
+      })
+      .then(function(count) {
+        expect(res.body.books).to.have.lengthOf(count);
+      })
+    })
+
+    it("should return books with correct fields", function() {
+      let bookResult;
+
+      return chai.request(app)
+        .get('/books')
+        .then(function(res) {
+          expect(res).to.have.status(200)
+          expect(res).to.be.json;
+          expect(res.body.books).to.be.a("array");
+          expect(res.body.books).to.have.length.of.at.least(1);
+
+          res.body.books.forEach(function(book) {
+            expect(book).to.be.a("object");
+            expect(book).to.include.keys(
+              "author", "title"
+            )
+          });
+
+          bookResult = res.body.books[0];
+          return Book.findById(bookResult.id);
+        })
+        .then( (book) => {
+
+          expect(bookResult.id).to.equal(book.id);
+          expect(bookResult.author).to.equal(book.author.firstName + " " + book.author.lastName);
+          expect(bookResult.title).to.equal(book.title);
+        })
+    })
+
+  }) // End of GET
 })

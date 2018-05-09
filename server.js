@@ -31,11 +31,27 @@ app.post("/books", (req, res) => {
     })
     .then(book => res.status(201).json(book.serialize())) // NOTE not happy with this. try calling a POST request
     .catch(err => {
-
       console.log(err);
       // res.status(500).json({ message: 'Internal server error' });
     })
   }
+})
+
+app.get("/books", (req, res) => {
+  Book
+  .find()
+   // .limit()
+  .then(books => {
+    res.json({
+      books: books.map(
+        (book) => book.serialize()
+      )
+    });
+  })
+  .catch(err => {
+    res.status(500).json({ message: "Internal server error"})
+    console.log(err);
+  })
 })
 
 // ************************ SERVER *****************************
