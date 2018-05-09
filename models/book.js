@@ -8,7 +8,8 @@ const bookSchema = mongoose.Schema({
   author: {
     firstName: String,
     lastName: String
-  }
+  },
+  summary: String
 });
 
 bookSchema.virtual("fullName").get(function() {
@@ -19,7 +20,8 @@ bookSchema.methods.serialize = function() {
   return {
     id: this._id,
     title: this.title,
-    author: this.fullName
+    author: this.fullName,
+    summary: this.summary
   }
 }
 

@@ -54,6 +54,15 @@ app.get("/books", (req, res) => {
   })
 })
 
+app.get("/books/:id", (req, res) => {
+  Book
+  .findById(req.params.id)
+  .then(book => res.json(book.serialize()))
+  .catch(err => {
+    console.log(err);
+  })
+})
+
 // ************************ SERVER *****************************
 
 let server;
