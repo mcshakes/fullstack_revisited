@@ -8,9 +8,15 @@ const books = require("../routes/book-routes");
 
 const router = express.Router();
 
-router.get("/:id", function (req, res, next) {
-  
-})
+// router.get("/", function (req, res, next) {
+//   // Should be handled because in use by the server.js
+// })
+//
+// router.get("/:id", (req, res) => {
+//   let userId = req.params.id;
+//
+//
+// })
 
 router.use("/books", books)
 

@@ -17,8 +17,10 @@ const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
 app.use(bookRouter);
-app.use(userRouter);
-// NOTE User GET will be app.get("/:user_id")
+app.use("/users", userRouter);
+// NOTE User GET will be app.get("/:user_id") ?
+
+// So what is app.get("/")
 
 
 // ************************ SERVER *****************************
