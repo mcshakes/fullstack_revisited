@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("cookie-session");
 
 const {PORT, DATABASE_URL} = require("./config");
 mongoose.Promise = global.Promise;
@@ -21,6 +23,14 @@ app.use("/users", userRouter);
 // NOTE User GET will be app.get("/:user_id") ?
 
 // So what is app.get("/")
+
+app.use(session({ secret: "IS A TEST" }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.post("/login",
+  passport.authenticate("local", { successRedirect: "/", failureRedirect: "/login"});
+);
 
 
 // ************************ SERVER *****************************
