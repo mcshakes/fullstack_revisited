@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
@@ -14,9 +14,12 @@ const app = express();
 app.use(bodyParser.json());
 
 const bookRouter = require("./routes/book-routes")
+const userRouter = require("./routes/user-routes")
 
 app.use(bookRouter);
-// NOTE Do I need an app.get("/")
+app.use(userRouter);
+// NOTE User GET will be app.get("/:user_id")
+
 
 // ************************ SERVER *****************************
 
