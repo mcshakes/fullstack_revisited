@@ -47,12 +47,10 @@ router.get("/signup", (req, res) => {
   res.render("signup page!!")
 });
 
-router.post("/login",
-  passport.authenticate("local",
-  { successRedirect: "/users",
-  failureRedirect: "/users/login"}
-  )
-);
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/users",
+  failureRedirect: "/users/login"
+}));
 
 router.post("/signup", (req,res) => {
   db.User.create(req.body).then( (user) => {

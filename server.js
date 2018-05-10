@@ -28,9 +28,9 @@ app.use(session({ secret: "IS A TEST" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post("/login",
-  passport.authenticate("local", { successRedirect: "/", failureRedirect: "/login"});
-);
+app.get("/", (req, res) => {
+  console.log("You got to index of program")
+})
 
 
 // ************************ SERVER *****************************
