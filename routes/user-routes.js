@@ -10,6 +10,23 @@ const router = express.Router();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+router.use("/books", books)
+
+router.get("/users", (req, res) => {
+  res.send("Index for users?")
+});
+
+router.get("/:id", (req, res) => {
+  let userId = req.body.id
+  let userName = req.body.username
+
+  res.send(`Page of ${userName}`)
+
+})
+
+
+// ------------------------ PASSPORT FUNCTIONS ------------------------
+
 passport.use(new LocalStrategy(
   {
     usernameField: "email",
@@ -40,18 +57,5 @@ passport.deserializeUser( (id, done) => {
     done(err, user);
   })
 })
-
-
-// router.get("/", function (req, res, next) {
-//   // Should be handled because in use by the server.js
-// })
-//
-// router.get("/:id", (req, res) => {
-//   let userId = req.params.id;
-//
-//
-// })
-
-router.use("/books", books)
 
 module.exports = router;

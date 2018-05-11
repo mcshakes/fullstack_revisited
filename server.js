@@ -19,7 +19,7 @@ const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
 app.use(bookRouter);
-app.use("/users", userRouter);
+app.use(userRouter);
 // NOTE User GET will be app.get("/:user_id") ?
 
 // So what is app.get("/")
@@ -29,7 +29,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-  console.log("You got to index of program")
+  res.send("Index!! Only place a user can come unauthenticated")
+
 })
 
 
