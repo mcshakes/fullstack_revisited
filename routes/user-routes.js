@@ -3,20 +3,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { Book } = require("../models/book")
-const books = require("../routes/book-routes");
 const router = express.Router();
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
-router.use("/books", books)
+const { Book } = require("../models/book")
+const books = require("../routes/book-routes");
+
+// router.use("/books", books)
+router.use("/users/:id/books", books)
 
 router.get("/users", (req, res) => {
   res.send("Index for users?")
 });
 
-router.get("/:id", (req, res) => {
+router.get("/users/:id", (req, res) => {
   let userId = req.body.id
   let userName = req.body.username
 
