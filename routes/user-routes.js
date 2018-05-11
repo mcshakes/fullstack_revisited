@@ -25,47 +25,15 @@ router.get("/users/:id", (req, res) => {
 
 })
 
-// let localStrategy = new LocalStrategy(
-//   {
-//     usernameField: "email",
-//     passwordField: "password",
-//     passReqToCallback: true
-//   },
-//
-//   function verifyCallback(req, email, password, done) {
-//     return User.findOne({ email: email }, (err, user) => {
-//       if (err) return done(err);
-//
-//       if (!user || !user.validatePassword(password)) {
-//         return done(null, false);
-//       }
-//
-//       return done(null, user);
-//     })
-//   }
-// );
-//
-//
-// passport.serializeUser( (user, done) => {
-//   done(null, user.id);
-// })
-//
-// passport.deserializeUser( (id, done) => {
-//   User.findById(id, (err, user) => {
-//     done(err, user);
-//   })
-// })
-//
 passport.use("local", localStrategy);
-// const localAuth = passport.authenticate("local");
+const localAuth = passport.authenticate("local");
 
 router.get("/login", (req, res) => {
 
 })
 
 
-router.post("/login", (req, res) => {
-  // console.log(req)
+router.post("/login", localAuth, (req, res) => {
   res.status(200).json(req.user.serialize())
 })
 

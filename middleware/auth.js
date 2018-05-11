@@ -11,11 +11,12 @@ const localStrategy = passport.use(new LocalStrategy(
   {
     usernameField: "email",
     passwordField: "password",
-    passReqToCallback: true
+    passReqToCallback: true,
+    session: false
   },
 
   function verifyCallback(req, email, password, done) {
-    return User.findOne({ email: email }, (err, user) => {
+    return User.findOne({ username: email }, (err, user) => {
       if (err) return done(err);
 
       if (!user) {
