@@ -25,6 +25,7 @@ router.get("/users/:id", (req, res) => {
 
 })
 
+router.get("/login")
 
 // ------------------------ PASSPORT FUNCTIONS ------------------------
 
