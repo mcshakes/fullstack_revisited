@@ -24,9 +24,9 @@ app.use(userRouter);
 
 // So what is app.get("/")
 
-app.use(session({ secret: "IS A TEST" }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({ secret: "IS A TEST" }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.send("Index!! Only place a user can come unauthenticated")

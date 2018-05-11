@@ -1,6 +1,8 @@
 "use strict"
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+
 mongoose.Promise = global.Promise;
 
 const userSchema = mongoose.Schema({
@@ -11,10 +13,9 @@ const userSchema = mongoose.Schema({
     trim: true,
     require: "Please Give an Email Address"
   },
-  username: {
+  password: {
     type: String,
-    required: true,
-    trim: true
+    require: true
   }
 });
 
@@ -22,11 +23,18 @@ const userSchema = mongoose.Schema({
 //   return `${this.author.firstName} ${this.author.lastName}`.trim()
 // })
 
+userSchema.statics.hashPassword = function(password) {
+  return bcrypt.hash(password, 10);
+}
+
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password);
+}
+
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
     email: this.email
-    username: this.username
   }
 }
 

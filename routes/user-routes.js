@@ -8,6 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
 const { Book } = require("../models/book")
+const { User } = require("../models/user")
 const books = require("../routes/book-routes");
 
 // router.use("/books", books)
@@ -25,30 +26,26 @@ router.get("/users/:id", (req, res) => {
 
 })
 
-router.get("/login")
-
-// ------------------------ PASSPORT FUNCTIONS ------------------------
-
-passport.use(new LocalStrategy(
+let localStrategy = new LocalStrategy(
   {
     usernameField: "email",
     passwordField: "password",
     passReqToCallback: true
   },
 
-  function verifyCallback(req, username, password, done) {
-    db.User.findOne({ username: username }, (err, user) => {
+  function verifyCallback(req, email, password, done) {
+    return User.findOne({ email: email }, (err, user) => {
       if (err) return done(err);
 
-      if (!user || !user.validPassword(password)) {
+      if (!user || !user.validatePassword(password)) {
         return done(null, false);
       }
 
       return done(null, user);
     })
   }
-)
 );
+
 
 passport.serializeUser( (user, done) => {
   done(null, user.id);
@@ -59,5 +56,51 @@ passport.deserializeUser( (id, done) => {
     done(err, user);
   })
 })
+
+passport.use(localStrategy);
+const localAuth = passport.authenticate("local");
+
+router.get("/login", (req, res) => {
+
+})
+
+
+router.post("/login", localAuth, (req, res) => {
+  res.status(200).json(req.user.serialize())
+  // console.log(req.body)
+})
+
+router.post("/signup", (req, res) => {
+  const reqFields = ["email", "password"];
+
+  for (let i = 0; i < reqFields.length; i++) {
+    const field = reqFields[i];
+
+    if (!field in req.body) {
+      const message = `Missing ${field} in the request body`;
+      console.log(message)
+      return res.status(400).send(message)
+    }
+
+    return User.hashPassword(req.body.password)
+      .then(hash => {
+        { hash }
+
+        return User.create({
+            email: req.body.email,
+            password: hash
+        })
+        .then(user => {
+          res.status(201).json(user.serialize())
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      })
+  }
+})
+// ------------------------ PASSPORT FUNCTIONS ------------------------
+
+
 
 module.exports = router;
