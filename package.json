@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json"
   },
   "keywords": [],
   "author": "",
