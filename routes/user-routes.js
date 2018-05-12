@@ -26,7 +26,7 @@ router.get("/users/:id", (req, res) => {
 })
 
 passport.use("local", localStrategy);
-const localAuth = passport.authenticate("local");
+const localAuth = passport.authenticate("local", { session: false });
 
 router.get("/login", (req, res) => {
 
@@ -34,7 +34,8 @@ router.get("/login", (req, res) => {
 
 
 router.post("/login", localAuth, (req, res) => {
-  res.status(200).json(req.user.serialize())
+  // console.log(req.body)
+  return res.status(200).json(req.user.serialize())
 })
 
 router.post("/signup", (req, res) => {

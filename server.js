@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
+const { localStrategy } = require("./middleware/auth")
 
 const {PORT, DATABASE_URL} = require("./config");
 mongoose.Promise = global.Promise;
@@ -25,9 +26,8 @@ app.use(userRouter);
 // So what is app.get("/")
 
 app.use(session({ secret: "password1" }));
-// app.use(express.urlencoded({ extended: true }));
+passport.use("local", localStrategy);
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.get("/", (req, res) => {
   res.send("Index!! Only place a user can come unauthenticated")
