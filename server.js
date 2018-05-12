@@ -4,6 +4,9 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("cookie-session");
+const { localStrategy } = require("./middleware/auth")
 
 const {PORT, DATABASE_URL} = require("./config");
 mongoose.Promise = global.Promise;
@@ -17,10 +20,19 @@ const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
 app.use(bookRouter);
-app.use("/users", userRouter);
+app.use(userRouter);
 // NOTE User GET will be app.get("/:user_id") ?
 
 // So what is app.get("/")
+
+app.use(session({ secret: "password1" }));
+passport.use("local", localStrategy);
+app.use(passport.initialize());
+
+app.get("/", (req, res) => {
+  res.send("Index!! Only place a user can come unauthenticated")
+
+})
 
 
 // ************************ SERVER *****************************

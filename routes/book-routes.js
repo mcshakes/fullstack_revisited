@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { Book } = require("../models/book")
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 
 router.post("/books", (req, res) => {
