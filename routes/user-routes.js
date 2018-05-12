@@ -38,6 +38,27 @@ router.post("/login", localAuth, (req, res) => {
   return res.status(200).json(req.user.serialize())
 })
 
+router.post("/users/:id/books", (req, res) => {
+  let bookId = req.body.bookId;
+  let userId = req.params.id;
+
+  let book = Book.findById(bookId, (err, book) => {
+    if (err) throw err;
+
+    User.findByIdAndUpdate(userId,
+      { "$push": { "library": book} },
+      { "new": true, "upsert": true},
+      function (err, user) {
+        if (err) throw err;
+        console.log(user)
+
+        return res.status(201).json(user);
+      }
+    );
+  })
+
+});
+
 router.post("/signup", (req, res) => {
   const reqFields = ["email", "password"];
 

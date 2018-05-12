@@ -27,4 +27,4 @@ bookSchema.methods.serialize = function() {
 
 const Book = mongoose.model("Book", bookSchema)
 
-module.exports = { Book };
+module.exports = { Book, bookSchema };

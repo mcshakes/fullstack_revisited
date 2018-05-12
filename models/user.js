@@ -2,6 +2,7 @@
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { bookSchema } = require("../models/book")
 
 mongoose.Promise = global.Promise;
 
@@ -16,12 +17,9 @@ const userSchema = mongoose.Schema({
   password: {
     type: String,
     require: true
-  }
+  },
+  library: [ bookSchema ]
 });
-
-// userSchema.virtual("fullName").get(function() {
-//   return `${this.author.firstName} ${this.author.lastName}`.trim()
-// })
 
 userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
@@ -34,7 +32,8 @@ userSchema.methods.validatePassword = function(password) {
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    email: this.email
+    email: this.email,
+    library: this.library
   }
 }
 
