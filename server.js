@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
 const { localStrategy } = require("./middleware/auth")
+const request = require("request");
 
 const {PORT, DATABASE_URL} = require("./config");
 mongoose.Promise = global.Promise;
@@ -31,6 +32,14 @@ app.use(passport.initialize());
 
 app.get("/", (req, res) => {
   res.send("Index!! Only place a user can come unauthenticated")
+
+  request.get("http://httpbin.org/ip", (error, response, body) => {
+    if (error) {
+      return console.log(error);
+    }
+
+    console.dir(JSON.parse(body));
+  })
 
 })
 
