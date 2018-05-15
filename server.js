@@ -8,8 +8,10 @@ const passport = require("passport");
 const session = require("cookie-session");
 const { localStrategy } = require("./middleware/auth")
 const request = require("request");
+const Client = require("node-rest-client").Client;
+const client = new Client();
 
-const {PORT, DATABASE_URL} = require("./config");
+const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
 mongoose.Promise = global.Promise;
 const { Book } = require("./models/book")
 
@@ -33,7 +35,12 @@ app.use(passport.initialize());
 app.get("/", (req, res) => {
   res.send("Index!! Only place a user can come unauthenticated")
 
-  request.get("http://httpbin.org/ip", (error, response, body) => {
+  let args = {
+    key: GOODREADS_KEY
+    secret: GOODREADS_SECRET
+  },
+
+  client.get("http://httpbin.org/ip", (error, response, body) => {
     if (error) {
       return console.log(error);
     }
