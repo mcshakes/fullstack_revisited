@@ -33,19 +33,32 @@ passport.use("local", localStrategy);
 app.use(passport.initialize());
 
 app.get("/", (req, res) => {
+
+  // <Buffer 49 6e 76 61 6c 69 64 20 41 50 49 20 6b 65 79 2e 0a 3c 21 2d 2d 20 54 68 69 73 20 69 73 20 61 20 72 61 6e 64 6f 6d 2d 6c 65 6e 67 74 68 20 48 54 4d 4c ... >
+
   res.send("Index!! Only place a user can come unauthenticated")
 
   let args = {
-    key: GOODREADS_KEY
-    secret: GOODREADS_SECRET
-  },
+    mimetypes: {
+       json: ['application/json', 'application/json; charset=utf-8'],
+       xml: ['application/xml', 'application/xml; charset=utf-8']
+     },
+    q: "Stephen King",
+    key: GOODREADS_KEY,
+    secret: GOODREADS_SECRET,
+    search: "all"
+  };
 
-  client.get("http://httpbin.org/ip", (error, response, body) => {
-    if (error) {
-      return console.log(error);
+  let options = {
+
+  };
+
+  client.get("https://www.goodreads.com/search/index.xml", args, (err, data, response) => {
+    if (err) {
+      return console.log(err);
     }
-
-    console.dir(JSON.parse(body));
+    console.log(response)
+    // console.dir(JSON.parse(data));
   })
 
 })
