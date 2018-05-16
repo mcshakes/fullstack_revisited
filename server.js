@@ -7,8 +7,11 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
 const { localStrategy } = require("./middleware/auth")
+const { parseString } = require("xml2js");
 
-const {PORT, DATABASE_URL} = require("./config");
+const request = require("request-promise");
+
+const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
 mongoose.Promise = global.Promise;
 const { Book } = require("./models/book")
 
@@ -29,9 +32,20 @@ app.use(session({ secret: "password1" }));
 passport.use("local", localStrategy);
 app.use(passport.initialize());
 
-app.get("/", (req, res) => {
+app.get("/search", (req, res) => {
+
   res.send("Index!! Only place a user can come unauthenticated")
 
+  let searchQuery = "stephen king";
+  request
+    .get(`https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=${searchQuery}`)
+    .then(result =>
+      parseString(result, (err, goodResult) =>
+        goodResult.GoodreadsResponse.search[0].results[0].work.map( work => {
+          console.log(work)
+        })
+      )
+    );
 })
 
 
