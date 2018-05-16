@@ -32,7 +32,7 @@ app.use(session({ secret: "password1" }));
 passport.use("local", localStrategy);
 app.use(passport.initialize());
 
-app.get("/", (req, res) => {
+app.get("/search", (req, res) => {
 
   res.send("Index!! Only place a user can come unauthenticated")
 
@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
     .then(result =>
       parseString(result, (err, goodResult) =>
         goodResult.GoodreadsResponse.search[0].results[0].work.map( work => {
-          res.send(work)
+          console.log(work)
         })
       )
     );
