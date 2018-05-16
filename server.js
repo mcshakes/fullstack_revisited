@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
+const path = require("path")
 const { localStrategy } = require("./middleware/auth")
 const { parseString } = require("xml2js");
 
@@ -33,7 +34,8 @@ passport.use("local", localStrategy);
 app.use(passport.initialize());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the main page! No need to authenticate!")
+  res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  // send back index.html => ajax to get all book data /books
 })
 
 app.get("/search", (req, res) => {
