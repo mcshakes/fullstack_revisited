@@ -7,9 +7,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
 const { localStrategy } = require("./middleware/auth")
-const request = require("request");
-const Client = require("node-rest-client").Client;
-const client = new Client();
+const request = require("request-promise");
 
 const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
 mongoose.Promise = global.Promise;
@@ -39,10 +37,7 @@ app.get("/", (req, res) => {
   res.send("Index!! Only place a user can come unauthenticated")
 
   let args = {
-    mimetypes: {
-       json: ['application/json', 'application/json; charset=utf-8'],
-       xml: ['application/xml', 'application/xml; charset=utf-8']
-     },
+    headers: { "Content-Type": "application/json" },
     q: "Stephen King",
     key: GOODREADS_KEY,
     secret: GOODREADS_SECRET,
