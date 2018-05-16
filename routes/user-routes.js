@@ -18,10 +18,16 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/users/:id", (req, res) => {
-  let userId = req.body.id
-  let userName = req.body.username
+  let userId = req.params.id
+  // let userName = req.body.username
 
-  res.send(`Page of ${userName}`)
+  User
+    .findById(userId)
+    .then(user => res.json(user.serialize()))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: "Internal server error" });
+    })
 
 })
 
