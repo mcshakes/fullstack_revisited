@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
 const { localStrategy } = require("./middleware/auth")
+const { parseString } = require("xml2js");
+
 const request = require("request-promise");
 
 const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
@@ -32,30 +34,18 @@ app.use(passport.initialize());
 
 app.get("/", (req, res) => {
 
-  // <Buffer 49 6e 76 61 6c 69 64 20 41 50 49 20 6b 65 79 2e 0a 3c 21 2d 2d 20 54 68 69 73 20 69 73 20 61 20 72 61 6e 64 6f 6d 2d 6c 65 6e 67 74 68 20 48 54 4d 4c ... >
-
   res.send("Index!! Only place a user can come unauthenticated")
 
-  let args = {
-    headers: { "Content-Type": "application/json" },
-    q: "Stephen King",
-    key: GOODREADS_KEY,
-    secret: GOODREADS_SECRET,
-    search: "all"
-  };
-
-  let options = {
-
-  };
-
-  client.get("https://www.goodreads.com/search/index.xml", args, (err, data, response) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log(response)
-    // console.dir(JSON.parse(data));
-  })
-
+  let searchQuery = "stephen king";
+  request
+    .get(`https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=${searchQuery}`)
+    .then(result =>
+      parseString(result, (err, goodResult) =>
+        goodResult.GoodreadsResponse.search[0].results[0].work.map( work => {
+          res.send(work)
+        })
+      )
+    );
 })
 
 
