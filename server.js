@@ -32,6 +32,10 @@ app.use(session({ secret: "password1" }));
 passport.use("local", localStrategy);
 app.use(passport.initialize());
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the main page! No need to authenticate!")
+})
+
 app.get("/search", (req, res) => {
 
   res.send("Index!! Only place a user can come unauthenticated")

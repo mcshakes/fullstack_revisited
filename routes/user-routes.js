@@ -38,6 +38,12 @@ router.post("/login", localAuth, (req, res) => {
   return res.status(200).json(req.user.serialize())
 })
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/")
+})
+
+
 router.post("/users/:id/books", (req, res) => {
   let bookId = req.body.bookId;
   let userId = req.params.id;
@@ -58,6 +64,7 @@ router.post("/users/:id/books", (req, res) => {
   })
 
 });
+
 
 router.post("/signup", (req, res) => {
   const reqFields = ["email", "password"];
