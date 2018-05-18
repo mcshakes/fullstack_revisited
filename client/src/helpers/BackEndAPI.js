@@ -29,4 +29,8 @@ BackEndAPI.getBooks = () => {
   return BackEndAPI.fetch("/books", "GET")
 }
 
+// BackEndAPI.getBooks = (bookId) => {
+//   return BackEndAPI.fetch(`/books/${bookId}`, "GET")
+// }
+
 export default BackEndAPI;

@@ -30,10 +30,17 @@ class App extends Component {
   }
 
   render() {
-    console.log(this)
+
     return (
-      <div className="App">
-        <p className="App-intro">{this.state.response}</p>
+      <div className="books-list">
+        {this.state.books.map((book, idx) => {
+          return (
+            <li key={idx}>{book.title} : {book.author}</li>
+          )
+        })}
+        <ul>
+
+        </ul>
       </div>
     );
   }
