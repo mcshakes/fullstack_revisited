@@ -6,9 +6,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
+const path = require("path")
 const { localStrategy } = require("./middleware/auth")
 const { parseString } = require("xml2js");
-
+const cors = require("cors");
 const request = require("request-promise");
 
 const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
@@ -18,6 +19,7 @@ const { Book } = require("./models/book")
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
@@ -26,11 +28,15 @@ app.use(bookRouter);
 app.use(userRouter);
 // NOTE User GET will be app.get("/:user_id") ?
 
-// So what is app.get("/")
 
 app.use(session({ secret: "password1" }));
 passport.use("local", localStrategy);
 app.use(passport.initialize());
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  // send back index.html => ajax to get all book data /books
+})
 
 app.get("/search", (req, res) => {
 

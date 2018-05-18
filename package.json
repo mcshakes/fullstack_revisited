@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc mocha",
     "start": "nodemon server.js",
-    "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json"
+    "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
+    "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "concurrently": "^3.5.1",
     "faker": "^4.1.0",
     "mocha": "^5.1.1",
     "nyc": "^11.7.2"

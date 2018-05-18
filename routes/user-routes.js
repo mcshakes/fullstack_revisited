@@ -18,10 +18,16 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/users/:id", (req, res) => {
-  let userId = req.body.id
-  let userName = req.body.username
+  let userId = req.params.id
+  // let userName = req.body.username
 
-  res.send(`Page of ${userName}`)
+  User
+    .findById(userId)
+    .then(user => res.json(user.serialize()))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: "Internal server error" });
+    })
 
 })
 
@@ -37,6 +43,12 @@ router.post("/login", localAuth, (req, res) => {
   // console.log(req.body)
   return res.status(200).json(req.user.serialize())
 })
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/")
+})
+
 
 router.post("/users/:id/books", (req, res) => {
   let bookId = req.body.bookId;
@@ -58,6 +70,7 @@ router.post("/users/:id/books", (req, res) => {
   })
 
 });
+
 
 router.post("/signup", (req, res) => {
   const reqFields = ["email", "password"];
