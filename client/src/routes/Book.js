@@ -34,7 +34,6 @@ class Book extends Component {
 
     return (
       <div className="book">
-        Hey there
       </div>
     );
   }
