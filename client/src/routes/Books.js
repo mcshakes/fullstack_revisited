@@ -37,7 +37,11 @@ class Books extends Component {
         {this.state.books.map((book, idx) => {
           return (
             <div>
-              {book.title} : {book.author}
+              <Link
+                to={`detail/${book.id}`}
+                component={Book}> {
+                  book.title} : {book.author}
+              </Link>
             </div>
           )
         })}
