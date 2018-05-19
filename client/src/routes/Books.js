@@ -36,9 +36,9 @@ class Books extends Component {
       <div className="books-list">
         {this.state.books.map((book, idx) => {
           return (
-            <div>
+            <div key={idx}>
               <Link
-                to={`detail/${book.id}`}
+                to={`books/${book.id}`}
                 component={Book}> {
                   book.title} : {book.author}
               </Link>
