@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BackEndAPI from "../helpers/BackEndAPI";
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Link } from "react-router-dom"
+import Book from "./Book"
 
 class Books extends Component {
   constructor(props) {
@@ -35,12 +36,11 @@ class Books extends Component {
       <div className="books-list">
         {this.state.books.map((book, idx) => {
           return (
-            <li key={idx}>{book.title} : {book.author}</li>
+            <div>
+              {book.title} : {book.author}
+            </div>
           )
         })}
-        <ul>
-
-        </ul>
       </div>
     );
   }
