@@ -18,17 +18,20 @@ router.post("/books", (req, res) => {
       console.log(message)
       return res.status(400).send(message)
     }
+  }
 
-    Book
+  Book
     .create({
       title: req.body.title,
       author: req.body.author
     })
-    .then(book => res.status(201).json(book.serialize()))
+    .then((book) => {
+      res.status(201).json(book.serialize())
+    })
     .catch(err => {
       console.log(err);
     })
-  }
+
 })
 
 router.get("/books", (req, res) => {
