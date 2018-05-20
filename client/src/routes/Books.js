@@ -39,8 +39,8 @@ class Books extends Component {
             <div key={idx}>
               <Link
                 to={`books/${book.id}`}
-                component={Book}> {
-                  book.title} : {book.author}
+                component={Book}>
+                {book.title} : {book.author}
               </Link>
             </div>
           )

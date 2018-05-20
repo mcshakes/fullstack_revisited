@@ -16,7 +16,7 @@ class AddBookForm extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSubmit(event) {
@@ -27,43 +27,45 @@ class AddBookForm extends Component {
       title: this.state.title,
       summary: this.state.summary
     }
-    console.log(`A Book, ${data} was added to your future list.`)
+    console.log(data)
 
-
+    BackEndAPI.createBookDetails(data)
+      .then(data => {
+        // console.log(data)
+        this.setState({
+          book: data
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
 
   }
 
-  // NOTE : POST API below
-  // getBookDetails() {
-  //   BackEndAPI.getBookDetails()
-  //     .then(data => {
-  //       console.log(data)
-  //       // this.setState({
-  //       //   book: data.books
-  //       // })
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       this.setState({
-  //         book: []
-  //       })
-  //     })
-  // }
+  _handleAddBook = () => {
+
+  }
 
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="add-book">
+      <form onSubmit={this.handleSubmit} className="add-book-form">
         <label>
           Author:
-          <input type="text" value={this.state.author} onChange={this.handleChange} />
         </label>
+        <input type="text" name="author" value={this.state.author} onChange={this.handleChange.bind(this)} />
 
         <label>
           Title:
-          <input type="text" value={this.state.title} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="text" name="title" value={this.state.title} onChange={this.handleChange.bind(this)} />
+
+        <label>
+          Summary:
+        </label>
+        <input type="text" name="summary" value={this.state.summary} onChange={this.handleChange.bind(this)} />
+
+        <input type="submit" value="Submit" onSubmit={this.handleSubmit} />
       </form>
     );
   }
