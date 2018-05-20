@@ -5,9 +5,13 @@ import { BrowserRouter, Link } from "react-router-dom"
 class AddBookForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ""};
+    this.state = {
+      title: "",
+      author: "",
+      summary: ""
+    };
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -16,8 +20,17 @@ class AddBookForm extends Component {
   }
 
   handleSubmit(event) {
-    console.log(`A Book, ${this.state.value} was added to your future list.`)
     event.preventDefault();
+
+    const data = {
+      author: this.state.author,
+      title: this.state.title,
+      summary: this.state.summary
+    }
+    console.log(`A Book, ${data} was added to your future list.`)
+
+
+
   }
 
   // NOTE : POST API below
@@ -40,7 +53,7 @@ class AddBookForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="add-book">
         <label>
           Author:
           <input type="text" value={this.state.author} onChange={this.handleChange} />
