@@ -60,4 +60,13 @@ router.get("/books/:id", (req, res) => {
   })
 })
 
+router.delete("/books/:id", (req, res) => {
+  Book
+  .findByIdAndRemove(req.params.id)
+  .then(book => res.status(204).end())
+  .catch(err => {
+    console.log(err);
+  })
+})
+
 module.exports = router;
