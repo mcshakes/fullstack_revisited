@@ -17,7 +17,7 @@ class Books extends Component {
 
   addBook(book) {
     const books = {...this.state.books};
-    
+
     BackEndAPI.createBookDetails(book)
      .then(book => {
        this.setState({

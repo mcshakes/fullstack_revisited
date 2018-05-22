@@ -21,20 +21,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
 const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
 app.use(bookRouter);
 app.use(userRouter);
-// NOTE User GET will be app.get("/:user_id") ?
-
 
 app.use(session({ secret: "password1" }));
 passport.use("local", localStrategy);
 app.use(passport.initialize());
 
+
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
 })
 
