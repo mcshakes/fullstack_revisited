@@ -39,6 +39,7 @@ app.use(passport.initialize());
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
+  res.render("homepage")
 })
 
 app.get("/search", (req, res) => {
