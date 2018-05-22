@@ -17,15 +17,13 @@ class Books extends Component {
 
   addBook(book) {
     const books = {...this.state.books};
-    console.log("BEFORE",book) // comes in as ID only
-    BackEndAPI.createBookDetails({
-      author: book.author,
-      title: book.title,
-      summary: book.summary
-    })
-     .then(data => {
+    
+    BackEndAPI.createBookDetails(book)
+     .then(book => {
        this.setState({
-         data: book
+         author: book.author,
+         title: book.title,
+         summary: book.summary
        })
        console.log("AFTER", book)
      })

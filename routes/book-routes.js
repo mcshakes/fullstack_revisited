@@ -23,7 +23,8 @@ router.post("/books", (req, res) => {
   Book
     .create({
       title: req.body.title,
-      author: req.body.author
+      author: req.body.author,
+      summary: req.body.summary
     })
     .then((book) => {
       res.status(201).json(book.serialize())
