@@ -24,10 +24,7 @@ function seedBooks() {
 function generateFakeBook() {
   return {
     title: faker.lorem.words(),
-    author: {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName()
-    }
+    author: `${faker.name.firstName()} ${faker.name.lastName()}`
   }
 }
 
@@ -59,10 +56,7 @@ describe("Books API Resource", function() {
     it("should add a new book", function() {
       const newBook = {
         title: faker.lorem.words(),
-        author: {
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName()
-        }
+        author: `${faker.name.firstName()} ${faker.name.lastName()}`
       }
 
       return chai.request(app)
@@ -76,7 +70,7 @@ describe("Books API Resource", function() {
             "id", "title", "author"
           );
           expect(res.body.author).to.equal(
-            `${newBook.author.firstName} ${newBook.author.lastName}`
+            `${newBook.author}`
           );
           expect(res.body.id).to.not.be.null;
           return Book.findById(res.body.id);
@@ -130,7 +124,7 @@ describe("Books API Resource", function() {
         .then( (book) => {
 
           expect(bookResult.id).to.equal(book.id);
-          expect(bookResult.author).to.equal(book.author.firstName + " " + book.author.lastName);
+          expect(bookResult.author).to.equal(book.author);
           expect(bookResult.title).to.equal(book.title);
         })
     })
