@@ -130,4 +130,55 @@ describe("Books API Resource", function() {
     })
 
   }) // End of GET
+
+describe("DELETE Endpoint", function() {
+
+  it("deletes a book by the ID", function() {
+    let book;
+
+    return Book
+      .findOne()
+      .then(function(_book) {
+        book = _book;
+        return chai.request(app).delete(`/books/${book.id}`)
+      })
+      .then(function(res) {
+        expect(res).to.have.status(204);
+        return Book.findById(book.id);
+      })
+      .then(function(_book) {
+        expect(_book).to.be.null;
+      })
+  })
+}) //End of DELETE
+
+describe("PUT endpoint", function() {
+
+    it("should update fields on an existing book", function() {
+
+      const updateData = {
+        title: "Forget the last book!",
+        author: "Ping O'Shaq-Hennessy"
+      }
+
+      return Book
+        .findOne()
+        .then(function(book) {
+          updateData.id = book.id;
+
+          return chai.request(app)
+            .put(`/books/${book.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+          return Book.findById(updateData.id);
+        })
+        .then(function(book) {
+          expect(book.title).to.equal(updateData.title);
+          expect(book.author).to.equal(`${updateData.author}`)
+        })
+    })
+}) //End of PUT block
 })
