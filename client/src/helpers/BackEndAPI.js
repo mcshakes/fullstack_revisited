@@ -33,4 +33,9 @@ BackEndAPI.getBookDetails = (bookId) => {
   return BackEndAPI.fetch(`/books/${bookId}`, "GET")
 }
 
+BackEndAPI.createBookDetails = (inboundData) => {
+
+  return BackEndAPI.fetch(`/books`, "POST", inboundData)
+}
+
 export default BackEndAPI;

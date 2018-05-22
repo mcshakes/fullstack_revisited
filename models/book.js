@@ -5,22 +5,15 @@ mongoose.Promise = global.Promise;
 
 const bookSchema = mongoose.Schema({
   title: String,
-  author: {
-    firstName: String,
-    lastName: String
-  },
+  author: String,
   summary: String
 });
-
-bookSchema.virtual("fullName").get(function() {
-  return `${this.author.firstName} ${this.author.lastName}`.trim()
-})
 
 bookSchema.methods.serialize = function() {
   return {
     id: this._id,
     title: this.title,
-    author: this.fullName,
+    author: this.author,
     summary: this.summary
   }
 }

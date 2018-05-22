@@ -18,17 +18,21 @@ router.post("/books", (req, res) => {
       console.log(message)
       return res.status(400).send(message)
     }
+  }
 
-    Book
+  Book
     .create({
       title: req.body.title,
-      author: req.body.author
+      author: req.body.author,
+      summary: req.body.summary
     })
-    .then(book => res.status(201).json(book.serialize()))
+    .then((book) => {
+      res.status(201).json(book.serialize())
+    })
     .catch(err => {
       console.log(err);
     })
-  }
+
 })
 
 router.get("/books", (req, res) => {
@@ -52,6 +56,41 @@ router.get("/books/:id", (req, res) => {
   Book
   .findById(req.params.id)
   .then(book => res.json(book.serialize()))
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.put("/books/:id", (req, res) => {
+  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+    const message = (
+      `Request path id ${req.params.id} and the request body id ${req.body.id} must match`
+    );
+    console.error(message);
+    return res.status(400).json({ message: message });
+  }
+
+  const toUpdate = {};
+  const updateableFields = ["title", "author", "summary"];
+
+  updateableFields.forEach(field => {
+    if (field in req.body) {
+      toUpdate[field] = req.body[field];
+    }
+  });
+
+  Book
+  .findByIdAndUpdate(req.params.id, { $set: toUpdate })
+  .then(book => res.status(204).end())
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.delete("/books/:id", (req, res) => {
+  Book
+  .findByIdAndRemove(req.params.id)
+  .then(book => res.status(204).json({ message: "Book Removed and deleted from your library"}).end())
   .catch(err => {
     console.log(err);
   })

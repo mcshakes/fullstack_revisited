@@ -1,46 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
-import BackEndAPI from "./helpers/BackEndAPI";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import Books from "./routes/Books"
+import Book from "./routes/Book"
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: []
-    }
-  }
-
-  getBooks() {
-    BackEndAPI.getBooks()
-      .then(data => {
-        this.setState({
-          books: data.books
-        })
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({
-          books: []
-        })
-      })
-  }
-
-  componentDidMount() {
-    this.getBooks();
-  }
 
   render() {
-
     return (
-      <div className="books-list">
-        {this.state.books.map((book, idx) => {
-          return (
-            <li key={idx}>{book.title} : {book.author}</li>
-          )
-        })}
-        <ul>
+      <div >
+        <Books />
+        <Book />
 
-        </ul>
+
+        <Switch>
+          <Route path="/books/:id" component={Book} />
+        </Switch>
       </div>
     );
   }

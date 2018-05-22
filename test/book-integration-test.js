@@ -24,10 +24,7 @@ function seedBooks() {
 function generateFakeBook() {
   return {
     title: faker.lorem.words(),
-    author: {
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName()
-    }
+    author: `${faker.name.firstName()} ${faker.name.lastName()}`
   }
 }
 
@@ -59,10 +56,7 @@ describe("Books API Resource", function() {
     it("should add a new book", function() {
       const newBook = {
         title: faker.lorem.words(),
-        author: {
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName()
-        }
+        author: `${faker.name.firstName()} ${faker.name.lastName()}`
       }
 
       return chai.request(app)
@@ -76,7 +70,7 @@ describe("Books API Resource", function() {
             "id", "title", "author"
           );
           expect(res.body.author).to.equal(
-            `${newBook.author.firstName} ${newBook.author.lastName}`
+            `${newBook.author}`
           );
           expect(res.body.id).to.not.be.null;
           return Book.findById(res.body.id);
@@ -130,10 +124,61 @@ describe("Books API Resource", function() {
         .then( (book) => {
 
           expect(bookResult.id).to.equal(book.id);
-          expect(bookResult.author).to.equal(book.author.firstName + " " + book.author.lastName);
+          expect(bookResult.author).to.equal(book.author);
           expect(bookResult.title).to.equal(book.title);
         })
     })
 
   }) // End of GET
+
+describe("DELETE Endpoint", function() {
+
+  it("deletes a book by the ID", function() {
+    let book;
+
+    return Book
+      .findOne()
+      .then(function(_book) {
+        book = _book;
+        return chai.request(app).delete(`/books/${book.id}`)
+      })
+      .then(function(res) {
+        expect(res).to.have.status(204);
+        return Book.findById(book.id);
+      })
+      .then(function(_book) {
+        expect(_book).to.be.null;
+      })
+  })
+}) //End of DELETE
+
+describe("PUT endpoint", function() {
+
+    it("should update fields on an existing book", function() {
+
+      const updateData = {
+        title: "Forget the last book!",
+        author: "Ping O'Shaq-Hennessy"
+      }
+
+      return Book
+        .findOne()
+        .then(function(book) {
+          updateData.id = book.id;
+
+          return chai.request(app)
+            .put(`/books/${book.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          expect(res).to.have.status(204);
+
+          return Book.findById(updateData.id);
+        })
+        .then(function(book) {
+          expect(book.title).to.equal(updateData.title);
+          expect(book.author).to.equal(`${updateData.author}`)
+        })
+    })
+}) //End of PUT block
 })
