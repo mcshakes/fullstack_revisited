@@ -18,6 +18,7 @@ const { Book } = require("./models/book")
 
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 

@@ -19,7 +19,6 @@ exports.getLibrary = (req, res) => {
 }
 
 exports.createBookForm = (req,res) => {
-  // if (err) { return next(err) };
   res.render("create_book_form", { title: "Add A New Book"})
 }
 
