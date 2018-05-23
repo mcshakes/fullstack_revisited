@@ -10,9 +10,10 @@ const router = express.Router({mergeParams: true});
 const libraryController = require("../controllers/libraryController")
 
 router.get("/books", libraryController.getLibrary);
-router.post("/books", libraryController.createBook);
 router.get("/books/:id", libraryController.getBook);
 router.put("/books/:id", libraryController.editBook);
 router.delete("/books/:id", libraryController.deleteBook);
 
+router.post("/books", libraryController.createBook);
+router.post("/books", libraryController.createBook);
 module.exports = router;

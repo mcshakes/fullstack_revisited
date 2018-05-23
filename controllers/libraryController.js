@@ -5,11 +5,12 @@ exports.getLibrary = (req, res) => {
     .find()
      // .limit()
     .then(books => {
-      res.json({
-        books: books.map(
-          (book) => book.serialize()
-        )
-      });
+      // res.json({
+      //   books: books.map(
+      //     (book) => book.serialize()
+      //   )
+      // });
+      res.render("book_list", {title: "Book List", book_list: books})
     })
     .catch(err => {
       res.status(500).json({ message: "Internal server error"})
