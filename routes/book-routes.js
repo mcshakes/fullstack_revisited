@@ -6,94 +6,14 @@ const mongoose = require("mongoose");
 const { Book } = require("../models/book")
 const router = express.Router({mergeParams: true});
 
+// Controller modules
+const libraryController = require("../controllers/libraryController")
 
-router.post("/books", (req, res) => {
-  const reqFields = ["title", "author"];
+router.get("/books", libraryController.getLibrary);
+router.get("/books/:id", libraryController.getBook);
+router.put("/books/:id", libraryController.editBook);
+router.delete("/books/:id", libraryController.deleteBook);
 
-  for (let i = 0; i < reqFields.length; i++) {
-    const field = reqFields[i];
-
-    if (!field in req.body) {
-      const message = `Missing ${field} in the request body`;
-      console.log(message)
-      return res.status(400).send(message)
-    }
-  }
-
-  Book
-    .create({
-      title: req.body.title,
-      author: req.body.author,
-      summary: req.body.summary
-    })
-    .then((book) => {
-      res.status(201).json(book.serialize())
-    })
-    .catch(err => {
-      console.log(err);
-    })
-
-})
-
-router.get("/books", (req, res) => {
-  Book
-  .find()
-   // .limit()
-  .then(books => {
-    res.json({
-      books: books.map(
-        (book) => book.serialize()
-      )
-    });
-  })
-  .catch(err => {
-    res.status(500).json({ message: "Internal server error"})
-    console.log(err);
-  })
-})
-
-router.get("/books/:id", (req, res) => {
-  Book
-  .findById(req.params.id)
-  .then(book => res.json(book.serialize()))
-  .catch(err => {
-    console.log(err);
-  })
-})
-
-router.put("/books/:id", (req, res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id ${req.params.id} and the request body id ${req.body.id} must match`
-    );
-    console.error(message);
-    return res.status(400).json({ message: message });
-  }
-
-  const toUpdate = {};
-  const updateableFields = ["title", "author", "summary"];
-
-  updateableFields.forEach(field => {
-    if (field in req.body) {
-      toUpdate[field] = req.body[field];
-    }
-  });
-
-  Book
-  .findByIdAndUpdate(req.params.id, { $set: toUpdate })
-  .then(book => res.status(204).end())
-  .catch(err => {
-    console.log(err);
-  })
-})
-
-router.delete("/books/:id", (req, res) => {
-  Book
-  .findByIdAndRemove(req.params.id)
-  .then(book => res.status(204).json({ message: "Book Removed and deleted from your library"}).end())
-  .catch(err => {
-    console.log(err);
-  })
-})
-
+router.post("/books", libraryController.createBook);
+router.get("/add-new-book", libraryController.createBookForm);
 module.exports = router;
