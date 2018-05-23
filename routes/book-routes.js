@@ -15,5 +15,5 @@ router.put("/books/:id", libraryController.editBook);
 router.delete("/books/:id", libraryController.deleteBook);
 
 router.post("/books", libraryController.createBook);
-router.post("/books", libraryController.createBook);
+router.get("/add-new", libraryController.createBookForm);
 module.exports = router;

@@ -1,0 +1,14 @@
+block content
+  h1 Add a Book
+  h3 Do use real details. Otherwise, what's the point?
+
+  form(method="POST" action="/books")
+    div.form-group
+      label(for="title") Title:
+      input#title.form-control(type="text", placeholder="Small Gods" name="title")
+      label(for="author") Author:
+      input#author.form-control(type="text", placeholder="Terry Pratchett" name="author")
+      label(for="summary") Summary:
+      input#summary.form-control(type="text", placeholder="God is turtle, world is flat" name="summary")
+      div.form-group
+        button.btn.btn-primary(type="submit") Add Book
