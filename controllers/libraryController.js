@@ -52,7 +52,10 @@ exports.createBook = (req,res) => {
 exports.getBook = (req, res) => {
   Book
     .findById(req.params.id)
-    .then(book => res.json(book.serialize()))
+    .then(book => {
+      console.log(book)
+      res.render("book", {title: "Book", book: book})
+    })
     .catch(err => {
       console.log(err);
     })
