@@ -47,13 +47,13 @@ exports.createBook = (req,res) => {
     .catch(err => {
       console.log(err);
     })
+    res.redirect("/books")
 }
 
 exports.getBook = (req, res) => {
   Book
     .findById(req.params.id)
     .then(book => {
-      console.log(book)
       res.render("book", {title: "Book", book: book})
     })
     .catch(err => {

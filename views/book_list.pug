@@ -5,6 +5,8 @@ block content
   each book in book_list
     li
       a(href=book.url) #{book.title}
-      | (#{book.author})
+      p (#{book.author})
+      a(href=book.url)
+        button(type="button" onclick=`getBook(book.id)`)  Learn More
   else
     li There are no books
