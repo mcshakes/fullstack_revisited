@@ -1,7 +1,4 @@
-block content
-  h1 Add a Book
-  h3 Do use real details. Otherwise, what's the point?
-
+mixin bookForm(book = {})
   form(method="POST" action="/books")
     div.form-group
       label(for="title") Title:
