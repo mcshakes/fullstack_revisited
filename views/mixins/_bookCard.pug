@@ -4,7 +4,7 @@ mixin bookCard(book = {})
       .book__actions
         button Soon...
       h2.title
-        #{book.title}
+        a(href=`/books/${book.id}`) #{book.title}
     .book__details
       p #{book.author}
       if book.summary
