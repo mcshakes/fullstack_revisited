@@ -73,6 +73,8 @@ exports.updateBook = async (req, res) => {
 
 
 exports.editBook = (req,res) => {
+  
+  //NOTE: Below is commented becuse delaing with views means obfuscating the IDs
   // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
   //   const message = (
   //     `Request path id ${req.params.id} and the request body id ${req.body.id} must match`
