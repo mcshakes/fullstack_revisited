@@ -8,5 +8,8 @@ html
     block header
       header.top
         nav.nav
+        .nav__section.nav__section--user
+            li.nav__item: a.nav__link(href="/register") Register
+            li.nav__item: a.nav__link(href="/login") Log In
     .content
       block content
