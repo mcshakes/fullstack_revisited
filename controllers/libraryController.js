@@ -10,7 +10,7 @@ exports.getLibrary = (req, res) => {
       //     (book) => book.serialize()
       //   )
       // });
-      res.render("book_list", {title: "Book List", book_list: books})
+      res.render("listBook", {title: "Book List", book_list: books})
     })
     .catch(err => {
       res.status(500).json({ message: "Internal server error"})
@@ -19,7 +19,7 @@ exports.getLibrary = (req, res) => {
 }
 
 exports.createBookForm = (req,res) => {
-  res.render("create_book_form", { title: "Add A New Book"})
+  res.render("createBook", { title: "Add A New Book"})
 }
 
 exports.createBook = (req,res) => {
@@ -47,25 +47,41 @@ exports.createBook = (req,res) => {
     .catch(err => {
       console.log(err);
     })
+    res.redirect("/books")
 }
 
 exports.getBook = (req, res) => {
   Book
     .findById(req.params.id)
-    .then(book => res.json(book.serialize()))
+    .then(book => {
+      res.render("book", {title: "Book", book: book})
+    })
     .catch(err => {
       console.log(err);
     })
 }
 
-exports.editBook = (req,res) => {
-  if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
-    const message = (
-      `Request path id ${req.params.id} and the request body id ${req.body.id} must match`
-    );
-    console.error(message);
-    return res.status(400).json({ message: message });
+exports.updateBook = async (req, res) => {
+  try {
+    const book = await Book.findOne({_id: req.params.id})
+    res.render("editBook", { title: `Edit ${book.title}`, book: book })
   }
+  catch(err) {
+    console.log(err)
+  }
+}
+
+
+exports.editBook = (req,res) => {
+  
+  //NOTE: Below is commented becuse delaing with views means obfuscating the IDs
+  // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
+  //   const message = (
+  //     `Request path id ${req.params.id} and the request body id ${req.body.id} must match`
+  //   );
+  //   console.error(message);
+  //   return res.status(400).json({ message: message });
+  // }
 
   const toUpdate = {};
   const updateableFields = ["title", "author", "summary"];
@@ -78,7 +94,10 @@ exports.editBook = (req,res) => {
 
   Book
   .findByIdAndUpdate(req.params.id, { $set: toUpdate })
-  .then(book => res.status(204).end())
+  .then(book => {
+    res.status(204)
+    res.redirect("/books")
+  })
   .catch(err => {
     console.log(err);
   })

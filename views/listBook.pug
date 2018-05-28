@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_bookCard
+
+block content
+  .inner
+    h2 #{title}
+      .books
+        each book in book_list
+          +bookCard(book)

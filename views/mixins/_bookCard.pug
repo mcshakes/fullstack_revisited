@@ -1,0 +1,12 @@
+mixin bookCard(book = {})
+  .book
+    .book__hero
+      h2.title
+        a(href=`/books/${book.id}`) #{book.title}
+    .book__details
+      p #{book.author}
+      if book.summary
+        p= book.summary.split(" ").slice(0, 25).join(" ")
+    .book__actions
+    button
+      a(href=`edit-book/${book.id}`) Edit
