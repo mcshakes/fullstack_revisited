@@ -25,6 +25,8 @@ app.use(cors());
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
