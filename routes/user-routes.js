@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const router = express.Router();
+const userController = require('../controllers/userController');
+
 const passport = require("passport");
 // const LocalStrategy = require("passport-local").Strategy;
 
@@ -34,20 +36,20 @@ router.get("/users/:id", (req, res) => {
 passport.use("local", localStrategy);
 const localAuth = passport.authenticate("local", { session: false });
 
-router.get("/login", (req, res) => {
 
-})
+router.get("/login", userController.loginForm);
+router.post("/login", userController.logUserIn);
+router.get("/logout", userController.logUserOut);
 
+// router.post("/login", localAuth, (req, res) => {
+//   // console.log(req.body)
+//   return res.status(200).json(req.user.serialize())
+// })
 
-router.post("/login", localAuth, (req, res) => {
-  // console.log(req.body)
-  return res.status(200).json(req.user.serialize())
-})
-
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/")
-})
+// router.get("/logout", (req, res) => {
+//   req.logout();
+//   res.redirect("/")
+// })
 
 
 router.post("/users/:id/books", (req, res) => {
@@ -71,6 +73,7 @@ router.post("/users/:id/books", (req, res) => {
 
 });
 
+router.get("/register", userController.registerForm);
 
 router.post("/signup", (req, res) => {
   const reqFields = ["email", "password"];
