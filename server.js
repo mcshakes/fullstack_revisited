@@ -6,8 +6,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
-const path = require("path")
-const { localStrategy } = require("./middleware/auth")
+const path = require("path");
+const expressValidator = require('express-validator');
+const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
+
+app.use(expressValidator());
 
 app.use(bookRouter);
 app.use(userRouter);
