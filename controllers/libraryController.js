@@ -5,11 +5,6 @@ exports.getLibrary = (req, res) => {
     .find()
      // .limit()
     .then(books => {
-      // res.json({
-      //   books: books.map(
-      //     (book) => book.serialize()
-      //   )
-      // });
       res.render("listBook", {title: "Book List", book_list: books})
     })
     .catch(err => {
@@ -73,7 +68,7 @@ exports.updateBook = async (req, res) => {
 
 
 exports.editBook = (req,res) => {
-  
+
   //NOTE: Below is commented becuse delaing with views means obfuscating the IDs
   // if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
   //   const message = (

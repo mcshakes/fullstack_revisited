@@ -64,7 +64,7 @@ describe("Books API Resource", function() {
         .send(newBook)
         .then(function(res) {
           expect(res).to.have.status(201);
-          expect(res).to.be.json;
+          // expect(res).to.be.json;
           expect(res.body).to.be.a("object");
           expect(res.body).to.include.keys(
             "id", "title", "author"
