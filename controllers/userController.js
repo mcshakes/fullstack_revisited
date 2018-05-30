@@ -7,8 +7,8 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
-    // console.log(req.body)
-  return res.status(200).json(req.user.serialize())
+  return res.status(200)
+    .redirect(`users/${req.user.id}`)
 }
 
 exports.logUserOut = (req, res) => {
