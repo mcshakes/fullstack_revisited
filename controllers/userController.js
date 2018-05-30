@@ -7,7 +7,8 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
-  res.send(req.body.user)
+    // console.log(req.body)
+  return res.status(200).json(req.user.serialize())
 }
 
 exports.logUserOut = (req, res) => {

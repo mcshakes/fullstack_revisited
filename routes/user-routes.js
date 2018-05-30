@@ -27,7 +27,6 @@ router.get("/login", userController.loginForm);
 router.post("/login", localAuth, userController.logUserIn);
 router.get("/logout", userController.logUserOut);
 
-
 router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
