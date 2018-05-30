@@ -74,36 +74,8 @@ router.post("/users/:id/books", (req, res) => {
 });
 
 router.get("/register", userController.registerForm);
+router.post("/register", userController.register);
 
-router.post("/signup", (req, res) => {
-  const reqFields = ["email", "password"];
-
-  for (let i = 0; i < reqFields.length; i++) {
-    const field = reqFields[i];
-
-    if (!field in req.body) {
-      const message = `Missing ${field} in the request body`;
-      console.log(message)
-      return res.status(400).send(message)
-    }
-
-    return User.hashPassword(req.body.password)
-      .then(hash => {
-        { hash }
-
-        return User.create({
-            email: req.body.email,
-            password: hash
-        })
-        .then(user => {
-          res.status(201).json(user.serialize())
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      })
-  }
-})
 
 
 module.exports = router;
