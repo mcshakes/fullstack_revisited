@@ -1,5 +1,9 @@
 extends layout
 
+include mixins/_bookCard
+
 block content
   .inner
-    h2 #{title}
+    h3 #{user.email}
+    .books
+      p #{console.log(library)}
