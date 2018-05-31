@@ -5,5 +5,7 @@ include mixins/_bookCard
 block content
   .inner
     h3 #{user.email}
+    p Look at all my books below:
     .books
-      p #{console.log(library)}
+      each book in user.library
+        +bookCard(book)
