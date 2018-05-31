@@ -8,11 +8,12 @@ exports.loginForm = (req, res) => {
 
 exports.logUserIn = (req, res) => {
   return res.status(200)
-    .redirect(`users/${req.user.id}`)
+            .redirect(`users/${req.user.id}`)
 }
 
 exports.logUserOut = (req, res) => {
   req.logout();
+  req.flash("You are logged out!")
   res.redirect("/")
 }
 
@@ -59,7 +60,10 @@ exports.showUser = (req, res) => {
 
   User
     .findById(userId)
-    .then(user => res.json(user.serialize()))
+    .then(user => {
+      // res.json(user.serialize())
+      res.render("userPage", {title: "User!"})
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json({ message: "Internal server error" });
