@@ -13,7 +13,6 @@ exports.logUserIn = (req, res) => {
 
 exports.logUserOut = (req, res) => {
   req.logout();
-  req.flash("You are logged out!")
   res.redirect("/")
 }
 
@@ -46,7 +45,6 @@ exports.register = (req, res) => {
         .then(user => {
           res.status(201)
           res.redirect(`users/${user.id}`)
-          // need redirect
         })
         .catch(err => {
           console.log(err);
@@ -61,8 +59,7 @@ exports.showUser = (req, res) => {
   User
     .findById(userId)
     .then(user => {
-      // res.json(user.serialize())
-      res.render("userPage", {title: "User!"})
+      res.render("userPage", {title: "User!", user: user})
     })
     .catch(err => {
       console.log(err);
