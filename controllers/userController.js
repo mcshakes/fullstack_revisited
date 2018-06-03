@@ -13,7 +13,7 @@ exports.logUserIn = (req, res) => {
 
 exports.logUserOut = (req, res) => {
   req.logout();
-  res.redirect("/")
+  res.redirect("/books")
 }
 
 
@@ -87,6 +87,13 @@ exports.addBookToLibrary = (req, res) => {
   })
 }
 
+exports.searchForm = (req, res) => {
+  res.render("searchForm")
+}
+
+exports.searchBook = (req, res) => {
+
+}
 
 // exports.validateRegister = (req, res, next) => {
 //   req.sanitizeBody("name");
