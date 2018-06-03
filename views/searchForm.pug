@@ -2,11 +2,9 @@ extends layout
 
 block content
   .inner
-    form.form(method="GET" action="/search")
+    form.form(method="GET" action="/search-results")
       div.form-group
       label(for="title") Title:
       input#title.form-control(type="text", placeholder="Small Gods" name="title")
-      label(for="author") Author:
-      input#author.form-control(type="text", placeholder="Terry Pratchett" name="author")
       div.form-group
         button.btn.btn-primary(type="submit" role="submit") Search

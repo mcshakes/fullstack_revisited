@@ -1,6 +1,7 @@
 const { User } = require("../models/user");
 const mongoose = require("mongoose");
-
+const axios = require("axios");
+const { GOODREADS_KEY } = require("../config");
 
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });
@@ -91,8 +92,12 @@ exports.searchForm = (req, res) => {
   res.render("searchForm")
 }
 
-exports.searchBook = (req, res) => {
+const rootURL = `https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=`
 
+exports.searchBook = async rootUrl => {
+  try {
+    const response = await axios.get()
+  }
 }
 
 // exports.validateRegister = (req, res, next) => {
