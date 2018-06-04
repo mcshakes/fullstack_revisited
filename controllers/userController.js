@@ -108,9 +108,14 @@ exports.searchBook = (req, res) => {
         // result.GoodreadsResponse.search[0].results[0].work.map(work => {
         //   res.render("searchResults", {book: work});
         // })
-        // console.log(result)
-        console.log("------------------------------------")
-        console.log(data.GoodreadsResponse.search[0].results[0].work)
+        let books = data.GoodreadsResponse.search[0].results[0].work
+        books.map(tit => {
+          console.log(tit.average_rating)
+          console.log(tit.best_book)
+          console.log(tit.best_book)
+          console.log("------------------------------------")
+        })
+        // res.render("searchResults", { books: books} )
       })
     })
     .catch((err) => {
