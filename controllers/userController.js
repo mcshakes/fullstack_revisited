@@ -1,7 +1,9 @@
 const { User } = require("../models/user");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const request = require("request-promise");
 const { GOODREADS_KEY } = require("../config");
+const parseString = require("xml2js").parseString;
 
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });
@@ -92,12 +94,28 @@ exports.searchForm = (req, res) => {
   res.render("searchForm")
 }
 
-const rootURL = `https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=`
 
-exports.searchBook = async rootUrl => {
-  try {
-    const response = await axios.get()
-  }
+const url = `https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=`
+
+exports.searchBook = (req, res) => {
+  let query = req.body.title
+
+  request
+    .get(url + query)
+    .then(result => {
+      parseString(result, (err, data) => {
+
+        // result.GoodreadsResponse.search[0].results[0].work.map(work => {
+        //   res.render("searchResults", {book: work});
+        // })
+        // console.log(result)
+        console.log("------------------------------------")
+        console.log(data.GoodreadsResponse.search[0].results[0].work)
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+    })
 }
 
 // exports.validateRegister = (req, res, next) => {
