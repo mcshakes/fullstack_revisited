@@ -1,6 +1,8 @@
 const { User } = require("../models/user");
 const mongoose = require("mongoose");
-
+const axios = require("axios");
+const request = require("request-promise");
+const { GOOGLE_KEY } = require("../config");
 
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });
@@ -8,12 +10,12 @@ exports.loginForm = (req, res) => {
 
 exports.logUserIn = (req, res) => {
   return res.status(200)
-    .redirect(`users/${req.user.id}`)
+            .redirect(`users/${req.user.id}`)
 }
 
 exports.logUserOut = (req, res) => {
   req.logout();
-  res.redirect("/")
+  res.redirect("/books")
 }
 
 
@@ -45,7 +47,6 @@ exports.register = (req, res) => {
         .then(user => {
           res.status(201)
           res.redirect(`users/${user.id}`)
-          // need redirect
         })
         .catch(err => {
           console.log(err);
@@ -59,7 +60,9 @@ exports.showUser = (req, res) => {
 
   User
     .findById(userId)
-    .then(user => res.json(user.serialize()))
+    .then(user => {
+      res.render("userPage", {title: "User!", user: user})
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json({ message: "Internal server error" });
@@ -86,6 +89,28 @@ exports.addBookToLibrary = (req, res) => {
   })
 }
 
+exports.searchForm = (req, res) => {
+  res.render("searchForm")
+}
+
+
+exports.searchBook = (req, res) => {
+  let searchQuery = req.body.title
+  const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${GOOGLE_KEY}`
+
+  request
+    .get(booksURL)
+    .then(books => {
+      let library = JSON.parse(books)
+      let results = library.items
+      res.render("searchResults", {books: results})
+
+      // console.log(library.items[0])
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
 
 // exports.validateRegister = (req, res, next) => {
 //   req.sanitizeBody("name");
