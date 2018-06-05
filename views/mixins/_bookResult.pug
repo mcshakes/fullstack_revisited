@@ -1,8 +1,7 @@
 mixin bookResult(book = {})
   .search-result
-    .book__hero
-      h3.title
-        #{book.best_book.title}
+    p.book__hero
+    h3 #{book.volumeInfo.title}
     .book-details
-      p #{book.best_book.author}
-      p #{book.best_book.small_image_url}
+      p #{book.volumeInfo.authors[0]}
+      p #{book.volumeInfo.description}

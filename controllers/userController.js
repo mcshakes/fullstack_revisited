@@ -103,11 +103,10 @@ exports.searchBook = (req, res) => {
     .get(booksURL)
     .then(books => {
       let library = JSON.parse(books)
-      console.log("----------")
+      let results = library.items
+      res.render("searchResults", {books: results})
+      
       // console.log(library.items[0])
-      console.log("AUTHOR", library.items[0].volumeInfo.authors[0])
-      console.log("TITLE", library.items[0].volumeInfo.title)
-      console.log("DESCRIPTION", library.items[0].volumeInfo.description)
     })
     .catch((err) => {
       console.log(err);
