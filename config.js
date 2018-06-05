@@ -11,4 +11,5 @@ exports.GOODREADS_KEY = "JA8x37btYafVM0F2slleVQ";
 
 exports.GOODREADS_SECRET = "pGgHODbF9ltRwqKHZrhm3zJpobana2lL5jOnAQEwUg";
 
+exports.GOOGLE_KEY = "AIzaSyDwdCYb0M9nhZhbiOIP3KlPG_3qBmFJanE"
 // https://github.com/Remchi/bookworm-api

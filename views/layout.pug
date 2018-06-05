@@ -9,6 +9,9 @@ html
       header.top
         nav.nav
         .nav__section.nav__section--user
+          if user
+            li.nav__item: a.nav__link(href="/logout") Log Out
+          else
             li.nav__item: a.nav__link(href="/register") Register
             li.nav__item: a.nav__link(href="/login") Log In
     .content
