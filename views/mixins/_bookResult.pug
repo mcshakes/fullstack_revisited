@@ -1,0 +1,8 @@
+mixin bookResult(book = {})
+  .search-result
+    .book__hero
+      h3.title
+        #{book.best_book.title}
+    .book-details
+      p #{book.best_book.author}
+      p #{book.best_book.small_image_url}

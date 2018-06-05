@@ -105,17 +105,22 @@ exports.searchBook = (req, res) => {
     .then(result => {
       parseString(result, (err, data) => {
 
+        if (err) console.Error(err)
+
         // result.GoodreadsResponse.search[0].results[0].work.map(work => {
         //   res.render("searchResults", {book: work});
         // })
-        let books = data.GoodreadsResponse.search[0].results[0].work
-        books.map(tit => {
-          console.log(tit.average_rating)
-          console.log(tit.best_book)
-          console.log(tit.best_book)
-          console.log("------------------------------------")
-        })
+        let books = data.GoodreadsResponse.search[0].results[0]
+        console.log(books)
         // res.render("searchResults", { books: books} )
+
+        // books.map(bookInfo => {
+          // console.log(tit.average_rating)
+          // console.log(tit.best_book)
+          // console.log(tit.best_book)
+          // console.log("------------------------------------")
+        // })
+
       })
     })
     .catch((err) => {

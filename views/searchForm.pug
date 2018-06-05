@@ -2,7 +2,7 @@ extends layout
 
 block content
   .inner
-    form.form(method="GET" action="/search-results")
+    form(action="/search-results" method="POST")
       div.form-group
       label(for="title") Title:
       input#title.form-control(type="text", placeholder="Small Gods" name="title")

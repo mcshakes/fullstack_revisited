@@ -34,6 +34,6 @@ router.get("/users/:id", userController.showUser);
 router.post("/users/:id/books", userController.addBookToLibrary);
 
 router.get("/search", userController.searchForm);
-router.get("/search-results", userController.searchBook);
+router.post("/search-results", userController.searchBook);
 
 module.exports = router;
