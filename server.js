@@ -12,8 +12,9 @@ const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
+require('dotenv').config()
 
-const {PORT, DATABASE_URL, GOODREADS_KEY} = require("./config");
+const {PORT, DATABASE_URL} = require("./config");
 mongoose.Promise = global.Promise;
 const { Book } = require("./models/book")
 
