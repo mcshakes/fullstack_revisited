@@ -2,8 +2,7 @@ const { User } = require("../models/user");
 const mongoose = require("mongoose");
 const axios = require("axios");
 const request = require("request-promise");
-const { GOODREADS_KEY } = require("../config");
-const parseString = require("xml2js").parseString;
+const { GOOGLE_KEY } = require("../config");
 
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login" });
@@ -95,33 +94,20 @@ exports.searchForm = (req, res) => {
 }
 
 
-const url = `https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=`
-
+// const url = `https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=`
 exports.searchBook = (req, res) => {
-  let query = req.body.title
+  let searchQuery = req.body.title
+  const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${GOOGLE_KEY}`
 
   request
-    .get(url + query)
-    .then(result => {
-      parseString(result, (err, data) => {
-
-        if (err) console.Error(err)
-
-        // result.GoodreadsResponse.search[0].results[0].work.map(work => {
-        //   res.render("searchResults", {book: work});
-        // })
-        let books = data.GoodreadsResponse.search[0].results[0]
-        console.log(books)
-        // res.render("searchResults", { books: books} )
-
-        // books.map(bookInfo => {
-          // console.log(tit.average_rating)
-          // console.log(tit.best_book)
-          // console.log(tit.best_book)
-          // console.log("------------------------------------")
-        // })
-
-      })
+    .get(booksURL)
+    .then(books => {
+      let library = JSON.parse(books)
+      console.log("----------")
+      // console.log(library.items[0])
+      console.log("AUTHOR", library.items[0].volumeInfo.authors[0])
+      console.log("TITLE", library.items[0].volumeInfo.title)
+      console.log("DESCRIPTION", library.items[0].volumeInfo.description)
     })
     .catch((err) => {
       console.log(err);
