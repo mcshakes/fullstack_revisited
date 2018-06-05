@@ -96,7 +96,7 @@ exports.searchForm = (req, res) => {
 
 exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
-  const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${GOOGLE_KEY}`
+  const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
   request
     .get(booksURL)
