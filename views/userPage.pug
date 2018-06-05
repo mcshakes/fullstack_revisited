@@ -1,0 +1,13 @@
+extends layout
+
+include mixins/_bookCard
+
+block content
+  .inner
+    h3 Hey there, #{user.email}!
+    button.btn.btn-primary
+      a(href="/search") Add a New Book
+    h2 These are the books you'd like to read. Better check them out!
+    .books
+      each book in user.library
+        +bookCard(book)

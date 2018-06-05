@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .inner
+    form(action="/search-results" method="POST")
+      div.form-group
+      label(for="title") Title:
+      input#title.form-control(type="text", placeholder="Small Gods" name="title")
+      div.form-group
+        button.btn.btn-primary(type="submit" role="submit") Search

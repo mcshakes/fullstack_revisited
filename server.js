@@ -13,7 +13,7 @@ const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
 
-const {PORT, DATABASE_URL, GOODREADS_KEY, GOODREADS_SECRET} = require("./config");
+const {PORT, DATABASE_URL, GOODREADS_KEY} = require("./config");
 mongoose.Promise = global.Promise;
 const { Book } = require("./models/book")
 
@@ -46,22 +46,6 @@ app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
   res.render("index")
-})
-
-app.get("/search", (req, res) => {
-
-  res.send("Index!! Only place a user can come unauthenticated")
-
-  let searchQuery = "stephen king";
-  request
-    .get(`https://www.goodreads.com/search/index.xml?key=${GOODREADS_KEY}&q=${searchQuery}`)
-    .then(result =>
-      parseString(result, (err, goodResult) =>
-        goodResult.GoodreadsResponse.search[0].results[0].work.map( work => {
-          console.log(work)
-        })
-      )
-    );
 })
 
 
