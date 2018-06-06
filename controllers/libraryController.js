@@ -37,7 +37,7 @@ exports.createBook = (req,res) => {
       summary: req.body.summary
     })
     .then((book) => {
-      res.status(201).json(book.serialize())
+      res.status(201)
     })
     .catch(err => {
       console.log(err);
