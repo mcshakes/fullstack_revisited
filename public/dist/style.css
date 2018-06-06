@@ -30,6 +30,11 @@ body:before {
   }
 }
 
+.link-to-create {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .books {
   display: -ms-flexbox;
   display: flex;
