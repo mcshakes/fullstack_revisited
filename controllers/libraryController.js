@@ -98,10 +98,16 @@ exports.editBook = (req,res) => {
   })
 }
 
+exports.deleteForm = (req, res) => {
+  // res.render("deleteForm", {book: book})
+}
+
 exports.deleteBook = (req, res) => {
   Book
   .findByIdAndRemove(req.params.id)
-  .then(book => res.status(204).json({ message: "Book Removed and deleted from your library"}).end())
+  .then(() => {
+    res.status(204)
+  })
   .catch(err => {
     console.log(err);
   })
