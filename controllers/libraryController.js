@@ -98,10 +98,6 @@ exports.editBook = (req,res) => {
   })
 }
 
-exports.deleteForm = (req, res) => {
-  // res.render("deleteForm", {book: book})
-}
-
 exports.deleteBook = (req, res) => {
   Book
   .findByIdAndRemove(req.params.id)
