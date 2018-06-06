@@ -103,7 +103,8 @@ exports.deleteBook = (req, res) => {
   .findByIdAndRemove(req.params.id)
   .then(() => {
     console.log("was deleted")
-    res.status(204)
+    res.status(204).json({message: "Book deleted"})
+    // return res.redirect(303, "/books")
   })
   .catch(err => {
     console.log(err);

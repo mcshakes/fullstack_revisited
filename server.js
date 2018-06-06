@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("cookie-session");
 const path = require("path");
+const morgan = require("morgan");
 const expressValidator = require('express-validator');
 const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
@@ -24,6 +25,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(morgan("dev"));
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
