@@ -11,6 +11,8 @@ const libraryController = require("../controllers/libraryController")
 
 router.get("/books", libraryController.getLibrary);
 router.get("/books/:id", libraryController.getBook);
+
+// router.get("/books/:id/delete", libraryController.deleteForm);
 router.delete("/books/:id", libraryController.deleteBook);
 
 router.post("/books", libraryController.createBook);
