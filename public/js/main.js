@@ -7,7 +7,8 @@ $(document).ready(function() {
       type: "DELETE",
       url: "/books/" + id,
       success: function(res) {
-        window.location.href="/"
+        // console.log(window.location.href)
+        window.location.reload()
       },
       error: function(err) {
         console.log(err);

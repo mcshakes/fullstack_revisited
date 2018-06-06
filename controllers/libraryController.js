@@ -102,6 +102,7 @@ exports.deleteBook = (req, res) => {
   Book
   .findByIdAndRemove(req.params.id)
   .then(() => {
+    console.log("was deleted")
     res.status(204)
   })
   .catch(err => {

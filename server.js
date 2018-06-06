@@ -12,6 +12,7 @@ const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
+const $ = require('jquery');
 require('dotenv').config()
 
 const {PORT, DATABASE_URL} = require("./config");
@@ -49,11 +50,13 @@ app.get("/", (req, res) => {
   res.redirect("/books")
 })
 
-function deleteBook(event) {
-  prevent.preventDefault();
-
-
-}
+// const del = document.getElementById("delete-book")
+//
+// function deleteBook(event) {
+//   prevent.preventDefault();
+//
+//
+// }
 // ************************ SERVER *****************************
 
 let server;
