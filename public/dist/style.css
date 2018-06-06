@@ -3,8 +3,15 @@ html {
   font-size: 12px; }
 
 body {
-  background: #262161;
-  background: #efefef; }
+  font-family: 'Roboto', sans-serif;
+  background-color: whitesmoke;
+}
+
+h1 {
+  text-align: center
+  color: lightseagreen
+}
+
 body:before {
   content: '';
   display: block;
@@ -13,11 +20,15 @@ body:before {
   width: 100%; }
 
 .inner {
-max-width: 900px;
-margin: 0 auto; }
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #F5F5DC;
+}
 @media all and (max-width: 900px) {
   .inner {
-    padding: 2rem; } }
+    padding: 2rem;
+  }
+}
 
 .books {
   display: -ms-flexbox;
@@ -27,14 +38,33 @@ margin: 0 auto; }
   margin: -1.25em 0 0 -1.25em; }
 
 .book {
-  background: white;
   margin: 1.25em 0 0 1.25em;
   width: calc(33.3333% - 1.25em);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05); }
-  .book--wide {
-    width: 100%; }
-  .book__details {
-    padding: 2rem; }
+  margin: 0;
+  padding: 0;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
+
+}
+.book--wide {
+  width: 100%;
+}
+
+.book__actions {
+  position: absolute;
+  bottom: 0;
+}
+
+#edit-book {
+  margin: 0 auto;
+  display: block;
+}
+
+
+.book__details {
+  padding: 2rem;
+}
     .book__details p {
       line-height: 1.2;
       margin-bottom: 0; }
@@ -46,9 +76,3 @@ margin: 0 auto; }
       width: 100%; } }
 
 /** Forms ========================================================================== **/
-
-
-/* .card {
-  background: white;
-  padding: 5rem;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15); } */
