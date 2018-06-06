@@ -9,4 +9,5 @@ mixin bookCard(book = {})
         p= book.summary.split(" ").slice(0, 25).join(" ")
     .book__actions
     button
-      a(href=`edit-book/${book.id}`) Edit
+      a(href=`edit-book/${book.id}`) Edit Book
+    button#delete-book.btn.btn-danger(data-id=`${book.id}`) Delete Book

@@ -46,10 +46,14 @@ app.use(passport.initialize());
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
-  res.render("index")
+  res.redirect("/books")
 })
 
+function deleteBook(event) {
+  prevent.preventDefault();
 
+
+}
 // ************************ SERVER *****************************
 
 let server;
