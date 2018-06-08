@@ -1,3 +1,29 @@
-{"title": "The Stand", "author": "Stephen King", "summary": "Post apocalyptic, Good versus Evil"}
-{"title": "How to Win Friends and Influence People", "author": "Dale Carnegie", "summary": "Basically, listening to what people have to say"}
-{"title": "Things Fall Apart", "author": "Chinua Achebe", "summary": "Respected warrior trying to distance himself from social pariah father (among other things -- it's been awhile)"}
+{
+  "title": "The Stand",
+  "author": "Stephen King",
+  "summary": "Post apocalyptic, Good versus Evil",
+  "image": "http://books.google.com/books/content?id=LC32OW8iVUQC&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+}
+{"title": "How to Win Friends and Influence People",
+  "author": "Dale Carnegie",
+  "summary": "Basically, listening to what people have to say",
+  "image": "http://books.google.com/books/content?id=fisXDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+}
+{
+  "title": "Things Fall Apart",
+  "author": "Chinua Achebe",
+  "summary": "Respected warrior trying to distance himself from social pariah father (among other things -- it's been awhile)",
+  "image": "http://books.google.com/books/content?id=tSbWMu_-D5AC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+}
+{
+  "title": "Pride and Prejudice",
+  "author": "Jane Austen",
+  "summary": "Elizabeth Bennet doesn't want to get married, then meats Darcy. Suddenly wants to get married?",
+  "image": "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+}
+{
+  "title": "No Reservations",
+  "author": "Anthony Bourdain",
+  "summary": "A hero of mine, will be sorely missed",
+  "image": "http://books.google.com/books/content?id=_l6knSSae8kC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+}

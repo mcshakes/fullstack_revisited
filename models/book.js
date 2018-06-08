@@ -7,21 +7,12 @@ const slug = require("slugs");
 const bookSchema = mongoose.Schema({
   title: String,
   author: String,
-  slug: String,
+  image: { data: Buffer, contentType: String },
   summary: {
     type: String,
     trim: true
   }
 });
-
-// bookSchema.pre("save", function(next) {
-//   if (!this.isModified("title")) {
-//     next();
-//     return;
-//   }
-//   this.slug = slug(this.title);
-//   next();
-// })
 
 bookSchema.methods.serialize = function() {
   return {

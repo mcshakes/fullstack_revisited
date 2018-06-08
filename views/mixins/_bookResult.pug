@@ -2,6 +2,7 @@ mixin bookResult(book = {})
   .search-result
     p.book__hero
     h3 #{book.volumeInfo.title}
+    img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
     .book-details
       p #{book.volumeInfo.authors[0]}
       p #{book.volumeInfo.description}
