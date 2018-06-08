@@ -14,15 +14,6 @@ const bookSchema = mongoose.Schema({
   }
 });
 
-// bookSchema.pre("save", function(next) {
-//   if (!this.isModified("title")) {
-//     next();
-//     return;
-//   }
-//   this.slug = slug(this.title);
-//   next();
-// })
-
 bookSchema.methods.serialize = function() {
   return {
     id: this._id,
