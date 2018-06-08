@@ -4,6 +4,7 @@ block content
   div.container
     h2 #{book.title}
     h2 #{book.author}
-    h3 #{book.summary}
+    if book.summary
+      p= book.summary.split(" ").slice(0, 25).join(" ")
 
     button.btn-danger.delete-book(href="#", data-id=book.id) Delete Book

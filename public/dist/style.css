@@ -71,6 +71,14 @@ body:before {
 
 }
 
+.results {
+  display: flex;
+}
+
+.search-result {
+
+}
+
 .book--wide {
   width: 100%;
 }
