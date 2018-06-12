@@ -46,6 +46,12 @@ body:before {
 }
 
 .book {
+  display: flex;
+  border: 1px solid #EF9A9A;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-direction: column;
+
   margin: 1.25em 0 0 1.25em;
   margin: 0;
   padding: 0;
@@ -53,7 +59,11 @@ body:before {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
   position: relative;
   flex: 0 1 calc(25% - 1em);
+}
 
+.book__hero {
+  text-align: center;
+  font-weight: 600;
 }
 
 .results {
