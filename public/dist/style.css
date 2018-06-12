@@ -64,6 +64,15 @@ body:before {
 .book__hero {
   text-align: center;
   font-weight: 600;
+  border-bottom: 1px solid #EF9A9A;
+  /* padding: 5px 10px; */
+}
+
+.book__details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
 }
 
 .results {
