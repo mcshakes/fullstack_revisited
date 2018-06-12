@@ -4,8 +4,8 @@ mixin bookCard(book = {})
     .book__hero
       h2.title
         a(href=`/books/${book.id}`) #{book.title}
+        p #{book.author}
     .book__details
-      p #{book.author}
       img.book-thumbnail(src=book.image)
     .book__actions
       button#edit-book

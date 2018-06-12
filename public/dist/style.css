@@ -43,10 +43,6 @@ body:before {
   margin: auto;
   justify-content: space-between;
 
-  /* margin: 0 auto;
-  width: 1000px;
-  padding-left: 0;
-  font-size: 0; */
 }
 
 .book {
@@ -57,17 +53,6 @@ body:before {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
   position: relative;
   flex: 0 1 calc(25% - 1em);
-
-  /* display: inline-block;
-  font-size: 18px;
-  width: 150px;
-  width: calc(33.3333% - 1.25em);
-  height: calc(33.3333% - 1.25em);
-  line-height: 50px;
-  margin: 15px 25px;
-  box-sizing: border-box;
-  text-align: center;
-  border: 3px red dotted; */
 
 }
 
