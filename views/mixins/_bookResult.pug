@@ -2,7 +2,11 @@ mixin bookResult(book = {})
   .search-result
     p.book__hero
     h3 #{book.volumeInfo.title}
-    img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
+    script.
+      var x = !{JSON.stringify(book.volumeInfo.imageLinks)}
+      if(!x) {
+        console.log("poop")
+      }
     .book-details
-      p #{book.volumeInfo.authors[0]}
+      p #{book.volumeInfo.authors}
       p #{book.volumeInfo.description}

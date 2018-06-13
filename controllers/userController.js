@@ -98,6 +98,7 @@ exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
+  console.log(booksURL)
   request
     .get(booksURL)
     .then(books => {
@@ -105,12 +106,17 @@ exports.searchBook = (req, res) => {
       let results = library.items
       res.render("searchResults", {books: results})
 
-      // console.log(library.items[0])
+      console.log(library.items[0].volumeInfo.authors)
     })
     .catch((err) => {
       console.log(err);
     })
 }
+// if (#{book.volumeInfo.imageLinks}.length === 0)
+//   img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
+// else
+//   h2.red No Photo Available
+
 
 // exports.validateRegister = (req, res, next) => {
 //   req.sanitizeBody("name");
