@@ -112,11 +112,6 @@ exports.searchBook = (req, res) => {
       console.log(err);
     })
 }
-// if (#{book.volumeInfo.imageLinks}.length === 0)
-//   img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
-// else
-//   h2.red No Photo Available
-
 
 // exports.validateRegister = (req, res, next) => {
 //   req.sanitizeBody("name");

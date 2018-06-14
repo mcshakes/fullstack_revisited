@@ -40,7 +40,6 @@ $(document).ready(function() {
       },
       success: function(res) {
         window.location.href = "/books"
-        // alert(image)
       },
       error: function(err) {
         console.log(err);
