@@ -29,12 +29,14 @@ exports.createBook = (req,res) => {
       return res.status(400).send(message)
     }
   }
+  console.log(req.body.image)
 
   Book
     .create({
       title: req.body.title,
       author: req.body.author,
-      summary: req.body.summary
+      summary: req.body.summary,
+      image: req.body.image
     })
     .then((book) => {
       res.status(201)

@@ -7,7 +7,7 @@ const slug = require("slugs");
 const bookSchema = mongoose.Schema({
   title: String,
   author: String,
-  image: { data: Buffer, contentType: String },
+  image: String,
   summary: {
     type: String,
     trim: true
