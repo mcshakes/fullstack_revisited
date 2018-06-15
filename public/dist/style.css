@@ -180,6 +180,20 @@ body:before {
   flex-wrap: wrap;
 }
 
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #FFFFFF;
+  background-color: #5995DA;
+
+  border: none;
+  border-radius: 3px;
+
+  padding: 10px 40px;
+  cursor: pointer;
+}
+
 .form-row textarea {
   font-family: "Helvetica", "Arial", sans-serif;
    font-size: 14px;
@@ -222,3 +236,5 @@ body:before {
   margin: 0 auto;
   display: block;
 }
+
+/* User Login */
