@@ -180,6 +180,19 @@ body:before {
   flex-wrap: wrap;
 }
 
+.form-row textarea {
+  font-family: "Helvetica", "Arial", sans-serif;
+   font-size: 14px;
+
+   border: 1px solid #D6D9DC;
+   border-radius: 3px;
+
+   min-height: 200px;
+   margin-bottom: 10px;
+   padding: 7px;
+   resize: none;
+}
+
 .form-row input[type='text'] {
   background-color: #FFFFFF;
   border: 1px solid #D6D9DC;
