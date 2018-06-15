@@ -1,12 +1,14 @@
+extends layout
 include mixins/_bookForm
 
-h1 Add a Book
-h3 Do use real details. Otherwise, what's the point?
-
 block content
-  .inner
-    +bookForm
-    section.search-option
-      h3 can't remember specifics? Try searching
-        button#search
-          a(href=`/search`) Search Books
+    header.add-book-header
+      h1 Add New Book
+      h3 Add the title, description and author. Or search for it
+    section
+      +bookForm
+    section
+      .search-option
+        h3 can't remember specifics? Try searching
+          button#search
+            a(href=`/search`) Search Books

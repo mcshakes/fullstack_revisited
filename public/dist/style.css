@@ -1,10 +1,22 @@
 @charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 12px; }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: whitesmoke;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  background-color: #EAEDF0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -91,6 +103,45 @@ body:before {
   position: absolute;
   bottom: 0;
 }
+
+/* Add book */
+.add-book-header {
+  text-align: center;
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+
+  width: 80%;
+  margin: 40px 0;
+  padding: 50px;
+}
+
+.add-book-header h1 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.add-book-form {
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+
+  width: 80%;
+  padding: 50px;
+  margin: 0 0 40px 0;
+}
+
+.search-option {
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+
+  width: 80%;
+  padding: 50px;
+  margin: 0 0 40px 0;
+}
+
+/* Edit Book */
 
 #edit-book {
   margin: 0 auto;

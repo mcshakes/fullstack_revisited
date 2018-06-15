@@ -1,5 +1,5 @@
 mixin bookForm(book = {})
-  form(method="POST" action="/books")
+  form(method="POST" action="/books" class="add-book-form")
     div.form-group
       label(for="title") Title:
       input#title.form-control(type="text", placeholder="Small Gods" name="title")
