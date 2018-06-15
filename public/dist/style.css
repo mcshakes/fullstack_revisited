@@ -128,7 +128,28 @@ body:before {
 
   width: 80%;
   padding: 50px;
-  margin: 0 0 40px 0;
+  margin: 0 0 15px 0;
+}
+
+.form-row {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.form-row input[type='text'] {
+  background-color: #FFFFFF;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  width: 100%;
+  padding: 7px;
+  font-size: 14px;
+}
+
+.form-row label {
+  margin-bottom: 15px;
 }
 
 .search-option {
