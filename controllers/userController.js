@@ -62,6 +62,7 @@ exports.showUser = (req, res) => {
     .findById(userId)
     .then(user => {
       res.render("userPage", {title: "User!", user: user})
+      console.log(user)
     })
     .catch(err => {
       console.log(err);
@@ -81,7 +82,6 @@ exports.addBookToLibrary = (req, res) => {
       { "new": true, "upsert": true},
       function (err, user) {
         if (err) throw err;
-        console.log(user)
 
         return res.status(201).json(user);
       }

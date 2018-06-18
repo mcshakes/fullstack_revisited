@@ -4,8 +4,8 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const session = require('express-session');
 const passport = require("passport");
-const session = require("cookie-session");
 const path = require("path");
 const morgan = require("morgan");
 const expressValidator = require('express-validator');
@@ -40,9 +40,16 @@ app.use(expressValidator());
 app.use(bookRouter);
 app.use(userRouter);
 
-app.use(session({ secret: "password1" }));
+app.use(session({
+  secret: process.env.SECRET,
+  key: process.env.KEY,
+  resave: false,
+  saveUninitialized: false
+}));
+
 passport.use("local", localStrategy);
 app.use(passport.initialize());
+app.use(passport.session());
 
 
 
