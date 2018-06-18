@@ -52,13 +52,6 @@ app.get("/", (req, res) => {
   res.redirect("/books")
 })
 
-// const del = document.getElementById("delete-book")
-//
-// function deleteBook(event) {
-//   prevent.preventDefault();
-//
-//
-// }
 // ************************ SERVER *****************************
 
 let server;

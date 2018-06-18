@@ -41,6 +41,13 @@ passport.deserializeUser( (id, done) => {
   })
 })
 
+const isLoggedIn = (req, res, next) => {
+  if(req.isAuthenticated()) {
+    next();
+    return;
+  }
+  console.log("Must be logged in to do that");
+  res.redirect("/login");
+}
 
-
-module.exports = { localStrategy }
+module.exports = { localStrategy, isLoggedIn }

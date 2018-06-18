@@ -7,11 +7,9 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 const passport = require("passport");
-// const LocalStrategy = require("passport-local").Strategy;
-
 const { Book } = require("../models/book")
 const { User } = require("../models/user")
-const { localStrategy } = require("../middleware/auth")
+const { localStrategy, isLoggedIn } = require("../middleware/auth")
 const books = require("../routes/book-routes");
 
 
@@ -31,9 +29,9 @@ router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
 router.get("/users/:id", userController.showUser);
-router.post("/users/:id/books", userController.addBookToLibrary);
 
-router.get("/search", userController.searchForm);
+router.get("/search", isLoggedIn, userController.searchForm);
 router.post("/search-results", userController.searchBook);
+router.post("/users/:id/books", userController.addBookToLibrary);
 
 module.exports = router;
