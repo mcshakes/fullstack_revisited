@@ -14,6 +14,7 @@ const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
 const uuid = require("uuid/v4");
+const FileStore = require("session-file-store")(session);
 require('dotenv').config()
 
 const {PORT, DATABASE_URL} = require("./config");
@@ -46,6 +47,7 @@ app.use(session({
     console.log(req.sessionID)
     return uuid()
   },
+  store: newFileStore(),
   secret: "password1",
   resave: false,
   saveUninitialized: true
