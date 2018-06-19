@@ -41,10 +41,14 @@ app.use(bookRouter);
 app.use(userRouter);
 
 app.use(session({
+  genid: (req) => {
+    console.log("Inside session middleware")
+    console.log(req.sessionID)
+    return uuid()
+  },
   secret: "password1",
-  key: process.env.KEY,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 
 passport.use("local", localStrategy);
@@ -56,9 +60,11 @@ app.use(passport.session());
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
-  const unique = uuid()
+  console.log('Inside the homepage callback function')
+  console.log(req.sessionID)
+  res.send(`You hit home page!\n`)
+
   // res.redirect("/books")
-  res.send(`Hit home page. Received the unique id: ${unique}\n`)
 })
 
 // ************************ SERVER *****************************
