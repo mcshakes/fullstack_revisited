@@ -1,6 +1,5 @@
 const { User } = require("../models/user");
 const mongoose = require("mongoose");
-const axios = require("axios");
 const request = require("request-promise");
 const { GOOGLE_KEY } = require("../config");
 
@@ -62,7 +61,6 @@ exports.showUser = (req, res) => {
     .findById(userId)
     .then(user => {
       res.render("userPage", {title: "User!", user: user})
-      console.log(user)
     })
     .catch(err => {
       console.log(err);

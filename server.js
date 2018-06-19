@@ -41,7 +41,7 @@ app.use(bookRouter);
 app.use(userRouter);
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: "password1",
   key: process.env.KEY,
   resave: false,
   saveUninitialized: false

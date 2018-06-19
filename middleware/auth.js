@@ -43,10 +43,8 @@ passport.deserializeUser( (id, done) => {
 
 const isLoggedIn = (req, res, next) => {
   if(req.isAuthenticated()) {
-    next();
-    // return;
+    return next();
   }
-  console.log("Must be logged in to do that");
   res.redirect("/login");
 }
 

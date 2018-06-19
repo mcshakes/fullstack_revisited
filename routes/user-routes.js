@@ -30,7 +30,12 @@ router.post("/register", userController.register);
 
 router.get("/users/:id", userController.showUser);
 
-router.get("/search", isLoggedIn, userController.searchForm);
+// router.get("/users/:id/search", userController.searchForm)
+// a(href=`users/${user._id}/search`) Add a New Book
+
+// router.get("/search", isLoggedIn, userController.searchForm);
+router.get("/search", userController.searchForm);
+
 router.post("/search-results", userController.searchBook);
 router.post("/users/:id/books", userController.addBookToLibrary);
 
