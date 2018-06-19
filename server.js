@@ -47,7 +47,7 @@ app.use(session({
     console.log(req.sessionID)
     return uuid()
   },
-  store: newFileStore(),
+  store: new FileStore(),
   secret: "password1",
   resave: false,
   saveUninitialized: true
