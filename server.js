@@ -13,7 +13,7 @@ const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
 const request = require("request-promise");
-const $ = require('jquery');
+const uuid = require("uuid/v4");
 require('dotenv').config()
 
 const {PORT, DATABASE_URL} = require("./config");
@@ -56,7 +56,9 @@ app.use(passport.session());
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
-  res.redirect("/books")
+  const unique = uuid()
+  // res.redirect("/books")
+  res.send(`Hit home page. Received the unique id: ${unique}\n`)
 })
 
 // ************************ SERVER *****************************
