@@ -1,6 +1,5 @@
 const { User } = require("../models/user");
 const mongoose = require("mongoose");
-const axios = require("axios");
 const request = require("request-promise");
 const { GOOGLE_KEY } = require("../config");
 
@@ -9,6 +8,10 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
+  console.log('Inside POST /login callback')
+  console.log(req.body)
+  console.log(req.sessionID)
+
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }
@@ -81,7 +84,6 @@ exports.addBookToLibrary = (req, res) => {
       { "new": true, "upsert": true},
       function (err, user) {
         if (err) throw err;
-        console.log(user)
 
         return res.status(201).json(user);
       }

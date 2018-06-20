@@ -4,16 +4,21 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const session = require('express-session');
 const passport = require("passport");
-const session = require("cookie-session");
 const path = require("path");
 const morgan = require("morgan");
 const expressValidator = require('express-validator');
 const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const request = require("request-promise");
-const $ = require('jquery');
+const uuid = require("uuid/v4");
+const FileStore = require("session-file-store")(session);
+
+require("./config/passport")(passport);
+
 require('dotenv').config()
 
 const {PORT, DATABASE_URL} = require("./config");
@@ -22,6 +27,8 @@ const { Book } = require("./models/book")
 
 
 const app = express();
+
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -37,28 +44,34 @@ const userRouter = require("./routes/user-routes")
 
 app.use(expressValidator());
 
+app.use(session({
+  genid: (req) => {
+    console.log("Inside session middleware")
+    console.log(`Request object sessionID from client: ${req.sessionID}`)
+    return uuid()
+  },
+  store: new FileStore(),
+  secret: "password1",
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(bookRouter);
 app.use(userRouter);
-
-app.use(session({ secret: "password1" }));
-passport.use("local", localStrategy);
-app.use(passport.initialize());
-
-
 
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
-  res.redirect("/books")
+  console.log('Inside the homepage callback function')
+  // console.log(req.sessionID)
+  res.send(`You hit home page!\n`)
+
+  // res.redirect("/books")
 })
 
-// const del = document.getElementById("delete-book")
-//
-// function deleteBook(event) {
-//   prevent.preventDefault();
-//
-//
-// }
 // ************************ SERVER *****************************
 
 let server;

@@ -3,8 +3,15 @@ extends layout
 include mixins/_bookCard
 
 block content
-  .inner
-    h3 Hey there, #{user.email}!
+    section
+      div.profile
+        p.strong.id #{user._id}
+        p.strong.email #{user.email}
+        p.strong.password #{user.password}
+
+    script(type='text/javascript').
+      localStorage.setItem('token','psuedotoken')
+
     button.btn.btn-primary
       a(href="/search") Add a New Book
     h2 These are the books you'd like to read. Better check them out!

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha",
-    "start": "nodemon server.js",
+    "start": "nodemon --ignore sessions/ server.js",
     "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
     "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\""
   },
@@ -16,10 +16,11 @@
     "axios": "^0.18.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
-    "cookie-session": "^2.0.0-beta.3",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
     "jquery": "^3.3.1",
     "mongoose": "4.7.2",
@@ -31,6 +32,8 @@
     "pug": "^2.0.3",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
+    "session-file-store": "^1.2.0",
+    "uuid": "^3.2.1",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
