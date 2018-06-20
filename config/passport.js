@@ -2,7 +2,7 @@ const LocalStrategy = require("passport-local").Strategy;
 
 const { User } = require("../models/user");
 
-module.exports = function(passport) {
+module.exports = function(passport, user) {
 
   passport.serializeUser( (user, done) => {
     console.log("Inside serialeUser callback!")

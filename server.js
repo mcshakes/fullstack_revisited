@@ -46,7 +46,7 @@ app.use(expressValidator());
 
 app.use(session({
   genid: (req) => {
-    console.log("Inside session middleware")
+    console.log("Inside session middleware genid function")
     console.log(`Request object sessionID from client: ${req.sessionID}`)
     return uuid()
   },
