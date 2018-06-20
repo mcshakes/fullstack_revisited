@@ -95,7 +95,7 @@ exports.addBookToLibrary = (req, res) => {
 }
 
 exports.searchForm = (req, res) => {
-  
+
   res.render("searchForm")
 }
 
@@ -104,7 +104,7 @@ exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
-  console.log(booksURL)
+  // console.log(booksURL)
   request
     .get(booksURL)
     .then(books => {
