@@ -8,6 +8,10 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
+  console.log('Inside POST /login callback')
+  console.log(req.body)
+  console.log(req.sessionID)
+
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }

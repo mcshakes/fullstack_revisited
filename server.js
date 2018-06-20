@@ -12,9 +12,13 @@ const expressValidator = require('express-validator');
 const { localStrategy } = require("./middleware/auth");
 const { parseString } = require("xml2js");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const request = require("request-promise");
 const uuid = require("uuid/v4");
 const FileStore = require("session-file-store")(session);
+
+require("./config/passport")(passport);
+
 require('dotenv').config()
 
 const {PORT, DATABASE_URL} = require("./config");
@@ -23,6 +27,8 @@ const { Book } = require("./models/book")
 
 
 const app = express();
+
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
@@ -38,13 +44,10 @@ const userRouter = require("./routes/user-routes")
 
 app.use(expressValidator());
 
-app.use(bookRouter);
-app.use(userRouter);
-
 app.use(session({
   genid: (req) => {
     console.log("Inside session middleware")
-    console.log(req.sessionID)
+    console.log(`Request object sessionID from client: ${req.sessionID}`)
     return uuid()
   },
   store: new FileStore(),
@@ -53,17 +56,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-passport.use("local", localStrategy);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(bookRouter);
+app.use(userRouter);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // send back index.html => ajax to get all book data /books
   console.log('Inside the homepage callback function')
-  console.log(req.sessionID)
+  // console.log(req.sessionID)
   res.send(`You hit home page!\n`)
 
   // res.redirect("/books")
