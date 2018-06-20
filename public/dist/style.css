@@ -18,6 +18,30 @@ html {
   text-align: center;
 }
 
+ul#menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+li.nav__item {
+  display: inline-block;
+}
+
+.nav__link {
+    color: #fdfdfd;
+    text-decoration: none;
+    display: block;
+    min-width: 140px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+.nav__link:hover {
+  border-bottom: 4px solid;
+  border-color: #E59400;
+}
+
 nav:after {
   content: '';
   display: block;
@@ -26,6 +50,11 @@ nav:after {
   width: 100%;
 }
 
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #F5F5DC;
+}
 
 body {
   font-family: 'Helvetica', sans-serif;
@@ -58,11 +87,7 @@ nav:after {
   height: 10px;
   width: 100%; }
 
-.inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #F5F5DC;
-}
+
 
 @media all and (max-width: 900px) {
   .inner {
