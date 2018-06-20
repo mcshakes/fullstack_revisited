@@ -4,18 +4,21 @@ html
     title= `${title}`
     link(rel='stylesheet', href='/dist/style.css')
     meta(name="viewport" content="width=device-width, initial-scale=1")
-  body
+
     block header
       header.top
         nav.nav
-        .nav__section.nav__section--user
-          if user
-            h4 #{user.email}
-            li.nav__item: a.nav__link(href="/logout") Log Out
-          else
-            li.nav__item: a.nav__link(href="/register") Register
-            li.nav__item: a.nav__link(href="/login") Log In
-    .content
-      block content
-    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-    script(src='/js/main.js')
+          section
+            ul#menu
+              if user
+                li.nav__item: a.nav__link(href="/logout") Log Out
+                li.nav__item: a.nav__link(href="#") About
+              else
+                li.nav__item: a.nav__link(href="/register") Register
+                li.nav__item: a.nav__link(href="/login") Log In
+                li.nav__item: a.nav__link(href="#") About
+    body
+      .content
+        block content
+      script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+      script(src='/js/main.js')

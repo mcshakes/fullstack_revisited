@@ -13,7 +13,7 @@ mixin bookResult(book = {})
       button.add-to-library(
         data-title=book.volumeInfo.title
         data-desc=book.volumeInfo.description
-        data-author=book.volumeInfo.authors
+        data-author=book.volumeInfo.authors[0]
         data-cover=book.volumeInfo.imageLinks.thumbnail
         ) Add Book to Collection
     else

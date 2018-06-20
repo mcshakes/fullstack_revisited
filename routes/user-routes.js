@@ -1,3 +1,4 @@
+
 "use strict"
 
 const express = require("express");
@@ -9,7 +10,7 @@ const userController = require('../controllers/userController');
 const passport = require("passport");
 const { Book } = require("../models/book")
 const { User } = require("../models/user")
-const { localStrategy, isLoggedIn } = require("../middleware/auth")
+const { isLoggedIn } = require("../middleware/auth")
 const books = require("../routes/book-routes");
 
 
@@ -26,10 +27,7 @@ router.post("/register", userController.register);
 
 router.get("/users/:id", userController.showUser);
 
-// router.get("/users/:id/search", userController.searchForm)
-// a(href=`users/${user._id}/search`) Add a New Book
 
-// router.get("/search", userController.searchForm);
 router.get("/search", userController.searchForm);
 
 router.post("/search-results", userController.searchBook);
