@@ -3,7 +3,6 @@ extends layout
 include mixins/_bookResult
 
 block content
-  .inner
     section.results
       each book in books
         +bookResult(book)
