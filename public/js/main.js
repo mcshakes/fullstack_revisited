@@ -23,27 +23,30 @@ $(document).ready(function() {
     const title = $target.attr("data-title")
     const desc = $target.attr("data-desc")
     const author = $target.attr("data-author")
-
+    let user;
     let image;
     if ($target.attr("data-cover")) {
       image = $target.attr("data-cover")
     }
-
-    $.ajax({
-      type: "POST",
-      url: "/books",
-      data: {
-        title: title,
-        summary: desc,
-        author: author,
-        image: (image ? image : null)
-      },
-      success: function(res) {
-        window.location.href = "/books"
-      },
-      error: function(err) {
-        console.log(err);
-      }
-    })
+ // = $target.attr("user-data")
+    if (!user) {
+      $.ajax({
+        type: "POST",
+        url: "/books",
+        data: {
+          title: title,
+          summary: desc,
+          author: author,
+          image: (image ? image : null)
+        },
+        success: function(res) {
+          window.location.href = "/books"
+        },
+        error: function(err) {
+          console.log(err);
+        }
+      })
+    }
   })
+
 })

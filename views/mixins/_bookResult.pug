@@ -9,16 +9,32 @@ mixin bookResult(book = {})
       p #{book.volumeInfo.authors}
       p #{book.volumeInfo.description}
     .book-actions
-    if book.volumeInfo.imageLinks
-      button.add-to-library(
-        data-title=book.volumeInfo.title
-        data-desc=book.volumeInfo.description
-        data-author=book.volumeInfo.authors[0]
-        data-cover=book.volumeInfo.imageLinks.thumbnail
-        ) Add Book to Collection
+    if user
+      if book.volumeInfo.imageLinks
+        button.add-to-library(
+          data-title=book.volumeInfo.title
+          data-desc=book.volumeInfo.description
+          data-author=book.volumeInfo.authors[0]
+          data-cover=book.volumeInfo.imageLinks.thumbnail
+          user-data=user.email
+          ) Add Book to Collection
+      else
+        button.add-to-library(
+          data-title=book.volumeInfo.title
+          data-desc=book.volumeInfo.description
+          data-author=book.volumeInfo.authors
+          ) Add Book to Collection
     else
-      button.add-to-library(
-        data-title=book.volumeInfo.title
-        data-desc=book.volumeInfo.description
-        data-author=book.volumeInfo.authors
-        ) Add Book to Collection
+      if book.volumeInfo.imageLinks
+        button.add-to-library(
+          data-title=book.volumeInfo.title
+          data-desc=book.volumeInfo.description
+          data-author=book.volumeInfo.authors[0]
+          data-cover=book.volumeInfo.imageLinks.thumbnail
+          ) Add Book to Collection
+      else
+        button.add-to-library(
+          data-title=book.volumeInfo.title
+          data-desc=book.volumeInfo.description
+          data-author=book.volumeInfo.authors
+          ) Add Book to Collection
