@@ -23,13 +23,32 @@ $(document).ready(function() {
     const title = $target.attr("data-title")
     const desc = $target.attr("data-desc")
     const author = $target.attr("data-author")
-    let user;
+    let userID = ($target.attr("user-data"));
     let image;
     if ($target.attr("data-cover")) {
       image = $target.attr("data-cover")
     }
- // = $target.attr("user-data")
-    if (!user) {
+    if (userID) {
+
+
+      $.ajax({
+        type: "POST",
+        url: `/users/${userID}/books`,
+        data: {
+          title: title,
+          summary: desc,
+          author: author,
+          image: (image ? image : null)
+        },
+        success: function(res) {
+          window.location.href = "/books"
+        },
+        error: function(err) {
+          console.log(err);
+        }
+      })
+    }
+    else {
       $.ajax({
         type: "POST",
         url: "/books",

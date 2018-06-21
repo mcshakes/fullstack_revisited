@@ -13,7 +13,7 @@ block content
       localStorage.setItem('token','psuedotoken')
 
     button.btn.btn-primary
-      a(href=`users/${user._id}/search`) Add a New Book
+      a(href=`/search`) Add a New Book
     h2 These are the books you'd like to read. Better check them out!
     .books
       each book in user.library

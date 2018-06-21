@@ -16,7 +16,7 @@ mixin bookResult(book = {})
           data-desc=book.volumeInfo.description
           data-author=book.volumeInfo.authors[0]
           data-cover=book.volumeInfo.imageLinks.thumbnail
-          user-data=user.email
+          user-data=user.id
           ) Add Book to Collection
       else
         button.add-to-library(
