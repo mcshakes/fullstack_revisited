@@ -9,12 +9,10 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
-  // console.log('Inside POST /login callback')
-  // console.log(req.body)
   // console.log(req.sessionID)
-  //
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-  console.log(`req.user: ${JSON.stringify(req.user)}`)
+  // console.log(`req.user: ${JSON.stringify(req.user)}`)
+
   return res.status(200)
             .redirect(`users/${req.user.id}`)
             // .render("userPage", { user: req.user})
@@ -128,7 +126,11 @@ exports.addBookToLibrary = (req, res) => {
         }
       );
     })
+}
 
+exports.removeBookFromLibrary = (req, res) => {
+  let userId = req.params.id;
+  console.log("SOME PARAMS", req.params)
 }
 
 exports.searchForm = (req, res) => {

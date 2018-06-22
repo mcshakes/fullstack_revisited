@@ -28,9 +28,8 @@ $(document).ready(function() {
     if ($target.attr("data-cover")) {
       image = $target.attr("data-cover")
     }
+
     if (userID) {
-
-
       $.ajax({
         type: "POST",
         url: `/users/${userID}/books`,
@@ -41,13 +40,14 @@ $(document).ready(function() {
           image: (image ? image : null)
         },
         success: function(res) {
-          window.location.href = "/books"
+          window.location.href = `/users/${userID}/`
         },
         error: function(err) {
           console.log(err);
         }
       })
     }
+
     else {
       $.ajax({
         type: "POST",
