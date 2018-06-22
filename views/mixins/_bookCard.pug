@@ -3,12 +3,15 @@ mixin bookCard(book = {})
   .book
     .book__hero
       h2.title
-        a(href=`/books/${book.id}`) #{book.title}
-        p #{book.author}
+        if user
+          a(href=`/users/${user.id}/books/${book.id}`) #{book.title}
+          p #{book.author}
+        else
+          a(href=`/books/${book.id}`) #{book.title}
+          p #{book.author}
     .book__details
       img.book-thumbnail(src=book.image)
       .book__actions
         if !user
           button#edit-book
-            a(href=`edit-book/${book.id}`) Edit Book
-          
+            a(href=`/edit-book/${book.id}`) Edit Book
