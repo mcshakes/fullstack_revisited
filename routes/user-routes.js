@@ -26,10 +26,10 @@ router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
 
-// NOTE: AUTHENTICATED 
+// NOTE: AUTHENTICATED
 router.get("/users/:id", userController.showUser);
-router.get("/users/:id/search", userController.userSearchForm);
-router.post("/search-results", userController.userSearchResults);
+// router.get("/users/:id/search", userController.userSearchForm);
+// router.post("/search-results", userController.userSearchResults);
 
 router.post("/users/:id/books", userController.addBookToLibrary);
 

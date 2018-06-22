@@ -17,4 +17,5 @@ block content
     h2 These are the books you'd like to read. Better check them out!
     .books
       each book in user.library
-        +bookCard(book)
+        if book
+          +bookCard(book)

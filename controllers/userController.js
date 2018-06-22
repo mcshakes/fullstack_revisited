@@ -1,4 +1,5 @@
 const { User } = require("../models/user");
+const { Book } = require("../models/book");
 const mongoose = require("mongoose");
 const request = require("request-promise");
 const { GOOGLE_KEY } = require("../config");
@@ -13,10 +14,11 @@ exports.logUserIn = (req, res) => {
   // console.log(req.sessionID)
   //
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-  // console.log(`req.user: ${JSON.stringify(req.user)}`)
+  console.log(`req.user: ${JSON.stringify(req.user)}`)
   return res.status(200)
-            // .redirect(`users/${req.user.id}`)
-            .render("userPage", { user: req.user})
+            .redirect(`users/${req.user.id}`)
+            // .render("userPage", { user: req.user})
+
 }
 
 exports.logUserOut = (req, res) => {
@@ -67,7 +69,7 @@ exports.showUser = (req, res) => {
   User
     .findById(userId)
     .then(user => {
-      res.render("userPage", {title: "User!", user: user})
+      res.render("userPage", { user: req.user })
     })
     .catch(err => {
       console.log(err);
@@ -75,28 +77,64 @@ exports.showUser = (req, res) => {
     })
 }
 
+// exports.userSearchForm = (req, res) => {
+//   // console.log("In search form => ", req.sessionID)
+//   console.log(`req.user within user SEARCH: ${JSON.stringify(req.user)}`)
+//   res.render("userSearchForm", { user: req.user})
+// }
+
+// exports.userSearchResults = (req, res) => {
+//   console.log("SEARCH RESULTS", req.body)
+//   let searchQuery = req.body.title
+//   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
+//
+//   request
+//     .get(booksURL)
+//     .then(books => {
+//       let library = JSON.parse(books)
+//       let results = library.items
+//       res.render("userSearchResults", { books: results,
+//         user: req.user
+//       })
+//
+//       console.log("In search RESULTS => ", req.sessionID)
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+// }
+
 exports.addBookToLibrary = (req, res) => {
-  let bookId = req.body.bookId;
+
+  // console.log("USER ID", req.params.id)
+  // console.log("BOOK data", res.req.body)
   let userId = req.params.id;
 
-  let book = Book.findById(bookId, (err, book) => {
-    if (err) throw err;
+  Book
+    .create({
+      title: res.req.body.title,
+      author: res.req.body.author,
+      summary: res.req.body.summary,
+      image: res.req.body.image
+    })
+    .then((book) => {
+      User.findByIdAndUpdate(userId,
+        { "$push": { "library": book} },
+        { "new": true, "upsert": true},
+        function (err, user) {
+          if (err) throw err;
 
-    User.findByIdAndUpdate(userId,
-      { "$push": { "library": book} },
-      { "new": true, "upsert": true},
-      function (err, user) {
-        if (err) throw err;
+          return res.status(201).json(user);
+        }
+      );
+    })
 
-        return res.status(201).json(user);
-      }
-    );
-  })
 }
 
 exports.searchForm = (req, res) => {
-  console.log("In search form => ",req.sessionID)
-  res.render("searchForm")
+  // console.log("In search form => ", req.sessionID)
+  console.log(`req.user: ${JSON.stringify(req.user)}`)
+  res.render("searchForm", { user: req.user})
 }
 
 
@@ -109,9 +147,11 @@ exports.searchBook = (req, res) => {
     .then(books => {
       let library = JSON.parse(books)
       let results = library.items
-      res.render("searchResults", {books: results})
-
-      console.log("In search RESULTS => ",req.sessionID)
+      res.render("searchResults", { books: results,
+        user: req.user
+      })
+      // console.log(req.user)
+      // console.log("In search RESULTS => ", req.sessionID)
     })
     .catch((err) => {
       console.log(err);
