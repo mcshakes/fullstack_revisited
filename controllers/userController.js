@@ -75,33 +75,6 @@ exports.showUser = (req, res) => {
     })
 }
 
-// exports.userSearchForm = (req, res) => {
-//   // console.log("In search form => ", req.sessionID)
-//   console.log(`req.user within user SEARCH: ${JSON.stringify(req.user)}`)
-//   res.render("userSearchForm", { user: req.user})
-// }
-
-// exports.userSearchResults = (req, res) => {
-//   console.log("SEARCH RESULTS", req.body)
-//   let searchQuery = req.body.title
-//   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
-//
-//   request
-//     .get(booksURL)
-//     .then(books => {
-//       let library = JSON.parse(books)
-//       let results = library.items
-//       res.render("userSearchResults", { books: results,
-//         user: req.user
-//       })
-//
-//       console.log("In search RESULTS => ", req.sessionID)
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     })
-// }
-
 exports.addBookToLibrary = (req, res) => {
 
   // console.log("USER ID", req.params.id)
