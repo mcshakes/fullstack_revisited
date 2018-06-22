@@ -25,12 +25,16 @@ router.get("/logout", userController.logUserOut);
 router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
+
+// NOTE: AUTHENTICATED
 router.get("/users/:id", userController.showUser);
+// router.get("/users/:id/search", userController.userSearchForm);
+// router.post("/search-results", userController.userSearchResults);
 
-
-router.get("/search", userController.searchForm);
-
-router.post("/search-results", userController.searchBook);
 router.post("/users/:id/books", userController.addBookToLibrary);
+
+// NOTE: UNAUTHENTICATED
+router.get("/search", userController.searchForm);
+router.post("/search-results", userController.searchBook);
 
 module.exports = router;
