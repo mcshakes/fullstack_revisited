@@ -9,14 +9,10 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
-  // console.log(req.sessionID)
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-  // console.log(`req.user: ${JSON.stringify(req.user)}`)
 
   return res.status(200)
             .redirect(`users/${req.user.id}`)
-            // .render("userPage", { user: req.user})
-
 }
 
 exports.logUserOut = (req, res) => {
@@ -63,6 +59,8 @@ exports.register = (req, res) => {
 
 exports.showUser = (req, res) => {
   let userId = req.params.id
+  // console.log(res.req.user)
+  // let _id = "5b2d4a6e24b470040608c34e"
 
   User
     .findById(userId)
@@ -75,37 +73,7 @@ exports.showUser = (req, res) => {
     })
 }
 
-// exports.userSearchForm = (req, res) => {
-//   // console.log("In search form => ", req.sessionID)
-//   console.log(`req.user within user SEARCH: ${JSON.stringify(req.user)}`)
-//   res.render("userSearchForm", { user: req.user})
-// }
-
-// exports.userSearchResults = (req, res) => {
-//   console.log("SEARCH RESULTS", req.body)
-//   let searchQuery = req.body.title
-//   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
-//
-//   request
-//     .get(booksURL)
-//     .then(books => {
-//       let library = JSON.parse(books)
-//       let results = library.items
-//       res.render("userSearchResults", { books: results,
-//         user: req.user
-//       })
-//
-//       console.log("In search RESULTS => ", req.sessionID)
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     })
-// }
-
 exports.addBookToLibrary = (req, res) => {
-
-  // console.log("USER ID", req.params.id)
-  // console.log("BOOK data", res.req.body)
   let userId = req.params.id;
 
   Book
@@ -128,9 +96,33 @@ exports.addBookToLibrary = (req, res) => {
     })
 }
 
+exports.showUserBook = (req, res) => {
+
+  Book
+    .findById(req.params.id)
+    .then(book => {
+      res.render("userBook", {book: book, user: req.user})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+}
+
 exports.removeBookFromLibrary = (req, res) => {
-  let userId = req.params.id;
-  console.log("SOME PARAMS", req.params)
+  let userId = res.req.user.id
+
+  Book
+    .findById(req.params.id)
+    .then(book => {
+      User.findByIdAndUpdate(userId,
+        { "$pull": { "library": book} },
+        function (err, user) {
+          if (err) throw err;
+
+          return res.status(204).json(user);
+        }
+      );
+    })
 }
 
 exports.searchForm = (req, res) => {

@@ -28,10 +28,10 @@ router.post("/register", userController.register);
 
 // NOTE: AUTHENTICATED
 router.get("/users/:id", userController.showUser);
-// router.get("/users/:id/search", userController.userSearchForm);
-// router.post("/search-results", userController.userSearchResults);
 
 router.post("/users/:id/books", userController.addBookToLibrary);
+router.get("/users/:id/books/:id", userController.showUserBook);
+router.delete("/users/:id/books/:id", userController.removeBookFromLibrary);
 
 // NOTE: UNAUTHENTICATED
 router.get("/search", userController.searchForm);

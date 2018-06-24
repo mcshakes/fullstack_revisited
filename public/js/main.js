@@ -16,6 +16,23 @@ $(document).ready(function() {
     })
   });
 
+  $(".user-remove-book").on("click", function(e) {
+    $target = $(e.target);
+    const id = $target.attr("data-id");
+    const userID = ($target.attr("user-data"));
+
+    $.ajax({
+      type: "DELETE",
+      url: "/users/" + userID + "/books/" + id,
+      success: function(res) {
+        window.location.href = `/users/${userID}`
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    })
+  });
+
 
   $(".add-to-library").on("click", function(e) {
 
