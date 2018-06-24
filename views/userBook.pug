@@ -7,4 +7,4 @@ block content
     if book.summary
       p= book.summary.split(" ").slice(0, 25).join(" ")
 
-    button.btn-danger.delete-book(href="#", data-id=book.id) Delete Book
+    button.btn-danger.user-remove-book(href="#", data-id=book.id user-data=user.id) Delete Book

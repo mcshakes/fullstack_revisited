@@ -76,9 +76,6 @@ exports.showUser = (req, res) => {
 }
 
 exports.addBookToLibrary = (req, res) => {
-
-  // console.log("USER ID", req.params.id)
-  // console.log("BOOK data", res.req.body)
   let userId = req.params.id;
 
   Book
@@ -102,7 +99,7 @@ exports.addBookToLibrary = (req, res) => {
 }
 
 exports.showUserBook = (req, res) => {
-  
+
   Book
     .findById(req.params.id)
     .then(book => {
@@ -114,8 +111,22 @@ exports.showUserBook = (req, res) => {
 }
 
 exports.removeBookFromLibrary = (req, res) => {
-  let userId = req.params.id;
-  console.log("SOME PARAMS", req.params)
+  // user: { _id: 5b0f1f468d44a45d8cde7722,
+  //    email: 'richard2@example.com',
+  //    password: '$2b$10$qC58Yn0BTROPkhjfhpJFXu9obGH2mEN2IRrQgb.gGBXY0VXayIiWm',
+  //    __v: 0,
+  //    library: [ null, null, null, [Object], [Object], [Object] ] },
+
+  console.log("FULL PARAMS", res.req.user)
+
+  Book
+  .findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.status(204).json({message: "Book deleted"})
+  })
+  .catch(err => {
+    console.log(err);
+  })
 }
 
 exports.searchForm = (req, res) => {

@@ -25,12 +25,14 @@ router.get("/logout", userController.logUserOut);
 router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
+// /users/5b0f1f468d44a45d8cde7722/books
 
 // NOTE: AUTHENTICATED
 router.get("/users/:id", userController.showUser);
 
 router.post("/users/:id/books", userController.addBookToLibrary);
 router.get("/users/:id/books/:id", userController.showUserBook);
+router.delete("/users/:id/books/:id", userController.removeBookFromLibrary);
 
 // NOTE: UNAUTHENTICATED
 router.get("/search", userController.searchForm);
