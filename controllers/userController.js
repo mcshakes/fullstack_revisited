@@ -63,6 +63,8 @@ exports.register = (req, res) => {
 
 exports.showUser = (req, res) => {
   let userId = req.params.id
+  // console.log(res.req.user)
+  // let _id = "5b2d4a6e24b470040608c34e"
 
   User
     .findById(userId)
@@ -116,17 +118,22 @@ exports.removeBookFromLibrary = (req, res) => {
   //    password: '$2b$10$qC58Yn0BTROPkhjfhpJFXu9obGH2mEN2IRrQgb.gGBXY0VXayIiWm',
   //    __v: 0,
   //    library: [ null, null, null, [Object], [Object], [Object] ] },
-
-  console.log("FULL PARAMS", res.req.user)
+  // console.log("FULL PARAMS", res.req.user.library[3].id)
+  // console.log("FULL PARAMS", res.req.user.library.id("5b2d4a6e24b470040608c34e"))
+  let userId = res.req.user.id
 
   Book
-  .findByIdAndRemove(req.params.id)
-  .then(() => {
-    res.status(204).json({message: "Book deleted"})
-  })
-  .catch(err => {
-    console.log(err);
-  })
+    .findById(req.params.id)
+    .then(book => {
+      User.findByIdAndUpdate(userId,
+        { "$pull": { "library": book} },
+        function (err, user) {
+          if (err) throw err;
+
+          return res.status(204).json(user);
+        }
+      );
+    })
 }
 
 exports.searchForm = (req, res) => {
