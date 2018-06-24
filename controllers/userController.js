@@ -9,14 +9,10 @@ exports.loginForm = (req, res) => {
 }
 
 exports.logUserIn = (req, res) => {
-  // console.log(req.sessionID)
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-  // console.log(`req.user: ${JSON.stringify(req.user)}`)
 
   return res.status(200)
             .redirect(`users/${req.user.id}`)
-            // .render("userPage", { user: req.user})
-
 }
 
 exports.logUserOut = (req, res) => {
@@ -113,13 +109,6 @@ exports.showUserBook = (req, res) => {
 }
 
 exports.removeBookFromLibrary = (req, res) => {
-  // user: { _id: 5b0f1f468d44a45d8cde7722,
-  //    email: 'richard2@example.com',
-  //    password: '$2b$10$qC58Yn0BTROPkhjfhpJFXu9obGH2mEN2IRrQgb.gGBXY0VXayIiWm',
-  //    __v: 0,
-  //    library: [ null, null, null, [Object], [Object], [Object] ] },
-  // console.log("FULL PARAMS", res.req.user.library[3].id)
-  // console.log("FULL PARAMS", res.req.user.library.id("5b2d4a6e24b470040608c34e"))
   let userId = res.req.user.id
 
   Book

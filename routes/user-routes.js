@@ -25,7 +25,6 @@ router.get("/logout", userController.logUserOut);
 router.get("/register", userController.registerForm);
 router.post("/register", userController.register);
 
-// /users/5b0f1f468d44a45d8cde7722/books
 
 // NOTE: AUTHENTICATED
 router.get("/users/:id", userController.showUser);
