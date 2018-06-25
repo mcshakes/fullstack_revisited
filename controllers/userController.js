@@ -102,7 +102,7 @@ exports.showUserBook = (req, res) => {
   Book
     .findById(req.params.id)
     .then(book => {
-      res.render("userBook", {book: book, user: req.user})
+      res.render("userBook", { book: book, user: req.user })
     })
     .catch(err => {
       console.log(err);

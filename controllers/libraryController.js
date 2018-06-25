@@ -5,13 +5,23 @@ exports.getLibrary = (req, res) => {
     .find()
      // .limit()
     .then(books => {
-      res.render("listBook", {title: "Book List", book_list: books})
+      let aResponse = {};
+
+      aResponse = JSON.stringify({
+        book_list: books
+      })
+      // console.log(aResponse)
+      res.render("listBook", {
+        title: "Book List",
+        bookList: books
+      })
     })
     .catch(err => {
       res.status(500).json({ message: "Internal server error"})
       console.log(err);
     })
 }
+
 
 exports.createBookForm = (req,res) => {
   res.render("createBook", { title: "Add A New Book"})
