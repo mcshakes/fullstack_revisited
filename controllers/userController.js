@@ -47,6 +47,7 @@ exports.register = (req, res) => {
             password: hash
         })
         .then(user => {
+          // console.log(user)
           res.status(201)
           res.redirect(`users/${user.id}`)
         })
