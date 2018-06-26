@@ -3,6 +3,9 @@ const chaiHttp = require("chai-http");
 const faker = require("faker");
 const mongoose = require("mongoose");
 
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
 const expect = chai.expect;
 
 const {Book} = require("../models/book");
@@ -16,7 +19,7 @@ function teardownDB() {
   return mongoose.connection.dropDatabase();
 }
 
-describe("User Authentication and Registering", function() {
+describe("User Registering", function() {
   before(function() {
     return runServer(TEST_DATABASE_URL);
   })
@@ -29,26 +32,13 @@ describe("User Authentication and Registering", function() {
     return closeServer();
   })
 
-  describe("GET /register", function() {
-
-    it("should render the register view", function() {
-
-      return chai.request(app)
-        .get("/register")
-        .then((res) => {
-          expect(res).to.have.status(200);
-          expect(res).to.be.html;
-          // expect(res.text).to.contain("<h1>Register</h1>")
-          // expect(res.text).to.contain(
-          //   "<button type='submit'>Register +</button>"
-          // )
-        })
-    })
-  })
-
   describe("POST /register", function() {
     it("should register a new user", function() {
       return chai.request(app)
+        const theDOM = new JSDOM(res.text);
+        let title = theDOM.window.document.querySelector("h1").textContent
+        let inputs = theDOM.window.document.querySelector("input").textContent
+
         .post("/register")
         .send({
           email: "dude@example.com",

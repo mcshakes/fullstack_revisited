@@ -48,7 +48,6 @@ exports.register = (req, res) => {
         })
         .then(user => {
           res.status(201)
-          console.log(user)
           res.render("userPage", user)
         })
         .catch(err => {
