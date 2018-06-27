@@ -1,17 +1,15 @@
 extends layout
 
 block content
+    h1 Register
     form.form(action="/register" method="POST")
       div.form-group
         h2 Register
         div.form-row
           label(for="email") Email
-          input(type="email" name="email" required)
+          input(type="email" id="email" name="email" required)
         div.form-row
           label(for="name") Password
-          input(type="password" name="password")
-        div.form-row
-          label(for="password-confirm") confirm Password
-          input(type="password" name="password-confirm")
+          input(type="password" id="password" name="password")
         div.form-row
           input.button(type="submit" value="Register +")

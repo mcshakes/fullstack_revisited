@@ -7,5 +7,5 @@ block content
       form(method="get" action="/add-new-book" class="link-to-create")
         button Add a Book
       .books
-        each book in book_list
+        each book in bookList
           +bookCard(book)

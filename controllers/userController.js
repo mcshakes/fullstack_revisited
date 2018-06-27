@@ -23,37 +23,37 @@ exports.logUserOut = (req, res) => {
 
 exports.registerForm = (req, res) => {
   res.render("registerForm", {title: "Register"})
+  console.log("FROM FORM", req.body)
 }
 
 exports.register = (req, res) => {
-
   const reqFields = ["email", "password"];
 
-  for (let i = 0; i < reqFields.length; i++) {
-    const field = reqFields[i];
+    for (let i = 0; i < reqFields.length; i++) {
+      const field = reqFields[i];
 
-    if (!field in req.body) {
-      const message = `Missing ${field} in the request body`;
-      console.log(message)
-      return res.status(400).send(message)
-    }
+      if (!field in req.body) {
+        const message = `Missing ${field} in the request body`;
+        console.log(message)
+        return res.status(400).send(message)
+      }
 
-    return User.hashPassword(req.body.password)
-      .then(hash => {
-        { hash }
+      return User.hashPassword(req.body.password)
+        .then(hash => {
+          { hash }
 
-        return User.create({
-            email: req.body.email,
-            password: hash
+          return User.create({
+              email: req.body.email,
+              password: hash
+          })
+          .then(user => {
+            res.status(201)
+            res.redirect(`users/${user.id}`)
+          })
+          .catch(err => {
+            console.log(err);
+          })
         })
-        .then(user => {
-          res.status(201)
-          res.redirect(`users/${user.id}`)
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      })
   }
 }
 
@@ -101,7 +101,7 @@ exports.showUserBook = (req, res) => {
   Book
     .findById(req.params.id)
     .then(book => {
-      res.render("userBook", {book: book, user: req.user})
+      res.render("userBook", { book: book, user: req.user })
     })
     .catch(err => {
       console.log(err);
