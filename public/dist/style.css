@@ -139,7 +139,10 @@ h1 {
 }
 
 .results {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
 }
 
 .search-result {

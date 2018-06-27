@@ -15,6 +15,6 @@ block content
       a(href=`/search`) Add a New Book
     h2 These are the books you'd like to read. Better check them out!
     .books
-      if book
-        each book in library
-          +bookCard(book)
+        each book in user.library
+          if book
+            +bookCard(book)

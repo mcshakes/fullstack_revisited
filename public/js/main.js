@@ -57,12 +57,14 @@ $(document).ready(function() {
           image: (image ? image : null)
         },
         success: function(res) {
+          console.log(res)
           window.location.href = `/users/${userID}/`
         },
         error: function(err) {
           console.log(err);
         }
       })
+      // console.log("SOMEONE HERE", userID)
     }
 
     else {
@@ -82,6 +84,7 @@ $(document).ready(function() {
           console.log(err);
         }
       })
+      // console.log("NOBODY HERE")
     }
   })
 
