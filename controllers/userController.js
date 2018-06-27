@@ -147,6 +147,7 @@ exports.searchBook = (req, res) => {
       console.log(library.items.length)
       let results = library.items.splice(0, library.items.length / 2)
 
+      // res.send(results)
       res.render("searchResults", {
         books: results,
         user: req.user

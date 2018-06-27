@@ -5,4 +5,5 @@ include mixins/_bookResult
 block content
     section.results
       each book in books
-        +bookResult(book)
+        if book.volumeInfo.authors
+          +bookResult(book)
