@@ -18,8 +18,8 @@ describe("First time User visits site", function() {
     cy.should("have.value", "passtest1")
 
     // cy.get("button").click
-    cy.get('form').submit()
-    cy.url().should("include", "/books")
+    // cy.get('form').submit()
+    // cy.url().should("include", "/books")
   })
 
 })
