@@ -56,100 +56,86 @@ describe("Books API Resource", function() {
     it("should add a new book", function() {
       const newBook = {
         title: faker.lorem.words(),
-        author: `${faker.name.firstName()} ${faker.name.lastName()}`
+        author: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        summary: faker.lorem.words()
       }
 
       return chai.request(app)
         .post("/books")
-        .send(newBook)
+        console.log("IS NEW BOOK", newBook)
         .then(function(res) {
-          expect(res).to.have.status(201);
+          expect(res).to.have.status(200);
+          expect(res).to.be.html;
           expect(res.body).to.be.a("object");
-          expect(res.body).to.include.keys(
-            "id", "title", "author"
-          );
-          expect(res.body.author).to.equal(
-            `${newBook.author}`
-          );
-          expect(res.body.id).to.not.be.null;
-          return Book.findById(res.body.id);
+          // expect(res.body).to.include.keys(
+          //   "id", "title", "author"
+          // );
+          // expect(res.body.author).to.equal(
+          //   `${newBook.author}`
+          // );
+          // expect(res.body.id).to.not.be.null;
+          // return Book.findById(res.body.id);
         })
-        .then(function(book){
-          expect(book.title).to.equal(newBook.title);
-          // can add more
-        })
+        // .then(function(book){
+        //   expect(book.title).to.equal(newBook.title);
+        //   // can add more
+        // })
     })
   }); // End of POST endpoint
 
-  // describe("GET endpoint", function() {
-  //
-  //   it("should return all existing books for user", function() {
-  //     let res;
-  //
-  //     return chai.request(app)
-  //     .get("/books")
-  //     .then(function(_res) {
-  //       res = _res;
-  //       expect(res).to.have.status(200);
-  //       expect(res.body.books).to.have.length.of.above(1);
-  //       return Book.count();
-  //     })
-  //     .then(function(count) {
-  //       expect(res.body.books).to.have.lengthOf(count);
-  //     })
-  //   })
-  //
-  //   it("should return books with correct fields", function() {
-  //     let bookResult;
-  //
-  //     return chai.request(app)
-  //       .get('/books')
-  //       .then(function(res) {
-  //         expect(res).to.have.status(200)
-  //         expect(res).to.be.html;
-  //         expect(res.body.books).to.be.a("array");
-  //         expect(res.body.books).to.have.length.of.at.least(1);
-  //
-  //         res.body.books.forEach(function(book) {
-  //           expect(book).to.be.a("object");
-  //           expect(book).to.include.keys(
-  //             "author", "title"
-  //           )
-  //         });
-  //
-  //         bookResult = res.body.books[0];
-  //         return Book.findById(bookResult.id);
-  //       })
-  //       .then( (book) => {
-  //
-  //         expect(bookResult.id).to.equal(book.id);
-  //         expect(bookResult.author).to.equal(book.author);
-  //         expect(bookResult.title).to.equal(book.title);
-  //       })
-  //   })
-  //
-  // }) // End of GET
+  describe("GET endpoint", function() {
 
-// describe("DELETE Endpoint", function() {
-//
-//   it("deletes a book by the ID", function() {
-//     let book;
-//
-//     return Book
-//       .findOne()
-//       .then(function(_book) {
-//         book = _book;
-//         return chai.request(app).delete(`/books/${book.id}`)
-//       })
-//       .then(function(res) {
-//         expect(res).to.have.status(204);
-//         return Book.findById(book.id);
-//       })
-//       .then(function(_book) {
-//         expect(_book).to.be.null;
-//       })
-//   })
-// }) //End of DELETE
+    it("should return books with correct fields", function() {
+      let bookResult;
+
+      return chai.request(app)
+        .get('/books')
+        .then(function(res) {
+          expect(res).to.have.status(200)
+          expect(res).to.be.html;
+          expect(res.text).to.have.length.of.at.least(1);
+
+          // res.body.books.forEach(function(book) {
+          //   expect(book).to.be.a("object");
+          //   expect(book).to.include.keys(
+          //     "author", "title", "summary"
+          //   )
+          // });
+          // console.log(res.text) NOTE: Can be parsed by HTML to test further
+
+          // bookResult = res.body.books[0];
+          // return Book.findById(bookResult.id);
+        })
+        // .then( (book) => {
+        //
+        //   expect(bookResult.id).to.equal(book.id);
+        //   expect(bookResult.author).to.equal(book.author);
+        //   expect(bookResult.title).to.equal(book.title);
+        // })
+    })
+
+  }) // End of GET
+
+describe("DELETE Endpoint", function() {
+
+  it("deletes a book by the ID", function() {
+    let book;
+
+    return Book
+      .findOne()
+      .then(function(_book) {
+        book = _book;
+        return chai.request(app).delete(`/books/${book.id}`)
+      })
+      .then(function(res) {
+        expect(res).to.have.status(204);
+        return Book.findById(book.id);
+      })
+      .then(function(_book) {
+        expect(_book).to.be.null;
+      })
+  })
+}) //End of DELETE
 
 // describe("PUT endpoint", function() {
 //

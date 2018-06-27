@@ -4,16 +4,17 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc mocha --exit",
     "start": "nodemon --ignore sessions/ server.js",
     "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
-    "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\"",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -33,14 +34,15 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "session-file-store": "^1.2.0",
-    "uuid": "^3.2.1",
-    "xml2js": "^0.4.19"
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "concurrently": "^3.5.1",
+    "cypress": "^3.0.1",
     "faker": "^4.1.0",
+    "jsdom": "^11.11.0",
     "mocha": "^5.1.1",
     "nyc": "^11.7.2"
   }

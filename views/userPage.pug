@@ -5,9 +5,8 @@ include mixins/_bookCard
 block content
     section
       div.profile
-        p.strong.id #{user._id}
-        p.strong.email #{user.email}
-        p.strong.password #{user.password}
+        p.strong.email #{email}
+        p.strong.password #{password}
 
     script(type='text/javascript').
       localStorage.setItem('token','psuedotoken')
@@ -16,6 +15,6 @@ block content
       a(href=`/search`) Add a New Book
     h2 These are the books you'd like to read. Better check them out!
     .books
-      each book in user.library
+      each book in library
         if book
           +bookCard(book)
