@@ -139,24 +139,43 @@ h1 {
 }
 
 .results {
-  display: -webkit-flex;
+  /* display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .search-result {
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
 
+  margin: 2em 0;
+  border: 3px solid #E18728;
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.book-hero img {
+  /* float: left; */
+  padding: .5em;
+}
+
+.book-details p{
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.book-actions button{
+  /* clear: both; */
 }
 
 .book--wide {
   width: 100%;
 }
 
-.book__actions {
-  position: absolute;
-  bottom: 0;
-}
+
 
 
 
