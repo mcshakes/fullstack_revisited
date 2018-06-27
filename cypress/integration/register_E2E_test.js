@@ -2,7 +2,7 @@
 // const {app, runServer, closeServer} = require("../../server");
 
 
-describe("First time User visits the site", function() {
+describe("First time User visits site", function() {
 
   before(function() {
     cy.visit("/books")
@@ -10,17 +10,16 @@ describe("First time User visits the site", function() {
     cy.url().should("include", "/register")
   })
 
-  it("fills out the Sign up form", function() {
+  it("Submits the Sign up form and gets routes", function() {
     cy.get("#email").type("something@fakemail.com")
     cy.should("have.value", "something@fakemail.com")
 
     cy.get("#password").type("passtest1")
     cy.should("have.value", "passtest1")
 
-    cy.get("#password-confirm").type("passtest1")
-    cy.should("have.value", "passtest1")
-
     // cy.get("button").click
+    cy.get('form').submit()
     cy.url().should("include", "/books")
-    })
+  })
+
 })

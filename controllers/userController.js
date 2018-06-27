@@ -27,34 +27,29 @@ exports.registerForm = (req, res) => {
 
 exports.register = (req, res) => {
 
-  const reqFields = ["email", "password"];
+    console.log(req.body)
+    // const user = new User({
+    //   _id: new mongoose.Types.ObjectID(),
+    //   email: req.body.email,
+    //   password: bcrypt.hash
+    // })
 
-  for (let i = 0; i < reqFields.length; i++) {
-    const field = reqFields[i];
-
-    if (!field in req.body) {
-      const message = `Missing ${field} in the request body`;
-      console.log(message)
-      return res.status(400).send(message)
-    }
-
-    return User.hashPassword(req.body.password)
-      .then(hash => {
-        { hash }
-
-        return User.create({
-            email: req.body.email,
-            password: hash
-        })
-        .then(user => {
-          res.status(201)
-          res.render("userPage", user)
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      })
-  }
+    // return User.hashPassword(req.body.password)
+    //   .then(hash => {
+    //     { hash }
+    //
+    //     return User.create({
+    //         email: req.body.email,
+    //         password: hash
+    //     })
+    //     .then(user => {
+    //       res.status(201)
+    //       res.render("userPage", user)
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     })
+    //   })
 }
 
 exports.showUser = (req, res) => {
