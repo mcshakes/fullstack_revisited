@@ -157,8 +157,37 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.library-label {
+  margin: 10px 0 25px;
+  text-align: center;
+}
+
+.library-label button{
+  font-weight: bold;
+  background-color: #5995DA;
+  border-radius: 5px;
+  width: 180px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 5px
+} a {
+  text-decoration: none;
+}
+
+.link-to-create button {
+  font-weight: bold;
+  text-align: center;
+  background-color: #5995DA;
+  border-radius: 5px;
+  width: 180px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 5px
+}
+
 .book-hero img {
-  /* float: left; */
   padding: .5em;
 }
 
