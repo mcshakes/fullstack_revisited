@@ -1,40 +1,40 @@
 mixin bookResult(book = {})
   .search-result
-    p.book__hero
-    h3 #{book.volumeInfo.title}
     if book.volumeInfo.imageLinks
-      img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
+      div.book-hero
+        img(src=`${book.volumeInfo.imageLinks.thumbnail}`)
 
     .book-details
-      p #{book.volumeInfo.authors}
+      h3 #{book.volumeInfo.title}
+      h3 #{book.volumeInfo.authors}
       p #{book.volumeInfo.description}
     .book-actions
-    if user
-      if book.volumeInfo.imageLinks
-        button.add-to-library(
-          data-title=book.volumeInfo.title
-          data-desc=book.volumeInfo.description
-          data-author=book.volumeInfo.authors[0]
-          data-cover=book.volumeInfo.imageLinks.thumbnail
-          user-data=user.id
-          ) Add Book to Collection
+      if user
+        if book.volumeInfo.imageLinks
+          button.add-to-library(
+            data-title=book.volumeInfo.title
+            data-desc=book.volumeInfo.description
+            data-author=book.volumeInfo.authors[0]
+            data-cover=book.volumeInfo.imageLinks.thumbnail
+            user-data=user.id
+            ) Add Book to Collection
+        else
+          button.add-to-library(
+            data-title=book.volumeInfo.title
+            data-desc=book.volumeInfo.description
+            data-author=book.volumeInfo.authors
+            ) Add Book to Collection
       else
-        button.add-to-library(
-          data-title=book.volumeInfo.title
-          data-desc=book.volumeInfo.description
-          data-author=book.volumeInfo.authors
-          ) Add Book to Collection
-    else
-      if book.volumeInfo.imageLinks
-        button.add-to-library(
-          data-title=book.volumeInfo.title
-          data-desc=book.volumeInfo.description
-          data-author=book.volumeInfo.authors[0]
-          data-cover=book.volumeInfo.imageLinks.thumbnail
-          ) Add Book to Collection
-      else
-        button.add-to-library(
-          data-title=book.volumeInfo.title
-          data-desc=book.volumeInfo.description
-          data-author=book.volumeInfo.authors
-          ) Add Book to Collection
+        if book.volumeInfo.imageLinks
+          button.add-to-library(
+            data-title=book.volumeInfo.title
+            data-desc=book.volumeInfo.description
+            data-author=book.volumeInfo.authors[0]
+            data-cover=book.volumeInfo.imageLinks.thumbnail
+            ) Add Book to Collection
+        else
+          button.add-to-library(
+            data-title=book.volumeInfo.title
+            data-desc=book.volumeInfo.description
+            data-author=book.volumeInfo.authors
+            ) Add Book to Collection

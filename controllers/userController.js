@@ -11,6 +11,7 @@ exports.loginForm = (req, res) => {
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
 
+  console.log(req.user)
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }
@@ -84,6 +85,7 @@ exports.addBookToLibrary = (req, res) => {
       image: res.req.body.image
     })
     .then((book) => {
+      // console.log(book)
       User.findByIdAndUpdate(userId,
         { "$push": { "library": book} },
         { "new": true, "upsert": true},
@@ -136,16 +138,19 @@ exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
+  // console.log(booksURL)
   request
     .get(booksURL)
     .then(books => {
+
       let library = JSON.parse(books)
-      let results = library.items
-      res.render("searchResults", { books: results,
+      console.log(library.items.length)
+      let results = library.items.splice(0, library.items.length / 2)
+
+      res.render("searchResults", {
+        books: results,
         user: req.user
       })
-      // console.log(req.user)
-      // console.log("In search RESULTS => ", req.sessionID)
     })
     .catch((err) => {
       console.log(err);
