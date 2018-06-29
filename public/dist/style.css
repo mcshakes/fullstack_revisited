@@ -1,4 +1,16 @@
-@charset "UTF-8";
+@media only screen and (max-width: 480px) {
+  /* width: 25%; */
+}
+
+@media only screen and (min-width: 481px) and (max-width: 960px){
+
+}
+
+@media only screen and (min-width: 961) {
+
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -87,12 +99,6 @@ h1 {
   color: lightseagreen
 }
 
-@media all and (max-width: 900px) {
-  .inner {
-    padding: 2rem;
-  }
-}
-
 .link-to-create {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -102,6 +108,7 @@ h1 {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
+  flex-flow: row;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-between;
@@ -109,19 +116,33 @@ h1 {
 }
 
 .book {
-  display: flex;
-  border: 1px solid #EF9A9A;
-  border-radius: 4px;
-  overflow: hidden;
-  flex-direction: column;
+  margin-bottom: 1em;
+  padding: .8em 1em 0;
+  background: rgba(51, 153, 204,.2);
+  transition: background-color 0.3s ease;
+  border: 1px solid #33cccc;
+  border-radius: 3px;
 
+  /* border-radius: 4px; */
+  /* overflow: hidden;
+  flex-direction: column;
   margin: 1.25em 0 0 1.25em;
-  margin: 0;
-  padding: 0;
-  transition: 0.3s;
+  margin: 0; */
+  /* display: flex; */
+  /* padding: 0; */
+  /* transition: 0.3s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
-  position: relative;
-  flex: 0 1 calc(25% - 1em);
+  position: relative; */
+  /* flex: 0 1 calc(25% - 1em); */
+}
+.book:after {
+  content: "";
+  display: block;
+  margin-top: .8em;
+  height: 1px;
+}
+.book:hover {
+  background: rgba(51, 153, 204,.6);
 }
 
 .book__hero {
@@ -224,24 +245,6 @@ h1 {
   margin-bottom: 0;
 }
 
-@media all and (max-width: 850px) {
-  .book {
-    width: calc(50% - 1.25em);
-  }
-}
-
-@media all and (max-width: 550px) {
-  .book {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 700px) {
-  .add-book-header,
-  .add-book-form {
-    width: 600px;
-  }
-}
 /** Forms ========================================================================== **/
 
 .search-book {
