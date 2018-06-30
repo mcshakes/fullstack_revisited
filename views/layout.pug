@@ -6,19 +6,18 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
 
     block header
-      header.top
         nav.nav
           section
             ul#menu
               if user
-                li.nav__item: a.nav__link(href="/logout") Log Out
-                li.nav__item: a.nav__link(href="#") About
+                li.nav-item: a.nav__link(href="/logout") Log Out
+                li.nav-item: a.nav__link(href="#") About
               else
-                li.nav__item: a.nav__link(href="/register") Register
-                li.nav__item: a.nav__link(href="/login") Log In
-                li.nav__item: a.nav__link(href="#") About
+                li.nav-item: a.nav__link(href="/register") Register
+                li.nav-item: a.nav__link(href="/login") Log In
+                li.nav-item: a.nav__link(href="#") About
     body
       .content
         block content
-      script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
-      script(src='/js/main.js')
+          script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+          script(src='/js/main.js')
