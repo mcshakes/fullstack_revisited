@@ -52,13 +52,11 @@ body:before {
 
 .nav {
   background: rgba(0, 0, 0, .3);
-  /* height: 50px; */
-  /* display: flex; */
+  display: flex;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  flex-direction: column;
   text-align: center;
-  /* margin-bottom: 10px; */
-  /* max-width: 1200px; */
   margin: 0 0 20px 0;
 }
 
@@ -70,21 +68,15 @@ nav:after {
   width: 100%;
 }
 
-ul#menu {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-li.nav-item {
+nav .nav-item {
   display: inline-block;
-  flex: 1;
+  padding: 0 1.4em 0 0;
+  font-size: 0.9em;
 }
 
 .nav__link {
     color: #fdfdfd;
     text-decoration: none;
-    display: block;
     min-width: 140px;
     height: 50px;
     line-height: 50px;

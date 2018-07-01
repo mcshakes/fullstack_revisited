@@ -7,15 +7,14 @@ html
 
     block header
         nav.nav
-          section
-            ul#menu
-              if user
-                li.nav-item: a.nav__link(href="/logout") Log Out
-                li.nav-item: a.nav__link(href="#") About
-              else
-                li.nav-item: a.nav__link(href="/register") Register
-                li.nav-item: a.nav__link(href="/login") Log In
-                li.nav-item: a.nav__link(href="#") About
+          ul
+            if user
+              li.nav-item: a.nav__link(href="/logout") Log Out
+              li.nav-item: a.nav__link(href="#") About
+            else
+              li.nav-item: a.nav__link(href="/register") Register
+              li.nav-item: a.nav__link(href="/login") Log In
+              li.nav-item: a.nav__link(href="#") About
     body
       .content
         block content
