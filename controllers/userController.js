@@ -11,9 +11,12 @@ exports.loginForm = (req, res) => {
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
 
-  console.log(req.user)
+  // console.log(req.user)
   return res.status(200)
             .redirect(`users/${req.user.id}`)
+  // res.status(200).render("userPage", {
+  //   user: req.user
+  // })
 }
 
 exports.logUserOut = (req, res) => {
