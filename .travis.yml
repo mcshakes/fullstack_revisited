@@ -7,3 +7,5 @@ deploy:
   app: red-doright-81787
   on:
     repo: mcshakes/personal-library
+services:
+  - mongodb
