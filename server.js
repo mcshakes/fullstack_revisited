@@ -16,6 +16,7 @@ const cookieParser = require("cookie-parser");
 const request = require("request-promise");
 const uuid = require("uuid/v4");
 const FileStore = require("session-file-store")(session);
+const flash = require("connect-flash");
 
 require("./config/passport")(passport);
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(flash());
 app.use(morgan("dev"));
 
 app.set("view engine", "pug");

@@ -4,9 +4,9 @@ mixin loginForm()
     div.form-group
       div.form-row
         label(for="username") Email Address
-        input(type="username" name="username")
+        input(type="email" name="username" id="username-email")
       div.form-row
         label(for="password") Password
-        input(type="password" name="password")
+        input(type="password" name="password" id="login-password")
       div.form-row
         input.login-button(type="submit" value="Log In ->")

@@ -67,19 +67,9 @@ describe("Books API Resource", function() {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.body).to.be.a("object");
-          // expect(res.body).to.include.keys(
-          //   "id", "title", "author"
-          // );
-          // expect(res.body.author).to.equal(
-          //   `${newBook.author}`
-          // );
-          // expect(res.body.id).to.not.be.null;
-          // return Book.findById(res.body.id);
+
         })
-        // .then(function(book){
-        //   expect(book.title).to.equal(newBook.title);
-        //   // can add more
-        // })
+
     })
   }); // End of POST endpoint
 
@@ -95,12 +85,7 @@ describe("Books API Resource", function() {
           expect(res).to.be.html;
           expect(res.text).to.have.length.of.at.least(1);
 
-          // res.body.books.forEach(function(book) {
-          //   expect(book).to.be.a("object");
-          //   expect(book).to.include.keys(
-          //     "author", "title", "summary"
-          //   )
-          // });
+      
           // console.log(res.text) NOTE: Can be parsed by HTML to test further
 
           // bookResult = res.body.books[0];
