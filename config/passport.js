@@ -5,7 +5,6 @@ const { User } = require("../models/user");
 module.exports = function(passport, user) {
 
   passport.serializeUser( (user, done) => {
-    console.log("Inside serialeUser callback!")
     done(null, user.id);
   })
 
@@ -25,11 +24,11 @@ module.exports = function(passport, user) {
       if (err) return done(err);
 
       if (!user) {
-        return done(null, false, {message: "Incorrect username"});
+        return done(null, false, req.flash("loginMessage", "No such user found."));
       }
 
       if (!user.validatePassword(password)) {
-        return done(null, false, { message: "Incorrect password."});
+        return done(null, false, req.flash("loginMessage", "Oops! Wrong password."));
       }
 
       return done(null, user);
