@@ -28,7 +28,6 @@ module.exports = function(passport, user) {
   //     }
   //
   //     if (!user.validatePassword(password)) {
-  //       "COMING in hot"
   //       return done(null, false, req.flash("loginMessage", "Oops! Wrong password."));
   //     }
   //
@@ -45,7 +44,7 @@ module.exports = function(passport, user) {
         if (!user) {
           return Promise.reject({
             reason: "LoginError",
-            message: "Incorrect username or password"
+            message: "Incorrect username"
           });
         }
         return user.validatePassword(password);
@@ -54,12 +53,15 @@ module.exports = function(passport, user) {
         if (!isValid) {
           return Promise.reject({
             reason: "LoginError",
-            message: "Incorrect username or password 2"
+            message: "Incorrect password for that username"
           });
         }
         return callback(null, user);
       })
       .catch(err => {
+        // err comes in like so:
+          // { reason: 'LoginError',
+          // message: 'Incorrect password for that username' }
         if (err.reason === "LoginError") {
           return callback(null, false, err);
         }
