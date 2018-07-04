@@ -28,33 +28,43 @@ exports.createBookForm = (req,res) => {
 }
 
 exports.createBook = (req,res) => {
-  const reqFields = ["title", "author"];
+  // const reqFields = ["title", "author"];
+  //
+  // for (let i = 0; i < reqFields.length; i++) {
+  //   const field = reqFields[i];
+  //
+  //   if (!field in req.body) {
+  //     const message = `Missing ${field} in the request body`;
+  //     console.log(message)
+  //     return res.status(400).send(message)
+  //   }
+  // }
+  req.checkBody("title", "Title can't be empty").notEmpty();
+  req.checkBody("author", "Need an author. Someone had to write that book.").notEmpty();
+  req.checkBody("summary", "Tell us a little about the book").notEmpty();
 
-  for (let i = 0; i < reqFields.length; i++) {
-    const field = reqFields[i];
+  const errors = req.validationErrors();
 
-    if (!field in req.body) {
-      const message = `Missing ${field} in the request body`;
-      console.log(message)
-      return res.status(400).send(message)
-    }
+  if (errors) {
+    console.log(`errors: ${JSON.stringify(errors)}`)
+
+    res.render("createBook", { title: "There was an error adding your book" })
+  } else {
+    Book
+      .create({
+        title: req.body.title,
+        author: req.body.author,
+        summary: req.body.summary,
+        image: req.body.image
+      })
+      .then((book) => {
+        res.status(201)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      res.redirect("/books")
   }
-  console.log(req.body.image)
-
-  Book
-    .create({
-      title: req.body.title,
-      author: req.body.author,
-      summary: req.body.summary,
-      image: req.body.image
-    })
-    .then((book) => {
-      res.status(201)
-    })
-    .catch(err => {
-      console.log(err);
-    })
-    res.redirect("/books")
 }
 
 exports.getBook = (req, res) => {

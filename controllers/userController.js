@@ -23,38 +23,47 @@ exports.logUserOut = (req, res) => {
 
 exports.registerForm = (req, res) => {
   res.render("registerForm", {title: "Register"})
-  console.log("FROM FORM", req.body)
 }
 
 exports.register = (req, res) => {
-  const reqFields = ["email", "password"];
+  // const reqFields = ["email", "password"];
+  //
+  //   for (let i = 0; i < reqFields.length; i++) {
+  //     const field = reqFields[i];
+  //
+  //     if (!field in req.body) {
+  //       const message = `Missing ${field} in the request body`;
+  //       console.log(message)
+  //       return res.status(400).send(message)
+  //     }
 
-    for (let i = 0; i < reqFields.length; i++) {
-      const field = reqFields[i];
+  req.checkBody("email", "Email can't be empty").notEmpty();
 
-      if (!field in req.body) {
-        const message = `Missing ${field} in the request body`;
-        console.log(message)
-        return res.status(400).send(message)
-      }
+  const errors = req.validationErrors();
 
-      return User.hashPassword(req.body.password)
-        .then(hash => {
-          { hash }
+  if (errors) {
+    console.log(`errors: ${JSON.stringify(errors)}`)
 
-          return User.create({
-              email: req.body.email,
-              password: hash
-          })
-          .then(user => {
-            res.status(201)
-            res.redirect(`users/${user.id}`)
-          })
-          .catch(err => {
-            console.log(err);
-          })
-        })
+    res.render("registerForm", { title: "Registration Error" })
   }
+
+  return User.hashPassword(req.body.password)
+    .then(hash => {
+      { hash }
+
+      return User.create({
+          email: req.body.email,
+          password: hash
+      })
+      .then(user => {
+        res.status(201)
+        res.redirect(`users/${user.id}`)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    })
+  // }
 }
 
 exports.showUser = (req, res) => {

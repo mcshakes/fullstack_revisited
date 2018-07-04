@@ -32,7 +32,8 @@ const app = express();
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(expressValidator([options]));
+app.use(expressValidator());
+
 app.use(cors());
 app.use(flash());
 app.use(morgan("dev"));
@@ -45,7 +46,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 const bookRouter = require("./routes/book-routes")
 const userRouter = require("./routes/user-routes")
 
-app.use(expressValidator());
 
 app.use(session({
   genid: (req) => {
