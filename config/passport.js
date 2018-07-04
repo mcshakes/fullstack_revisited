@@ -63,6 +63,7 @@ module.exports = function(passport, user) {
           // { reason: 'LoginError',
           // message: 'Incorrect password for that username' }
         if (err.reason === "LoginError") {
+          console.log(err)
           return callback(null, false, err);
         }
         return callback(err, false)

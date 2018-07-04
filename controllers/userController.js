@@ -11,6 +11,7 @@ exports.loginForm = (req, res) => {
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
   // console.log(req.user)
+  console.log("THE RESPONSE", res)
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }
@@ -146,7 +147,19 @@ exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
-  // console.log(booksURL)
+  req.checkBody("title", "Need a title. Can't search for nothing").notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    console.log(`errors: ${JSON.stringify(errors)}`)
+
+    res.render("searchForm", {
+      title: "Error",
+      error: errors
+    })
+  }
+
   request
     .get(booksURL)
     .then(books => {

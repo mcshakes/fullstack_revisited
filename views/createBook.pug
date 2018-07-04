@@ -6,6 +6,9 @@ block content
       h1 Add New Book
       h3 Add the title, description and author. Or search for it
     section
+      if errors
+        each error in errors
+          p error.msg
       +bookForm
     section
       .search-option

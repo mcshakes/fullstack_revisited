@@ -48,7 +48,10 @@ exports.createBook = (req,res) => {
   if (errors) {
     console.log(`errors: ${JSON.stringify(errors)}`)
 
-    res.render("createBook", { title: "There was an error adding your book" })
+    res.render("createBook", {
+      title: "There was an error adding your book",
+      error: errors
+    })
   } else {
     Book
       .create({
@@ -65,6 +68,7 @@ exports.createBook = (req,res) => {
       })
       res.redirect("/books")
   }
+
 }
 
 exports.getBook = (req, res) => {
