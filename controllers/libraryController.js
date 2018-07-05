@@ -50,7 +50,7 @@ exports.createBook = (req,res) => {
 
     res.render("createBook", {
       title: "There was an error adding your book",
-      error: errors
+      errors: errors
     })
   } else {
     Book
