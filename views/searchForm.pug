@@ -1,6 +1,10 @@
 extends layout
 
 block content
+    section.messages
+      if errors
+        each error in errors
+          p #{error.msg}
     form(action="/search-results" method="POST" class="search-book")
       div.form-group
         div.form-row

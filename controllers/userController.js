@@ -10,8 +10,21 @@ exports.loginForm = (req, res) => {
 
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+  // console.log(req.user)
+  // req.checkBody("email", "Please add your email").notEmpty();
+  // req.checkBody("password", "You need to add your password").notEmpty();
+  //
+  // const errors = req.validationErrors();
+  //
+  // if (errors) {
+  //   console.log(`errors: ${JSON.stringify(errors)}`)
+  //
+  //   res.render("login", {
+  //     title: "User Error",
+  //     errors: errors
+  //   })
+  // }
 
-  console.log(req.user)
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }
@@ -24,38 +37,47 @@ exports.logUserOut = (req, res) => {
 
 exports.registerForm = (req, res) => {
   res.render("registerForm", {title: "Register"})
-  console.log("FROM FORM", req.body)
 }
 
 exports.register = (req, res) => {
-  const reqFields = ["email", "password"];
+  // const reqFields = ["email", "password"];
+  //
+  //   for (let i = 0; i < reqFields.length; i++) {
+  //     const field = reqFields[i];
+  //
+  //     if (!field in req.body) {
+  //       const message = `Missing ${field} in the request body`;
+  //       console.log(message)
+  //       return res.status(400).send(message)
+  //     }
 
-    for (let i = 0; i < reqFields.length; i++) {
-      const field = reqFields[i];
+  req.checkBody("email", "Email can't be empty").notEmpty();
 
-      if (!field in req.body) {
-        const message = `Missing ${field} in the request body`;
-        console.log(message)
-        return res.status(400).send(message)
-      }
+  const errors = req.validationErrors();
 
-      return User.hashPassword(req.body.password)
-        .then(hash => {
-          { hash }
+  if (errors) {
+    console.log(`errors: ${JSON.stringify(errors)}`)
 
-          return User.create({
-              email: req.body.email,
-              password: hash
-          })
-          .then(user => {
-            res.status(201)
-            res.redirect(`users/${user.id}`)
-          })
-          .catch(err => {
-            console.log(err);
-          })
-        })
+    res.render("registerForm", { title: "Registration Error" })
   }
+
+  return User.hashPassword(req.body.password)
+    .then(hash => {
+      { hash }
+
+      return User.create({
+          email: req.body.email,
+          password: hash
+      })
+      .then(user => {
+        res.status(201)
+        res.redirect(`users/${user.id}`)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    })
+  // }
 }
 
 exports.showUser = (req, res) => {
@@ -129,7 +151,7 @@ exports.removeBookFromLibrary = (req, res) => {
 
 exports.searchForm = (req, res) => {
   // console.log("In search form => ", req.sessionID)
-  console.log(`req.user: ${JSON.stringify(req.user)}`)
+  // console.log(`req.user: ${JSON.stringify(req.user)}`)
   res.render("searchForm", { user: req.user})
 }
 
@@ -138,7 +160,19 @@ exports.searchBook = (req, res) => {
   let searchQuery = req.body.title
   const booksURL = `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}&key=${process.env.GOOGLE_KEY}`
 
-  // console.log(booksURL)
+  req.checkBody("title", "Need a title. Can't search for nothing").notEmpty();
+
+  const errors = req.validationErrors();
+
+  if (errors) {
+    console.log(`errors: ${JSON.stringify(errors)}`)
+
+    res.render("searchForm", {
+      title: "Error",
+      errors: errors
+    })
+  }
+
   request
     .get(booksURL)
     .then(books => {

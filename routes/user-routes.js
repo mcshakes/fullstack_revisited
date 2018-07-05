@@ -19,7 +19,12 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/login", userController.loginForm);
-router.post("/login", passport.authenticate("local"), userController.logUserIn);
+router.post("/login", passport.authenticate("local", {
+  failureRedirect: "/login"
+}), userController.logUserIn);
+
+// router.post("/login", passport.authenticate("local"), userController.logUserIn);
+
 router.get("/logout", userController.logUserOut);
 
 router.get("/register", userController.registerForm);
