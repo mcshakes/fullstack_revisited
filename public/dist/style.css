@@ -11,9 +11,9 @@
   .books {
     display: block;
   }
+
   .book {
     width: 100%;
-    margin: 0 0 10px 0;
   }
 }
 
@@ -87,21 +87,12 @@ nav .nav-item {
   border-color: #E59400;
 }
 
-/* .content {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #F5F5DC;
-  padding-bottom: 25px;
-
-} */
-
 .content {
   justify-content: space-between;
   display: flex;
   flex-direction: column;
   background-color: #F5F5DC;
 }
-
 
 body {
   font-family: 'Helvetica', sans-serif;
@@ -138,16 +129,11 @@ h1 {
   transition: background-color 0.3s ease;
   border: 1px solid #33cccc;
   border-radius: 3px;
-}
-/* .book {
-  margin-bottom: 1em;
-  padding: .8em 1em 0;
-  background: rgba(51, 153, 204,.2);
-  transition: background-color 0.3s ease;
-  border: 1px solid #33cccc;
-  border-radius: 3px;
+  /* flex: 0 1 calc(25% - 1em); */
 
-} */
+  flex-basis: 13em;
+}
+
 .book:after {
   content: "";
   display: block;
