@@ -11,7 +11,20 @@ exports.loginForm = (req, res) => {
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
   // console.log(req.user)
-  console.log("THE RESPONSE", res)
+  // req.checkBody("email", "Please add your email").notEmpty();
+  // req.checkBody("password", "You need to add your password").notEmpty();
+  //
+  // const errors = req.validationErrors();
+  //
+  // if (errors) {
+  //   console.log(`errors: ${JSON.stringify(errors)}`)
+  //
+  //   res.render("login", {
+  //     title: "User Error",
+  //     errors: errors
+  //   })
+  // }
+
   return res.status(200)
             .redirect(`users/${req.user.id}`)
 }
@@ -138,7 +151,7 @@ exports.removeBookFromLibrary = (req, res) => {
 
 exports.searchForm = (req, res) => {
   // console.log("In search form => ", req.sessionID)
-  console.log(`req.user: ${JSON.stringify(req.user)}`)
+  // console.log(`req.user: ${JSON.stringify(req.user)}`)
   res.render("searchForm", { user: req.user})
 }
 
@@ -156,7 +169,7 @@ exports.searchBook = (req, res) => {
 
     res.render("searchForm", {
       title: "Error",
-      error: errors
+      errors: errors
     })
   }
 
