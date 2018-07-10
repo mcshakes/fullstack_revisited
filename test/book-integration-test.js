@@ -84,19 +84,7 @@ describe("Books API Resource", function() {
           expect(res).to.have.status(200)
           expect(res).to.be.html;
           expect(res.text).to.have.length.of.at.least(1);
-
-      
-          // console.log(res.text) NOTE: Can be parsed by HTML to test further
-
-          // bookResult = res.body.books[0];
-          // return Book.findById(bookResult.id);
         })
-        // .then( (book) => {
-        //
-        //   expect(bookResult.id).to.equal(book.id);
-        //   expect(bookResult.author).to.equal(book.author);
-        //   expect(bookResult.title).to.equal(book.title);
-        // })
     })
 
   }) // End of GET
@@ -122,33 +110,34 @@ describe("DELETE Endpoint", function() {
   })
 }) //End of DELETE
 
-// describe("PUT endpoint", function() {
-//
-//     it("should update fields on an existing book", function() {
-//
-//       const updateData = {
-//         title: "Forget the last book!",
-//         author: "Ping O'Shaq-Hennessy"
-//       }
-//
-//       return Book
-//         .findOne()
-//         .then(function(book) {
-//           updateData.id = book.id;
-//
-//           return chai.request(app)
-//             .put(`/books/${book.id}`)
-//             .send(updateData);
-//         })
-//         .then(function(res) {
-//           expect(res).to.have.status(204);
-//
-//           return Book.findById(updateData.id);
-//         })
-//         .then(function(book) {
-//           expect(book.title).to.equal(updateData.title);
-//           expect(book.author).to.equal(`${updateData.author}`)
-//         })
-//     })
-// }) //End of PUT block
+describe("PUT endpoint", function() {
+
+    it("should update fields on an existing book", function() {
+
+      const updateData = {
+        title: "Forget the last book!",
+        author: "Ping O'Shaq-Hennessy"
+      }
+
+      return Book
+        .findOne()
+        .then(function(book) {
+          updateData.id = book.id;
+
+          return chai.request(app)
+            .put(`/books/${book.id}`)
+            .send(updateData);
+        })
+        .then(function(res) {
+          console.log(res)
+          // expect(res).to.have.status(204);
+          //
+          // return Book.findById(updateData.id);
+        })
+        // .then(function(book) {
+        //   expect(book.title).to.equal(updateData.title);
+        //   expect(book.author).to.equal(`${updateData.author}`)
+        // })
+    })
+}) //End of PUT block
 })
