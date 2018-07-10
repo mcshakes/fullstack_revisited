@@ -13,19 +13,20 @@
   }
 
   .book {
-    width: 100%;
+    /* width: 100%; */
+    max-width: calc(75% -  1em);
   }
 }
 
-@media (min-width: 481px) and (max-width: 960px){
+@media screen and (min-width: 640px) {
   .book {
-    max-width: 360px;
+    max-width: calc(50% -  1em);
   }
 }
 
-@media only screen and (min-width: 961) {
+@media screen and (min-width: 961px) {
   .book {
-    width: 32%;
+    max-width: calc(25% - 1em);
   }
 }
 
@@ -131,7 +132,10 @@ h1 {
   border-radius: 3px;
   /* flex: 0 1 calc(25% - 1em); */
 
-  flex-basis: 13em;
+  flex: 1 0 500px;
+  box-sizing: border-box;
+  margin: 1rem .25em;
+  /* flex-basis: 13em; */
 }
 
 .book:after {
