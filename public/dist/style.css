@@ -11,21 +11,22 @@
   .books {
     display: block;
   }
+
   .book {
-    width: 100%;
-    margin: 0 0 10px 0;
+    /* width: 100%; */
+    max-width: calc(75% -  1em);
   }
 }
 
-@media (min-width: 481px) and (max-width: 960px){
+@media screen and (min-width: 640px) {
   .book {
-    max-width: 360px;
+    max-width: calc(50% -  1em);
   }
 }
 
-@media only screen and (min-width: 961) {
+@media screen and (min-width: 961px) {
   .book {
-    width: 32%;
+    max-width: calc(25% - 1em);
   }
 }
 
@@ -87,21 +88,12 @@ nav .nav-item {
   border-color: #E59400;
 }
 
-/* .content {
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #F5F5DC;
-  padding-bottom: 25px;
-
-} */
-
 .content {
   justify-content: space-between;
   display: flex;
   flex-direction: column;
   background-color: #F5F5DC;
 }
-
 
 body {
   font-family: 'Helvetica', sans-serif;
@@ -138,16 +130,14 @@ h1 {
   transition: background-color 0.3s ease;
   border: 1px solid #33cccc;
   border-radius: 3px;
-}
-/* .book {
-  margin-bottom: 1em;
-  padding: .8em 1em 0;
-  background: rgba(51, 153, 204,.2);
-  transition: background-color 0.3s ease;
-  border: 1px solid #33cccc;
-  border-radius: 3px;
+  /* flex: 0 1 calc(25% - 1em); */
 
-} */
+  flex: 1 0 500px;
+  box-sizing: border-box;
+  margin: 1rem .25em;
+  /* flex-basis: 13em; */
+}
+
 .book:after {
   content: "";
   display: block;

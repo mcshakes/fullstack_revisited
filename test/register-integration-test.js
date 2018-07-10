@@ -48,8 +48,6 @@ describe("User Authentication and Registering", function() {
           let title = theDOM.window.document.querySelector("h1").textContent
           let inputs = theDOM.window.document.querySelector("input").textContent
 
-          console.log("THIS SHIT", theDOM.window.document.querySelector("input").textContent)
-
           expect(title).to.contain("Register")
           expect(inputs).to.equal("")
         })

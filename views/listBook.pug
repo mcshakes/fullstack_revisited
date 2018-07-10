@@ -6,6 +6,6 @@ block content
     h2 #{title}
       form(method="get" action="/add-new-book" class="link-to-create")
         button Add a Book
-      .books
+      section.books
         each book in bookList
           +bookCard(book)
