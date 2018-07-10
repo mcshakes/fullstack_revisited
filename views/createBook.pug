@@ -12,6 +12,7 @@ block content
             a.btn#search(href=`/search`) Search Books
     section
       if errors
-        each error in errors
-          p #{error.msg}
+        div.errors
+          each error in errors
+            p #{error.msg}
       +bookForm
