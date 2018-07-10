@@ -338,6 +338,12 @@ h1 {
   width: 60%;
   padding: 50px;
   margin: 0 auto;
+
+  text-align: center;
+}
+
+.search-option div {
+  margin-top: 8px;
 }
 
 /* Edit Book */
