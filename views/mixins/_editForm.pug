@@ -1,7 +1,7 @@
 extends ../layout
 
 mixin editForm(book = {})
-  form(method="POST" action=`/books/${book._id}`)
+  form(method="POST" action=`/books/${book._id}` class="edit-book-form")
     div.form-group
       div.form-row
         label(for="title") Title:
@@ -13,4 +13,4 @@ mixin editForm(book = {})
         label(for="summary") Summary:
         textarea#summary.form-control(type="text", placeholder="God is turtle, world is flat" name="summary")
       div.form-row
-          button.btn.btn-primary(type="submit" role="submit") Add Book
+          button.btn.btn-primary(type="submit" role="submit") Edit Your Book
