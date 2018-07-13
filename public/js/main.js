@@ -90,32 +90,32 @@ $(document).ready(function() {
 })
 
 
-$(document).on("submit", ".add-book-form", function(e) {
-  e.preventDefault();
-  alert("HEY")
-
-  $target = $(e.target);
-  const title = $target.attr("#title")
-  const author = $target.attr("#author")
-  const summary = $target.attr("#summary")
-
-  if (!title || title === undefined) {
-    alert("Need a title")
-  }
-
-  $.ajax({
-    type: "POST",
-    url: "/books",
-    data: {
-      title: title,
-      author: author,
-      summary: summary
-    },
-    success: function(res) {
-      window.location.href = "/books"
-    },
-    error: function(err) {
-      console.log(err)
-    }
-  })
-})
+// $(document).on("submit", ".add-book-form", function(e) {
+//   e.preventDefault();
+//   alert("HEY")
+//
+//   $target = $(e.target);
+//   const title = $target.attr("#title")
+//   const author = $target.attr("#author")
+//   const summary = $target.attr("#summary")
+//
+//   if (!title || title === undefined) {
+//     alert("Need a title")
+//   }
+//
+//   $.ajax({
+//     type: "POST",
+//     url: "/books",
+//     data: {
+//       title: title,
+//       author: author,
+//       summary: summary
+//     },
+//     success: function(res) {
+//       window.location.href = "/books"
+//     },
+//     error: function(err) {
+//       console.log(err)
+//     }
+//   })
+// })
