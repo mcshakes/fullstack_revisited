@@ -44,7 +44,7 @@ module.exports = function(passport, user) {
         if (!user) {
           return Promise.reject({
             reason: "LoginError",
-            message: "Incorrect username"
+            message: "Incorrect email"
           });
         }
         return user.validatePassword(password);

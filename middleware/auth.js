@@ -12,7 +12,6 @@ const isLoggedIn = (req, res, next) => {
     // console.log(`req.user: ${JSON.stringify(req.user)}`)
     return next();
   }
-  
   res.redirect("/login");
 }
 

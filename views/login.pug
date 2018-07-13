@@ -5,6 +5,7 @@ include mixins/_loginForm
 block content
   section.messages
     if errors
-      each error in errors
-        p #{error.msg}
+      div.errors
+        each error in errors
+          p #{error.msg}
   +loginForm()
