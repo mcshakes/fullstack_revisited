@@ -5,12 +5,12 @@ mixin editForm(book = {})
     div.form-group
       div.form-row
         label(for="title") Title:
-        input#title.form-control(type="text", placeholder="Small Gods" name="title")
+        input#title.form-control(type="text", placeholder=`${book.title}` name="title")
       div.form-row
         label(for="author") Author:
-        input#author.form-control(type="text", placeholder="Terry Pratchett" name="author")
+        input#author.form-control(type="text", placeholder=`${book.author}` name="author")
       div.form-row
         label(for="summary") Summary:
-        textarea#summary.form-control(type="text", placeholder="God is turtle, world is flat" name="summary")
+        textarea#summary.form-control(type="text", placeholder=`${book.summary}` name="summary")
       div.form-row
           button.btn.btn-primary(type="submit" role="submit") Edit Your Book
