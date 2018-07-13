@@ -14,7 +14,7 @@ describe("Unauthenticated user visits the site", function() {
     cy.get("form").should("be.visible")
   })
 
-  it("should add a book to the collection", function() {
+  it("should send user back to collection", function() {
     cy
       .get("input[name='title']")
       .type("Fake Book")
