@@ -7,7 +7,7 @@ describe("Authenticated user visits the site", function() {
       cy.contains("Log In").click()
     })
 
-    it("greets user with a form of rlogin", function() {
+    it("greets user with the login form", function() {
       cy.url().should("include", "/login")
       cy.contains("h1", "Login")
     })
