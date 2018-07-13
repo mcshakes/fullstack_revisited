@@ -3,9 +3,10 @@ extends layout
 include mixins/_bookCard
 
 block content
+  header.list-header
     h2 #{title}
       form(method="get" action="/add-new-book" class="link-to-create")
         button Add a Book
-      section.books
-        each book in bookList
-          +bookCard(book)
+  section.books
+    each book in bookList
+      +bookCard(book)
