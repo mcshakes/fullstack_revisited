@@ -1,10 +1,13 @@
 extends layout
 
 block content
-  div.container
-    h2 #{book.title}
-    h2 #{book.author}
-    if book.summary
-      p= book.summary.split(" ").slice(0, 25).join(" ")
+  section.show-book
+    .div
+      img.book-thumbnail(src=book.image)
+    .div
+      h2 #{book.title}
+      h2 #{book.author}
+      if book.summary
+        p= book.summary.split(" ").slice(0, 25).join(" ")
 
-    button.btn-danger.user-remove-book(href="#", data-id=book.id user-data=user.id) Delete Book
+      button.user-remove-book(href="#", data-id=book.id user-data=user.id) Delete Book
