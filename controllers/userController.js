@@ -5,28 +5,30 @@ const request = require("request-promise");
 const { GOOGLE_KEY } = require("../config");
 
 exports.loginForm = (req, res) => {
-  res.render("login", { title: "Login" });
+  res.render("login", { title: "Login", success: false, errors: req.session.errors });
+  req.session.errors = null;
+  // res.render("login", { title: "Login" });
 }
 
 exports.logUserIn = (req, res) => {
   // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
   // console.log(req.user)
-  // req.checkBody("email", "Please add your email").notEmpty();
+
+  // req.checkBody("email", "Please add your LOGIN email").notEmpty();
   // req.checkBody("password", "You need to add your password").notEmpty();
-  //
+  // console.log("BEFORE", req.session.errors)
   // const errors = req.validationErrors();
-  //
+
+  // console.log(err)
   // if (errors) {
-  //   console.log(`errors: ${JSON.stringify(errors)}`)
-  //
+  //   req.session.errors = errors
   //   res.render("login", {
-  //     title: "User Error",
+  //     title: "User Error"
   //     errors: errors
   //   })
   // }
 
-  return res.status(200)
-            .redirect(`users/${req.user.id}`)
+  res.redirect(`users/${req.user.id}`)
 }
 
 exports.logUserOut = (req, res) => {
@@ -88,7 +90,9 @@ exports.showUser = (req, res) => {
   User
     .findById(userId)
     .then(user => {
-      res.render("userPage", { user: req.user })
+      // res.render("userPage", { user: req.user })
+      res.render("userPage", { user: req.user, success: false, errors: req.session.errors })
+      req.session.errors = null;
     })
     .catch(err => {
       console.log(err);

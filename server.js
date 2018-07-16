@@ -67,12 +67,9 @@ app.use(userRouter);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  // send back index.html => ajax to get all book data /books
-  console.log('Inside the homepage callback function')
-  // console.log(req.sessionID)
-  res.send(`You hit home page!\n`)
+  // res.send(`You hit home page!\n`)
 
-  // res.redirect("/books")
+  res.redirect("/books")
 })
 
 // ************************ SERVER *****************************

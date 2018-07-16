@@ -16,6 +16,10 @@
     /* width: 100%; */
     max-width: calc(75% -  1em);
   }
+
+  .show-book {
+    max-width: calc(75% -  1em);
+  }
 }
 
 @media screen and (min-width: 640px) {
@@ -237,6 +241,11 @@ h1 {
 .book__details p {
   line-height: 1.2;
   margin-bottom: 0;
+}
+
+.show-book {
+  text-align: center;
+
 }
 
 /** Forms ========================================================================== **/

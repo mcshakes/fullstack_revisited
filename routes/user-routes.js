@@ -19,11 +19,11 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/login", userController.loginForm);
+
 router.post("/login", passport.authenticate("local", {
   failureRedirect: "/login"
 }), userController.logUserIn);
 
-// router.post("/login", passport.authenticate("local"), userController.logUserIn);
 
 router.get("/logout", userController.logUserOut);
 
@@ -32,10 +32,10 @@ router.post("/register", userController.register);
 
 
 // NOTE: AUTHENTICATED
-router.get("/users/:id", userController.showUser);
+router.get("/users/:id", isLoggedIn, userController.showUser);
 
-router.post("/users/:id/books", userController.addBookToLibrary);
-router.get("/users/:id/books/:id", userController.showUserBook);
+router.post("/users/:id/books", isLoggedIn, userController.addBookToLibrary);
+router.get("/users/:id/books/:id", isLoggedIn, userController.showUserBook);
 router.delete("/users/:id/books/:id", userController.removeBookFromLibrary);
 
 // NOTE: UNAUTHENTICATED
