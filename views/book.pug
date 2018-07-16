@@ -2,9 +2,9 @@ extends layout
 
 block content
   section.show-book
-    .div
+    .hero
       img.book-thumbnail(src=book.image)
-    .div
+    .book-info
       h2 #{book.title}
       h2 #{book.author}
       if book.summary

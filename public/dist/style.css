@@ -26,11 +26,23 @@
   .book {
     max-width: calc(50% -  1em);
   }
+
+  .show-book {
+    max-width: calc(45% -  1em);
+    align-self: center;
+    padding: 15px;
+  }
 }
 
 @media screen and (min-width: 961px) {
   .book {
     max-width: calc(25% - 1em);
+  }
+
+  .show-book {
+    max-width: calc(55% -  1em);
+    align-self: center;
+    padding: 15px;
   }
 }
 
@@ -245,8 +257,16 @@ h1 {
 
 .show-book {
   text-align: center;
+  border: 3px solid grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+}
+
+.book-info {
 
 }
+
 
 /** Forms ========================================================================== **/
 
