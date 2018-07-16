@@ -11,7 +11,7 @@ mixin bookCard(book = {})
           p #{book.author}
     .book__details
       img.book-thumbnail(src=book.image)
-      .book__actions
-        if !user
-          button#edit-book
-            a(href=`/edit-book/${book.id}`) Edit Book
+    .book__actions
+      if !user
+        button#edit-book
+          a(href=`/edit-book/${book.id}`) Edit Book
