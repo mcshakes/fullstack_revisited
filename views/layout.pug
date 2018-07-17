@@ -21,6 +21,6 @@ html
       .content
       != messages("message", locals)
       if errors
-        each errors, i in errors
+        each error, i in errors
           #{error.msg}
       block content
