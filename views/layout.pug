@@ -6,7 +6,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
     script(src='/js/main.js')
-    
+
     block header
         nav.nav
           ul
@@ -19,4 +19,8 @@ html
               li.nav-item: a.nav__link(href="#") About
     body
       .content
-        block content
+      != messages("message", locals)
+      if errors
+        each error, i in errors
+          #{error.msg}
+      block content

@@ -7,7 +7,8 @@ mixin bookResult(book = {})
     .book-details
       h3 #{book.volumeInfo.title}
       h3 #{book.volumeInfo.authors}
-      p #{book.volumeInfo.description}
+      if book.volumeInfo.description
+        p #{book.volumeInfo.description.split(" ").slice(0, 50).join(" ")}
     .book-actions
       if user
         if book.volumeInfo.imageLinks
