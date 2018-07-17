@@ -21,7 +21,8 @@ router.get("/users", (req, res) => {
 router.get("/login", userController.loginForm);
 
 router.post("/login", passport.authenticate("local", {
-  failureRedirect: "/login"
+  failureRedirect: "/login",
+  failureFlash: true
 }), userController.logUserIn);
 
 
