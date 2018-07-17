@@ -236,7 +236,7 @@ h1 {
   padding: .5em;
 }
 
-.book-details {
+.book-detail {
   width: 60%;
 }
 
@@ -256,6 +256,11 @@ h1 {
   margin-right: 5px;
 }
 
+.book__details p {
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
 .show-book {
   text-align: center;
   border: 3px solid grey;
@@ -263,7 +268,6 @@ h1 {
   padding-bottom: 15px;
   border-radius: 5px;
 }
-
 
 /** Forms ========================================================================== **/
 
