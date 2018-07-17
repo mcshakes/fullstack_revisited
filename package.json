@@ -9,7 +9,7 @@
     "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
     "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\"",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:cli": "cypress run"
   },
   "keywords": [],
   "author": "",
