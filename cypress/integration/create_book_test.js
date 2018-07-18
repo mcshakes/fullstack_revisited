@@ -2,6 +2,10 @@
 describe("Unauthenticated user visits the site", function() {
 
   before(function() {
+    cy.exec("npm run seed")
+  })
+
+  it("gives user clear add to book", function() {
     cy.visit("/books")
     cy.contains("Add a Book").and("be.visible").click()
   })
@@ -14,7 +18,7 @@ describe("Unauthenticated user visits the site", function() {
     cy.get("form").should("be.visible")
   })
 
-  it("should send user back to collection", function() {
+  it("should create the fake book to read", function() {
     cy
       .get("input[name='title']")
       .type("Fake Book")
@@ -32,6 +36,10 @@ describe("Unauthenticated user visits the site", function() {
 
     cy.get("form").submit();
 
+    cy.contains("Fake Book").and("be.visible")
+  })
+
+  it("should send user back to collection", function() {
     cy.location("pathname").should("eq", "/books")
   })
 })
