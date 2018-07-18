@@ -27,17 +27,7 @@ exports.createBookForm = (req,res) => {
 }
 
 exports.createBook = (req,res) => {
-  // const reqFields = ["title", "author"];
-  //
-  // for (let i = 0; i < reqFields.length; i++) {
-  //   const field = reqFields[i];
-  //
-  //   if (!field in req.body) {
-  //     const message = `Missing ${field} in the request body`;
-  //     console.log(message)
-  //     return res.status(400).send(message)
-  //   }
-  // }
+
   req.checkBody("title", "Title can't be empty").notEmpty();
   req.checkBody("author", "Need an author. Someone had to write that book.").notEmpty();
   req.checkBody("summary", "Tell us a little about the book").notEmpty();
@@ -46,7 +36,6 @@ exports.createBook = (req,res) => {
 
   if (errors) {
     // console.log(`errors: ${JSON.stringify(errors)}`)
-
     res.render("createBook", {
       title: "There was an error adding your book",
       errors: errors

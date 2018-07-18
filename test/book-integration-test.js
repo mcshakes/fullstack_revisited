@@ -62,7 +62,6 @@ describe("Books API Resource", function() {
 
       return chai.request(app)
         .post("/books")
-        console.log("IS NEW BOOK", newBook)
         .then(function(res) {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
@@ -129,15 +128,11 @@ describe("PUT endpoint", function() {
             .send(updateData);
         })
         .then(function(res) {
-          console.log(res)
+          // console.log(res)
           // expect(res).to.have.status(204);
           //
           // return Book.findById(updateData.id);
         })
-        // .then(function(book) {
-        //   expect(book.title).to.equal(updateData.title);
-        //   expect(book.author).to.equal(`${updateData.author}`)
-        // })
     })
 }) //End of PUT block
 })
