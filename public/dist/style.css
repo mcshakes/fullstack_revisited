@@ -40,7 +40,8 @@
   }
 
   .show-book {
-    max-width: calc(55% -  1em);
+    /* max-width: calc(55% -  1em); */
+    width: calc(55% -  1em);
     align-self: center;
     padding: 15px;
   }
