@@ -8,13 +8,8 @@
     "start": "nodemon --ignore sessions/ server.js",
     "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
     "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\"",
-<<<<<<< HEAD
     "cy:open": "cypress open",
     "cy:headless": "cypress run"
-=======
-    "cypress:open": "cypress open",
-    "cypress:cli": "cypress run"
->>>>>>> 6bdbc5bcb396f5b0ce39d6f4044643c84af9eb2e
   },
   "keywords": [],
   "author": "",

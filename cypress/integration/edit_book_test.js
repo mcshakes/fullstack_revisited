@@ -15,13 +15,13 @@ describe("Visitor comes to site to do some edits", function() {
   it("allow user to click book and see edit button", function() {
     cy.contains("The Stand").and("be.visible").click()
   })
-  //
+
   it("should render proper URL", function() {
     cy.url().should("include", "books/")
 
     cy.contains("Edit Book").and("be.visible").click()
   })
-  //
+
   it("should render the edit form with placeholder text", function() {
 
     cy.get("form").should("be.visible")
