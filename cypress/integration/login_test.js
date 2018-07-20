@@ -27,7 +27,7 @@ describe("Authenticated user visits the site", function() {
     })
 
     it("has books already existing for that user", function() {
-      cy.get(".books").contains("Flower Power!")
+      cy.get(".books").contains("Flower Power")
     })
 
     it("can request to search books", function() {
