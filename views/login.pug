@@ -3,9 +3,4 @@ extends layout
 include mixins/_loginForm
 
 block content
-  section.messages
-    if errors
-      div.errors
-        each error in errors
-          p #{error.msg}
   +loginForm()

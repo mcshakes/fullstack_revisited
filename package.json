@@ -8,8 +8,13 @@
     "start": "nodemon --ignore sessions/ server.js",
     "seed": "mongoimport --db personal-library --collection books --drop --file ~/thinkful/node-capstone/seeds.json",
     "dev": "concurrently --kill-others-on-fail \"npm start\" \"yarn client\"",
+<<<<<<< HEAD
     "cy:open": "cypress open",
     "cy:headless": "cypress run"
+=======
+    "cypress:open": "cypress open",
+    "cypress:cli": "cypress run"
+>>>>>>> 6bdbc5bcb396f5b0ce39d6f4044643c84af9eb2e
   },
   "keywords": [],
   "author": "",
@@ -22,6 +27,7 @@
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "express-messages": "^1.0.1",
     "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
     "jquery": "^3.3.1",

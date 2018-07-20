@@ -1,5 +1,6 @@
 const { User } = require("../models/user");
 const { Book } = require("../models/book");
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const request = require("request-promise");
 const { GOOGLE_KEY } = require("../config");
@@ -42,44 +43,63 @@ exports.registerForm = (req, res) => {
 }
 
 exports.register = (req, res) => {
-  // const reqFields = ["email", "password"];
-  //
-  //   for (let i = 0; i < reqFields.length; i++) {
-  //     const field = reqFields[i];
-  //
-  //     if (!field in req.body) {
-  //       const message = `Missing ${field} in the request body`;
-  //       console.log(message)
-  //       return res.status(400).send(message)
-  //     }
+  const email  = req.body.email;
+  const password  = req.body.password;
 
   req.checkBody("email", "Email can't be empty").notEmpty();
-
+  req.checkBody("password", "Password can't be empty").notEmpty();
   const errors = req.validationErrors();
 
   if (errors) {
     console.log(`errors: ${JSON.stringify(errors)}`)
 
-    res.render("registerForm", { title: "Registration Error" })
+    res.render("registerForm", {
+      title: "Registration Error",
+      errors: errors
+    });
+  } else {
+    let newUser = new User({
+      email: email,
+      password: password
+    });
+
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) {
+          console.log(err);
+        }
+        newUser.password = hash;
+        newUser.save((err) => {
+          if (err) {
+            console.log(err);
+            return;
+          } else {
+            req.flash("success", "You ")
+            res.redirect("login")
+          }
+        })
+      });
+    })
   }
 
-  return User.hashPassword(req.body.password)
-    .then(hash => {
-      { hash }
+  // NOTE: Previous implement
 
-      return User.create({
-          email: req.body.email,
-          password: hash
-      })
-      .then(user => {
-        res.status(201)
-        res.redirect(`users/${user.id}`)
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    })
-  // }
+  // return User.hashPassword(req.body.password)
+  //   .then(hash => {
+  //     { hash }
+  //
+  //     return User.create({
+  //         email: req.body.email,
+  //         password: hash
+  //     })
+  //     .then(user => {
+  //       res.status(201)
+  //       res.redirect(`users/${user.id}`)
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     })
+  //   })
 }
 
 exports.showUser = (req, res) => {

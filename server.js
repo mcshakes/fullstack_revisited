@@ -35,7 +35,13 @@ app.use(bodyParser.json());
 app.use(expressValidator());
 
 app.use(cors());
+
 app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
+
 app.use(morgan("dev"));
 
 app.set("view engine", "pug");
