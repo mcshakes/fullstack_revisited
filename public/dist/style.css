@@ -286,6 +286,10 @@ h1 {
   border-radius: 5px;
 }
 
+.user-show {
+  display: flex;
+  justify-content: center;
+}
 /** Forms ========================================================================== **/
 
 .search-book {
@@ -533,3 +537,20 @@ h1 {
   text-align: center;
   border-radius: 28px;
  }
+
+.messages {
+  text-align: center;
+}
+
+.alert {
+  border: 1px solid;
+  margin: 10px auto;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  color: #D8000C;
+	background-color: #FFBABA;
+  width: 45%;
+  text-align: center;
+  border-radius: 28px;
+}
