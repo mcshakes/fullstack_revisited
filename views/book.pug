@@ -1,16 +1,17 @@
 extends layout
 
 block content
-  section.show-book
-    .hero
-      img.book-thumbnail(src=book.image)
-    .book-info
-      h2 #{book.title}
-      h2 #{book.author}
-      if book.summary
-        p= book.summary.split(" ").slice(0, 25).join(" ")
-    .book__actions
-      if !user
-        button#edit-book
-          a(href=`/edit-book/${book.id}`) Edit Book
-      button.delete-book(href="#", data-id=book.id) Delete Book
+  section.anon-show
+    .show-book
+      .hero
+        img.book-thumbnail(src=book.image)
+      .book-info
+        h2 #{book.title}
+        h2 #{book.author}
+        if book.summary
+          p= book.summary.split(" ").slice(0, 25).join(" ")
+      .book__actions
+        if !user
+          button#edit-book
+            a(href=`/edit-book/${book.id}`) Edit Book
+        button.delete-book(href="#", data-id=book.id) Delete Book

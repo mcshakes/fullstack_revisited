@@ -51,6 +51,7 @@
   .books {
     margin-right: 20px;
     margin-left: 20px;
+    justify-content: space-between;
   }
 
   .book {
@@ -284,6 +285,11 @@ h1 {
   padding-top: 15px;
   padding-bottom: 15px;
   border-radius: 5px;
+}
+
+.anon-show {
+  display: flex;
+  justify-content: center;
 }
 
 .user-show {
@@ -520,6 +526,7 @@ h1 {
   text-decoration: none;
   text-transform: uppercase;
 }
+
 .login-button:hover {
       background-color: #008CBA;
       color: white;
