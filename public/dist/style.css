@@ -125,8 +125,8 @@ body {
   font-family: 'Helvetica', sans-serif;
   font-size: 16px;
   line-height: 1.3;
-  /* background-color: #EAEDF0; */
-  background-color: #F5F5DC;
+  background: #EAEDF0 url("../images/bg.jpg") top left repeat;
+  /* background-color: #F5F5DC; */
   align-items: center;
 }
 
