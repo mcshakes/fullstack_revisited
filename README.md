@@ -1,5 +1,11 @@
 # Beating Tsundoku: A Reading List
 
+So many books, so little time.
+
+Don't bother trying to remember all the books to read out there. Use this instead.
+
+When you're done, just remove the book from your reading list.
+
 ### Try in Production
 
 https://red-doright-81787.herokuapp.com/
