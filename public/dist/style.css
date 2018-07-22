@@ -15,6 +15,11 @@
     justify-content: center;
   }
 
+  .search-book button {
+    width: 80%;
+    margin: auto;
+  }
+
   .book {
     /* width: 100%; */
     max-width: calc(75% -  1em);
@@ -59,11 +64,20 @@
   }
 
   .show-book {
-    /* max-width: calc(55% -  1em); */
     width: calc(55% -  1em);
     align-self: center;
     padding: 15px;
   }
+
+  .search-book {
+    width: 60%;
+  }
+
+  .search-book button {
+    width: 60%;
+    margin: auto;
+  }
+
 
   .search-result {
     max-width: calc(75% - 1em);
@@ -328,7 +342,7 @@ h1 {
   border: 1px solid #D6D9DC;
   border-radius: 3px;
 
-  width: 80%;
+  width: 60%;
   padding: 50px;
   margin: 0 auto;
 }
