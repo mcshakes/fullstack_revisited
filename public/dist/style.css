@@ -283,8 +283,7 @@ h1 {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  color: #FFFFFF;
-  /* background-color: #5995DA; */
+  color: #a28351;
   border: none;
   border-radius: 28px;
   padding: 10px 40px;
@@ -297,6 +296,10 @@ h1 {
 
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.book__actions a {
+  color: inherit;
 }
 
 
