@@ -3,13 +3,14 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { bookSchema } = require("../models/book")
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 mongoose.Promise = global.Promise;
 
 const userSchema = mongoose.Schema({
   email: {
     type: String,
-    unique: true,
+    unique: 'Two users cannot share the same email ({VALUE})',
     lowercase: true, // saved as lowercase
     trim: true,
     require: "Please Give an Email Address"
@@ -20,6 +21,8 @@ const userSchema = mongoose.Schema({
   },
   library: [ bookSchema ]
 });
+
+userSchema.plugin(beautifyUnique);
 
 userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);

@@ -28,17 +28,12 @@ exports.register = (req, res) => {
   const email  = req.body.email;
   const password  = req.body.password;
 
-  req.checkBody("email", "Email can't be empty").notEmpty();
-  req.checkBody("password", "Password can't be empty").notEmpty();
-  const errors = req.validationErrors();
+  console.log(mongoose.Error.ValidationError)
+  const valError = mongoose.Error.ValidationError;
 
-  if (errors) {
-    console.log(`errors: ${JSON.stringify(errors)}`)
-
-    res.render("registerForm", {
-      title: "Registration Error",
-      errors: errors
-    });
+  if (valError) {
+    req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
+    res.redirect("/register")
   } else {
     let newUser = new User({
       email: email,
