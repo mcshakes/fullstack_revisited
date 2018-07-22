@@ -1,5 +1,22 @@
 # Beating Tsundoku: A Reading List
 
+### Try in Production
+
+https://red-doright-81787.herokuapp.com/
+
+Create test users and start adding books to the reading list.
+
+### To run on development:
+
+`git clone`  
+
+`npm install`  
+
+`npm start`  
+
+And use test users:
+
+
 ### To run tests:
 
 1) `npm run test`
