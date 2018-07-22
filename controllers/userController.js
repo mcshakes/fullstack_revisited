@@ -8,27 +8,9 @@ const { GOOGLE_KEY } = require("../config");
 exports.loginForm = (req, res) => {
   res.render("login", { title: "Login", success: false, errors: req.session.errors });
   req.session.errors = null;
-  // res.render("login", { title: "Login" });
 }
 
 exports.logUserIn = (req, res) => {
-  // console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-  // console.log(req.user)
-
-  // req.checkBody("email", "Please add your LOGIN email").notEmpty();
-  // req.checkBody("password", "You need to add your password").notEmpty();
-  // console.log("BEFORE", req.session.errors)
-  // const errors = req.validationErrors();
-
-  // console.log(err)
-  // if (errors) {
-  //   req.session.errors = errors
-  //   res.render("login", {
-  //     title: "User Error"
-  //     errors: errors
-  //   })
-  // }
-
   res.redirect(`users/${req.user.id}`)
 }
 
@@ -74,7 +56,7 @@ exports.register = (req, res) => {
             console.log(err);
             return;
           } else {
-            req.flash("success", "You ")
+            req.flash("success", "Succesfully created. Please log in")
             res.redirect("login")
           }
         })

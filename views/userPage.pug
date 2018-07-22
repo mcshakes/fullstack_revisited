@@ -3,16 +3,13 @@ extends layout
 include mixins/_bookCard
 
 block content
-    section
-      div.profile
-        p.strong.email #{user.email}
-        p.strong.password #{user.password}
-
     script(type='text/javascript').
       localStorage.setItem('token','psuedotoken')
 
     div.library-label
-      h2 These are the books in your wishlist. Better check them out!
+      h1 Your Reading List
+      h2 Never forget another book!
+      br
       button
         a(href=`/search`) Add a New Book
     .books
