@@ -28,9 +28,9 @@ exports.register = (req, res) => {
   const email  = req.body.email;
   const password  = req.body.password;
 
+  console.log(mongoose.Error.ValidationError)
   const valError = mongoose.Error.ValidationError;
-  console.log("RESPONSE ===>", mongoose.Error.ValidationError)
-  // console.log("ERRRORS OUTSIDE", res.req.validationErrors)
+
   if (valError) {
     req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
     res.redirect("/register")
@@ -192,18 +192,19 @@ exports.searchBook = (req, res) => {
       console.log(err);
     })
 }
-//
+
 // exports.validateRegister = (req, res, next) => {
+//   req.sanitizeBody("name");
+//     req.checkBody("name", "You must supply a name!").notEmpty();
+//     req.checkBody("email", "That Email is not valid!").isEmail();
 //     req.sanitizeBody("email").normalizeEmail({
 //       remove_dots: false,
 //       remove_extension: false,
 //       gmail_remove_subaddress: false
 //     });
 //     req.checkBody("password", "Password Cannot be Blank!").notEmpty();
-//     const errors = req.validationErrors();
+//     req.checkBody("password-confirm", "Confirmed Password Cannot Be Blank!").notEmpty();
+//     req.checkBody("password-confirm", "your passwords dont match").equals(req.body.password);
 //
-//     if (errors) {
-//       req.flash("error", errors.map((err) => err.msg))
-//       res.render("registerForm", { body: req.body, flashes: req.flash() })
-//     }
+//     const errors = req.validationErrors();
 // }
