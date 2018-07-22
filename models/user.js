@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { bookSchema } = require("../models/book")
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 mongoose.Promise = global.Promise;
 
@@ -20,6 +21,8 @@ const userSchema = mongoose.Schema({
   },
   library: [ bookSchema ]
 });
+
+userSchema.plugin(beautifyUnique);
 
 userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
