@@ -279,6 +279,28 @@ h1 {
   margin-bottom: 0;
 }
 
+.book__actions button {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  /* background-color: #5995DA; */
+  border: none;
+  border-radius: 28px;
+  padding: 10px 40px;
+  cursor: pointer;
+
+  background-color: #c2e59c;
+  background-image: -webkit-linear-gradient(top, #c2e59c, #64b3f4);
+  background-image: -moz-linear-gradient(top, #c2e59c, #64b3f4);
+  background-image: -ms-linear-gradient(top, #c2e59c, #64b3f4);
+
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+
+
 .show-book {
   text-align: center;
   border: 3px solid grey;
@@ -364,7 +386,6 @@ h1 {
 }
 
 .form-row textarea {
-  font-family: "Helvetica", "Arial", sans-serif;
    font-size: 14px;
 
    border: 1px solid #D6D9DC;
@@ -416,12 +437,6 @@ h1 {
 }
 
 /* Edit Book */
-
-#edit-book {
-  margin: 0 auto;
-  display: block;
-}
-
 .edit-header {
   text-align: center;
   background-color: #F6F7F8;
