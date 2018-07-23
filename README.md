@@ -27,6 +27,10 @@ password: password1
 
 `npm install`  
 
+(in separate terminal panels)
+
+`mongod`
+
 `npm start`  
 
 And use test users:
