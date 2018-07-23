@@ -28,55 +28,63 @@ exports.register = (req, res) => {
   const email  = req.body.email;
   const password  = req.body.password;
 
-  console.log(mongoose.Error.ValidationError)
-  const valError = mongoose.Error.ValidationError;
+  // console.log(mongoose.Error.ValidationError)
+  // const valError = mongoose.Error.ValidationError;
 
-  if (valError) {
-    req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
-    res.redirect("/register")
-  } else {
-    let newUser = new User({
-      email: email,
-      password: password
-    });
-
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) {
-          console.log(err);
-        }
-        newUser.password = hash;
-        newUser.save((err) => {
-          if (err) {
-            console.log(err);
-            return;
-          } else {
-            req.flash("success", "Succesfully created. Please log in")
-            res.redirect("login")
-          }
-        })
-      });
-    })
-  }
+  // if (err) {
+  //   req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
+  //   res.redirect("register")
+  // } else {
+  //   let newUser = new User({
+  //     email: email,
+  //     password: password
+  //   });
+  //
+  //   bcrypt.genSalt(10, (err, salt) => {
+  //     bcrypt.hash(newUser.password, salt, (err, hash) => {
+  //       if (err) {
+  //         console.log(err);
+  //       }
+  //       newUser.password = hash;
+  //       newUser.save((err) => {
+  //         if (err) {
+  //           console.log(err);
+  //           return;
+  //         } else {
+  //           req.flash("success", "Succesfully created. Please log in")
+  //           res.redirect("login")
+  //         }
+  //       })
+  //     });
+  //   })
+  // }
 
   // NOTE: Previous implement
-
-  // return User.hashPassword(req.body.password)
-  //   .then(hash => {
-  //     { hash }
-  //
-  //     return User.create({
-  //         email: req.body.email,
-  //         password: hash
-  //     })
-  //     .then(user => {
-  //       res.status(201)
-  //       res.redirect(`users/${user.id}`)
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     })
-  //   })
+  return User.find({ email: email})
+    .count()
+    .then(count => {
+      if (count > 0) {
+          req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
+          res.redirect("register")
+      }
+      return User.hashPassword(password);
+    })
+    .then(hash => {
+      return User.create({
+        email: email,
+        password: hash
+      });
+    })
+    .then(user => {
+      req.flash("success", "Succesfully created. Please log in")
+      res.redirect("login")
+    })
+    .catch(err => {
+      if (err.reason === "ValidationError") {
+        return res.status(err.code).json(err);
+      }
+      res.status(500).json({code: 500, message: 'Internal server error'});
+    })
 }
 
 exports.showUser = (req, res) => {
