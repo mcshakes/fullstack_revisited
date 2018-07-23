@@ -6,11 +6,20 @@ Don't bother trying to remember all the books to read out there. Use this instea
 
 When you're done, just remove the book from your reading list.
 
+Use an anonymous Visitor and add books manually via a form. If that's too hard, search for the title or author name and add to your library.  
+
+Or create a test user and save your to-read books for yourself.
+
 ### Try in Production
 
 https://red-doright-81787.herokuapp.com/
 
 Create test users and start adding books to the reading list.
+
+Prod Test User:
+
+email: test_user@example.com
+password: password1
 
 ### To run on development:
 
