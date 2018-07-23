@@ -28,44 +28,12 @@ exports.register = (req, res) => {
   const email  = req.body.email;
   const password  = req.body.password;
 
-  // console.log(mongoose.Error.ValidationError)
-  // const valError = mongoose.Error.ValidationError;
-
-  // if (err) {
-  //   req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
-  //   res.redirect("register")
-  // } else {
-  //   let newUser = new User({
-  //     email: email,
-  //     password: password
-  //   });
-  //
-  //   bcrypt.genSalt(10, (err, salt) => {
-  //     bcrypt.hash(newUser.password, salt, (err, hash) => {
-  //       if (err) {
-  //         console.log(err);
-  //       }
-  //       newUser.password = hash;
-  //       newUser.save((err) => {
-  //         if (err) {
-  //           console.log(err);
-  //           return;
-  //         } else {
-  //           req.flash("success", "Succesfully created. Please log in")
-  //           res.redirect("login")
-  //         }
-  //       })
-  //     });
-  //   })
-  // }
-
-  // NOTE: Previous implement
   return User.find({ email: email})
     .count()
     .then(count => {
       if (count > 0) {
-          req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
-          res.redirect("register")
+        req.flash("success", `The email ${req.body.email} already exists. Use different email or Log In instead.`)
+        res.redirect("register")
       }
       return User.hashPassword(password);
     })
