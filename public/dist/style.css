@@ -226,8 +226,6 @@ h1 {
   color: inherit;
 }
 
-
-
 .show-book {
   text-align: center;
   border: 3px solid grey;
@@ -534,7 +532,6 @@ h1 {
   }
 
   .books {
-    display: block;
     margin-right: 4px;
     margin-left: 4px;
     justify-content: center;
@@ -559,6 +556,28 @@ h1 {
 
   .book-actions {
     margin: auto;
+  }
+
+  .login-form {
+    width: 90%;
+  }
+
+  .login-button {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .login-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
   }
 
   .book {
@@ -590,6 +609,24 @@ h1 {
   .search-result {
     max-width: calc(60% - 1em);
     margin: 2em auto;
+  }
+
+  .login-button {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .login-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
   }
 }
 
@@ -623,5 +660,23 @@ h1 {
   .search-result {
     max-width: calc(75% - 1em);
     margin: 2em auto;
+  }
+
+  .login-button {
+    background: #B9DFFF;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .login-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
   }
 }
