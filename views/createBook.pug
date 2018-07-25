@@ -2,17 +2,15 @@ extends layout
 include mixins/_bookForm
 
 block content
+  section.anon-create
     header.add-book-header
-      h1 Add a Book to The Reading List
-      h3 Add title, description and author. Or search for it below
-    section
-      .search-option
-        h3 Can't remember specifics? Try Searching Instead
-          div
-            a.btn#search(href=`/search`) Search Books
-    section
-      if errors
-        div.errors
-          each error in errors
-            p #{error.msg}
-      +bookForm
+      h1 Add Book to Reading List
+    .search-option
+      h3 Can't remember specifics? Try Searching Instead
+        div
+          a.btn#search(href=`/search`) Search Books
+    if errors
+      div.errors
+        each error in errors
+          p #{error.msg}
+    +bookForm
