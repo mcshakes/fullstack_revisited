@@ -174,10 +174,6 @@ h1 {
   margin-right: 5px
 }
 
-.book-hero {
-  width: 20%
-}
-
 .book-hero img {
   padding: .5em;
 }
@@ -550,6 +546,18 @@ h1 {
 
   .search-book button {
     width: 80%;
+    margin: auto;
+  }
+
+  .search-result {
+    flex-direction: column;
+  }
+
+  .book-hero {
+    margin: auto;
+  }
+
+  .book-actions {
     margin: auto;
   }
 
