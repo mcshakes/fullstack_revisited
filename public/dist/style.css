@@ -625,7 +625,6 @@ h1 {
 
   .login-button {
     background: #B9DFFF;
-    color: #fff;
     border: 1px solid #eee;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #eee;
@@ -703,9 +702,12 @@ h1 {
     max-width: 60%;
   }
 
+  .login-form {
+    max-width: 60%;
+  }
+
   .login-button {
     background: #B9DFFF;
-    color: #fff;
     border: 1px solid #eee;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #eee;
