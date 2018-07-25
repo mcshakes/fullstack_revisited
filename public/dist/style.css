@@ -441,7 +441,6 @@ h1 {
   border: 1px solid #D6D9DC;
   border-radius: 3px;
 
-  width: 60%;
   padding: 50px;
   margin: 0 auto;
   margin-bottom: 10px;
@@ -641,6 +640,31 @@ h1 {
     box-shadow: 5px 5px 5px #eee;
     text-shadow:none;
   }
+
+  .login-form {
+    max-width: 80%;
+  }
+
+  .register-form {
+    max-width: 80%;
+  }
+
+  .register-button {
+    background: #B9DFFF;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .register-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
 }
 
 @media screen and (min-width: 961px) {
@@ -675,6 +699,10 @@ h1 {
     margin: 2em auto;
   }
 
+  .register-form {
+    max-width: 60%;
+  }
+
   .login-button {
     background: #B9DFFF;
     color: #fff;
@@ -685,6 +713,23 @@ h1 {
   }
 
   .login-button:hover {
+    background: #016ABC;
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .register-button {
+    background: #B9DFFF;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+  }
+
+  .register-button:hover {
     background: #016ABC;
     color: #fff;
     border: 1px solid #eee;
