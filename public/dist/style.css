@@ -1,89 +1,3 @@
-@media (max-width: 375px) {
-  .nav {
-    display: block;
-  }
-
-  .nav-item {
-    width: 100%;
-    margin: 0 0 10px 0;
-  }
-
-  .books {
-    display: block;
-    margin-right: 4px;
-    margin-left: 4px;
-    justify-content: center;
-  }
-
-  .search-book button {
-    width: 80%;
-    margin: auto;
-  }
-
-  .book {
-    /* width: 100%; */
-    max-width: calc(75% -  1em);
-  }
-
-  .show-book {
-    max-width: calc(75% -  1em);
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .books {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-
-  .book {
-    max-width: calc(50% -  1em);
-  }
-
-  .show-book {
-    max-width: calc(45% -  1em);
-    align-self: center;
-    padding: 15px;
-  }
-
-  .search-result {
-    max-width: calc(60% - 1em);
-    margin: 2em auto;
-  }
-}
-
-@media screen and (min-width: 961px) {
-  .books {
-    margin-right: 20px;
-    margin-left: 20px;
-    justify-content: space-between;
-  }
-
-  .book {
-    max-width: calc(25% - 1em);
-  }
-
-  .show-book {
-    width: calc(55% -  1em);
-    align-self: center;
-    padding: 15px;
-  }
-
-  .search-book {
-    width: 60%;
-  }
-
-  .search-book button {
-    width: 60%;
-    margin: auto;
-  }
-
-
-  .search-result {
-    max-width: calc(75% - 1em);
-    margin: 2em auto;
-  }
-}
 
 
 * {
@@ -592,4 +506,108 @@ h1 {
   width: 45%;
   text-align: center;
   border-radius: 28px;
+}
+
+/** Media Queries ========================================================================== **/
+
+@media screen and (max-width: 375px) {
+  .nav {
+    display: block;
+  }
+
+  .anon-create {
+
+  }
+
+  .search-option {
+    width: 90%;
+  }
+
+  .add-book-form {
+    width: 90%;
+  }
+
+  .nav-item {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+
+  .add-book-header {
+    padding: 0;
+  }
+  .books {
+    display: block;
+    margin-right: 4px;
+    margin-left: 4px;
+    justify-content: center;
+  }
+
+  .search-book button {
+    width: 80%;
+    margin: auto;
+  }
+
+  .book {
+    /* width: 100%; */
+    max-width: calc(75% -  1em);
+  }
+
+  .show-book {
+    max-width: calc(75% -  1em);
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .books {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .book {
+    max-width: calc(50% -  1em);
+  }
+
+  .show-book {
+    max-width: calc(45% -  1em);
+    align-self: center;
+    padding: 15px;
+  }
+
+  .search-result {
+    max-width: calc(60% - 1em);
+    margin: 2em auto;
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .books {
+    margin-right: 20px;
+    margin-left: 20px;
+    justify-content: space-between;
+  }
+
+  .book {
+    max-width: calc(25% - 1em);
+  }
+
+  .show-book {
+    width: calc(55% -  1em);
+    align-self: center;
+    padding: 15px;
+  }
+
+  .search-book {
+    width: 60%;
+  }
+
+  .search-book button {
+    width: 60%;
+    margin: auto;
+  }
+
+
+  .search-result {
+    max-width: calc(75% - 1em);
+    margin: 2em auto;
+  }
 }
