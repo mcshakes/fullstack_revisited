@@ -515,8 +515,8 @@ h1 {
     display: block;
   }
 
-  .anon-create {
-
+  nav .nav-item {
+    margin: 0;
   }
 
   .search-option {
@@ -534,12 +534,18 @@ h1 {
 
   .add-book-header {
     padding: 0;
+    width: 90%;
   }
+
   .books {
     display: block;
     margin-right: 4px;
     margin-left: 4px;
     justify-content: center;
+  }
+
+  .search-book {
+    width: 90%;
   }
 
   .search-book button {
