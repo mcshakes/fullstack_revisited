@@ -41,7 +41,7 @@ nav:after {
 nav .nav-item {
   display: inline-block;
   padding: 0 1.4em 0 0;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .nav__link {
@@ -88,6 +88,10 @@ nav .nav-item {
   color: white;
   background: rgba(0, 0, 48, 0.5);
   font-size: 35px;
+}
+
+.home-hero h1 {
+  text-align: left;
 }
 
 .explanation {
@@ -548,10 +552,12 @@ h1 {
 @media screen and (max-width: 375px) {
   .nav {
     display: block;
+    margin-bottom: 0px;
   }
 
   nav .nav-item {
     margin: 0;
+    padding: 0;
   }
 
   .search-option {
