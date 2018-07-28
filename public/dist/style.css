@@ -28,6 +28,7 @@ body:before {
   flex-direction: column;
   text-align: center;
   margin: 0 0 20px 0;
+  margin-bottom: 0px;
 }
 
 nav:after {
@@ -88,6 +89,8 @@ nav .nav-item {
   color: white;
   background: rgba(0, 0, 48, 0.5);
   font-size: 35px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .home-hero h1 {
@@ -100,6 +103,9 @@ nav .nav-item {
   width: 100%;
   color: white;
   background: rgba(0, 0, 48, 0.5);
+
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .tester {
@@ -108,6 +114,9 @@ nav .nav-item {
   width: 100%;
   color: white;
   background: rgba(0, 0, 48, 0.5);
+
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 body {
