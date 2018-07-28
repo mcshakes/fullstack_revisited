@@ -11,12 +11,19 @@ html
         nav.nav
           ul
             if user
-              li.nav-item: a.nav__link(href="/logout") Log Out
-              li.nav-item: a.nav__link(href="#") About
+              li.nav-item
+                a.nav__link(href="/logout") Log Out
+              li.nav-item
+                a.nav__link(href="/") Home
             else
-              li.nav-item: a.nav__link(href="/register") Register
-              li.nav-item: a.nav__link(href="/login") Log In
-              li.nav-item: a.nav__link(href="#") About
+              li.nav-item.active
+                a.nav__link(href="/") Home
+              li.nav-item
+                a.nav__link(href="/register") Register
+              li.nav-item
+                a.nav__link(href="/login") Log In
+              li.nav-item
+                a.nav__link(href="/books") Free Trial
     body
       .content
       != messages("message", locals)
