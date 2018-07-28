@@ -78,29 +78,32 @@ nav .nav-item {
   display: flex;
   flex-direction: column;
   background-image: url("../images/bookcase.jpg");
-  justify-content: center;
   align-items: center;
 }
 
 .home-hero {
   padding: 3px;
   margin: 2em auto;
-  border: 3px solid #E18728;
-  background-color: white;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
+  font-size: 35px;
 }
 
 .explanation {
   padding: 3px;
   margin: 2em auto;
-  border: 3px solid #E18728;
-  background-color: white;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
 }
 
 .tester {
   padding: 3px;
   margin: 2em auto;
-  border: 3px solid #E18728;
-  background-color: white;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
 }
 
 body {
