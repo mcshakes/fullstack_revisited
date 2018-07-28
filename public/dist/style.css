@@ -62,6 +62,47 @@ nav .nav-item {
   flex-direction: column;
 }
 
+/** Home ========================================================================== **/
+
+.home-page {
+  width: 100%;
+  min-height: 1000px;
+  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+  margin: 0px;
+  padding: 0px;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/bookcase.jpg");
+  justify-content: center;
+  align-items: center;
+}
+
+.home-hero {
+  padding: 3px;
+  margin: 2em auto;
+  border: 3px solid #E18728;
+  background-color: white;
+}
+
+.explanation {
+  padding: 3px;
+  margin: 2em auto;
+  border: 3px solid #E18728;
+  background-color: white;
+}
+
+.tester {
+  padding: 3px;
+  margin: 2em auto;
+  border: 3px solid #E18728;
+  background-color: white;
+}
+
 body {
   font-family: 'Helvetica', sans-serif;
   font-size: 16px;
