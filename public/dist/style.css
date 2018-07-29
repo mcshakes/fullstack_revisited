@@ -78,8 +78,11 @@ nav .nav-item {
 
   display: flex;
   flex-direction: column;
-  background-image: url("../images/bookcase.jpg");
+  background-image: url("../images/book-stack.jpg");
   align-items: center;
+
+  position: relative;
+  overflow: hidden;
 }
 
 .home-hero {
@@ -106,6 +109,10 @@ nav .nav-item {
 
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.thing {
+  font-style: italic;
 }
 
 .tester {
