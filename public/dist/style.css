@@ -28,6 +28,7 @@ body:before {
   flex-direction: column;
   text-align: center;
   margin: 0 0 20px 0;
+  margin-bottom: 0px;
 }
 
 nav:after {
@@ -41,7 +42,7 @@ nav:after {
 nav .nav-item {
   display: inline-block;
   padding: 0 1.4em 0 0;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .nav__link {
@@ -60,6 +61,69 @@ nav .nav-item {
 .content {
   display: flex;
   flex-direction: column;
+}
+
+/** Home ========================================================================== **/
+
+.home-page {
+  width: 100%;
+  min-height: 1000px;
+  background-size: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+  margin: 0px;
+  padding: 0px;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/book-stack.jpg");
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero {
+  padding: 3px;
+  margin: 2em auto;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
+  font-size: 35px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.home-hero h1 {
+  text-align: left;
+}
+
+.explanation {
+  padding: 3px;
+  margin: 2em auto;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.thing {
+  font-style: italic;
+}
+
+.tester {
+  padding: 3px;
+  margin: 2em auto;
+  width: 100%;
+  color: white;
+  background: rgba(0, 0, 48, 0.5);
+
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 body {
@@ -504,10 +568,12 @@ h1 {
 @media screen and (max-width: 375px) {
   .nav {
     display: block;
+    margin-bottom: 0px;
   }
 
   nav .nav-item {
     margin: 0;
+    padding: 0;
   }
 
   .search-option {
@@ -625,7 +691,6 @@ h1 {
 
   .login-button {
     background: #B9DFFF;
-    color: #fff;
     border: 1px solid #eee;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #eee;
@@ -703,9 +768,12 @@ h1 {
     max-width: 60%;
   }
 
+  .login-form {
+    max-width: 60%;
+  }
+
   .login-button {
     background: #B9DFFF;
-    color: #fff;
     border: 1px solid #eee;
     border-radius: 20px;
     box-shadow: 5px 5px 5px #eee;

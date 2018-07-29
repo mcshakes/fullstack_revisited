@@ -73,9 +73,9 @@ app.use(userRouter);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  // res.send(`You hit home page!\n`)
+  res.render("home")
 
-  res.redirect("/books")
+  // res.redirect("/books")
 })
 
 // ************************ SERVER *****************************
