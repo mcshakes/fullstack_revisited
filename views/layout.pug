@@ -17,14 +17,12 @@ doctype html
               li.nav-item
                 a.nav__link(href="/") Home
             else
-              li.nav-item.active
+              li.nav-item
                 a.nav__link(href="/") Home
               li.nav-item
                 a.nav__link(href="/register") Register
               li.nav-item
                 a.nav__link(href="/login") Log In
-              li.nav-item
-                a.nav__link(href="/books") Free Trial
     body
       .content
       != messages("message", locals)
