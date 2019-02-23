@@ -84,6 +84,8 @@ nav .nav-item {
 .image-one {
   background-image: url("../images/book-stack.jpg");
   background-size: cover;
+  grid-column: 1/4;
+  grid-row: 2/5;
 }
 
 .image-two {
@@ -92,6 +94,8 @@ nav .nav-item {
 }
 
 .home-hero {
+  grid-column: 3;
+  /* grid-column: 3 / span 3; */ This puts it all on one line
   padding: 3px;
   margin: 2em auto;
   width: 100%;
@@ -107,6 +111,9 @@ nav .nav-item {
 }
 
 .explanation {
+  grid-column: 4 / span 2;
+  grid-row: 4 / span 2;
+
   padding: 3px;
   margin: 2em auto;
   width: 100%;
