@@ -9,6 +9,7 @@ mixin bookCard(book = {})
         else
           a(href=`/books/${book.id}`) #{book.title}
           p #{book.author}
+
     .book__details
-      img.book-thumbnail(src=book.image)
-    
+      - var title = book.title
+      img.book-thumbnail(aria-label=title + " Cover" src=book.image)

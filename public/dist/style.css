@@ -213,17 +213,25 @@ h1 {
   text-align: center;
 }
 
-.library-label button{
+.add-book{
   font-weight: bold;
-  background-color: #5995DA;
-  border-radius: 5px;
+  background-color: #cb070e;
+  border-radius: 3px;
   width: 180px;
   font-size: 16px;
   padding: 5px;
   margin-top: 5px;
-  margin-right: 5px
+  margin-right: 5px;
+  line-height: 1.5em;
+  transition: all .2s ease-in-out;
 } a {
   text-decoration: none;
+  color: white;
+}
+
+.add-book:hover{
+  background-color: #DC143C;
+  transform: scale(1.2);
 }
 
 .link-to-create button {
@@ -563,6 +571,24 @@ h1 {
   border-radius: 28px;
 }
 
+.user-remove-book {
+  font-weight: bold;
+  background-color: #cb070e;
+  border-radius: 3px;
+  width: 180px;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
+  line-height: 1.5em;
+  transition: all .2s ease-in-out;
+  text-decoration: none;
+  color: white;
+}
+.user-remove-book:hover{
+  background-color: #DC143C;
+  transform: scale(1.2);
+}
 /** Media Queries ========================================================================== **/
 
 @media screen and (max-width: 375px) {

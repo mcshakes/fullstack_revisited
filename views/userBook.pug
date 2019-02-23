@@ -4,7 +4,8 @@ block content
   section.user-show
     div.show-book
       .hero
-        img.book-thumbnail(src=book.image)
+        - var title = book.title
+        img(class="book-thumbnail" aria-label=title + " Cover" src=book.image)
       .book-info
         h2 #{book.title}
         h2 #{book.author}
