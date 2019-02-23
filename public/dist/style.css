@@ -81,6 +81,16 @@ nav .nav-item {
   overflow: hidden; */
 }
 
+.image-one {
+  background-image: url("../images/book-stack.jpg");
+  background-size: cover;
+}
+
+.image-two {
+  background-image: url("../images/book-dark.jpg");
+  background-size: cover;
+}
+
 .home-hero {
   padding: 3px;
   margin: 2em auto;
