@@ -72,10 +72,7 @@ app.use(bookRouter);
 app.use(userRouter);
 
 app.get("/", (req, res) => {
-  // res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  res.render("home")
-
-  // res.redirect("/books")
+  res.render("home", {location: req.path})
 })
 
 // ************************ SERVER *****************************
