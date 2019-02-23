@@ -12,31 +12,23 @@ html {
 
 /** Navigation ========================================================================== **/
 
-body:before {
-  content: '';
-  display: block;
-  background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
-  margin: 0 auto;
-  padding: 5px;
+body {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  background: #e8ecf0 url("../images/denim2.png") top left repeat;
+  align-items: center;
 }
 
+
 .nav {
-  background: rgba(0, 0, 0, .3);
+  /* background: rgba(0, 0, 0, .3); */
   display: flex;
-  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   flex-direction: column;
   text-align: center;
   margin: 0 0 20px 0;
   margin-bottom: 0px;
-}
-
-nav:after {
-  content: '';
-  display: block;
-  background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
-  height: 10px;
-  width: 100%;
 }
 
 nav .nav-item {
@@ -46,7 +38,7 @@ nav .nav-item {
 }
 
 .nav__link {
-    color: #fdfdfd;
+    color: #333;
     text-decoration: none;
     min-width: 140px;
     height: 50px;
@@ -66,7 +58,11 @@ nav .nav-item {
 /** Home ========================================================================== **/
 
 .home-page {
-  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 10fr 2fr 6fr 2fr;
+  grid-template-rows: 100px auto 15px auto auto;
+
+  /* width: 100%;
   min-height: 1000px;
   background-size: 100%;
   background-size: cover;
@@ -82,7 +78,7 @@ nav .nav-item {
   align-items: center;
 
   position: relative;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .home-hero {
@@ -126,18 +122,6 @@ nav .nav-item {
   margin-bottom: 10px;
 }
 
-body {
-  font-family: 'Helvetica', sans-serif;
-  font-size: 16px;
-  line-height: 1.3;
-  /* note: yellowish background */
-  /* background: #EAEDF0 url("../images/bg.jpg") top left repeat; */
-
-  /* grey */
-  /* background: #e8ecf0 url("../images/denim2.png") no-repeat 50% 350px; */
-  background: #e8ecf0 url("../images/denim2.png") top left repeat;
-  align-items: center;
-}
 
 h1 {
   text-align: center;
