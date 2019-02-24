@@ -59,8 +59,10 @@ nav .nav-item {
 
 .home-page {
   display: grid;
-  grid-template-columns: 3fr 10fr 2fr 6fr 2fr;
-  grid-template-rows: 100px auto 15px auto auto;
+  grid-template-columns: 3fr 5fr 4fr 6fr 2fr;
+  /* grid-template-rows: 50px auto 100px auto auto; */
+
+  grid-template-rows: 50px 4fr 100px 3fr 3fr;
 
   /* width: 100%;
   min-height: 1000px;
@@ -82,25 +84,33 @@ nav .nav-item {
 }
 
 .image-one {
-  background-image: url("../images/book-stack.jpg");
+  background-image: url("../images/book-dark.jpg");
   background-size: cover;
-  grid-column: 1/4;
-  grid-row: 2/5;
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 5;
 }
 
 .image-two {
-  background-image: url("../images/book-dark.jpg");
+  background-image: url("../images/book-stack.jpg");
   background-size: cover;
+  grid-row: 5 /span 9;
+  grid-column: 2 / span 2;
+}
+
+.grey-block {
+  grid-column: 3 / span 5;
+  grid-row: 1 / span 6;
+  background: rgba(0, 0, 48, 0.5);
+  z-index: -1;
 }
 
 .home-hero {
-  grid-column: 3;
-  /* grid-column: 3 / span 3; */ This puts it all on one line
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
   padding: 3px;
   margin: 2em auto;
   width: 100%;
   color: white;
-  background: rgba(0, 0, 48, 0.5);
   font-size: 35px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -118,7 +128,7 @@ nav .nav-item {
   margin: 2em auto;
   width: 100%;
   color: white;
-  background: rgba(0, 0, 48, 0.5);
+  /* background: rgba(0, 0, 48, 0.5); */
 
   margin-top: 10px;
   margin-bottom: 10px;
