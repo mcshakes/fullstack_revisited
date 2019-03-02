@@ -20,21 +20,22 @@ body {
   align-items: center;
 }
 
+nav {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/waves.jpg);
+  background-size: contain;
 
-.nav {
-  /* background: rgba(0, 0, 0, .3); */
-  display: flex;
-  font-size: 16px;
-  flex-direction: column;
-  text-align: center;
-  margin: 0 0 20px 0;
-  margin-bottom: 0px;
 }
 
 nav .nav-item {
   display: inline-block;
   padding: 0 1.4em 0 0;
   font-size: 1em;
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 30px;
 }
 
 .nav__link {
@@ -60,40 +61,32 @@ nav .nav-item {
 .home-page {
   display: grid;
   grid-template-columns: 3fr 5fr 4fr 6fr 2fr;
-  /* grid-template-rows: 50px auto 100px auto auto; */
 
-  grid-template-rows: 50px 4fr 100px 3fr 3fr;
-
-  /* width: 100%;
-  min-height: 1000px;
-  background-size: 100%;
-  background-size: cover;
-  background-position: center;
-  background-attachment:fixed;
-  margin: 0px;
-  padding: 0px;
-  background-repeat: no-repeat;
-
-  display: flex;
-  flex-direction: column;
-  background-image: url("../images/book-stack.jpg");
-  align-items: center;
-
-  position: relative;
-  overflow: hidden; */
+  grid-template-rows: 50px 4fr 100px 3fr 3fr 2fr;
 }
 
 .image-one {
   background-image: url("../images/book-dark.jpg");
   background-size: cover;
+
   grid-column: 1 / span 3;
-  grid-row: 2 / span 5;
+  grid-row: 2/ span 4;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .image-two {
   background-image: url("../images/book-stack.jpg");
   background-size: cover;
-  grid-row: 5 /span 9;
+  grid-row: 4 / span 3;
   grid-column: 2 / span 2;
 }
 
