@@ -14,13 +14,29 @@ doctype html
             if user
               li.nav-item
                 a.nav__link(href="/logout") Log Out
+                  div(class="bar top")
+                  div(class="bar right delay")
+                  div(class="bar bottom delay")
+                  div(class="bar left")
               li.nav-item
                 a.nav__link(href="/") Home
+                  div(class="bar top")
+                  div(class="bar right delay")
+                  div(class="bar bottom delay")
+                  div(class="bar left")
             if location === "/"
               li.nav-item
                 a.nav__link(href="/register") Register
+                  div(class="bar top")
+                  div(class="bar right delay")
+                  div(class="bar bottom delay")
+                  div(class="bar left")
               li.nav-item
                 a.nav__link(href="/login") Log In
+                  div(class="bar top")
+                  div(class="bar right delay")
+                  div(class="bar bottom delay")
+                  div(class="bar left")
 
     body
       .content
