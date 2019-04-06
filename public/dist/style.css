@@ -58,11 +58,11 @@ nav .nav-item {
 .home-page {
   display: grid;
   grid-template-columns: 3fr 5fr 4fr 3fr 3fr 2fr;
-  grid-template-rows: 50px 4fr 100px 3fr 3fr 2fr;
+  grid-template-rows: 50px 4fr 100px 3fr 3fr 2fr 2fr;
 }
 
 .image-one {
-  background-image: url("../images/bookcase.jpg");
+  background-image: url("../images/bright-contemporary.jpg");
   background-size: cover;
 
   grid-column: 1 / span 3;
@@ -113,12 +113,12 @@ nav .nav-item {
 }
 
 .image-two {
-  background-image: url("../images/book-stack.jpg");
+  background-image: url("../images/blur-stack.jpg");
   background-size: cover;
   grid-row: 4 / span 3;
   border-radius: 5px;
 
-  grid-column: 3 / span 2;
+  grid-column: 3 / span 3;
 
 }
 
