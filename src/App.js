@@ -1,33 +1,50 @@
-import './App.css';
-import Header from "./Header";
-import Content from "./Content";
-import Total from "./Total";
+import React, { useState } from 'react'
+import Note from './components/Note'
 
+const App = (props) => {
+  const [notes, setNotes] = useState(props.notes)
+  const [newNote, createNewNote] = useState(
+    "a new note..."
+  )
 
-const App = ()  => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
+  const addNote = (event) => {
+    event.preventDefault();
+    
+    const noteObj = {
+      content: newNote,
+      date: new Date().toISOString(),
+      important: Math.random() < 0.5,
+      id: notes.length + 1,
     }
-  ]
+
+    setNotes(notes.concat(noteObj))
+    createNewNote("")
+  }
+
+  const handleNoteChange = (event) => {
+    createNewNote(event.target.value)
+  }
 
   return (
-    <div className="App">
-      <Header course={course} />
-      <Content parts={parts}/>
-      <Total parts={parts}/>      
+    <div>
+      <h1>Notes</h1>
+      <ul>
+        {notes.map(note => 
+          <Note key={note.id} note={note} />
+        )}
+      </ul>
+
+      <form 
+        onSubmit={addNote}>
+
+          <input type="text" 
+            value={newNote}
+            onChange={handleNoteChange}
+          />
+          <button type="submit">Save Note</button>
+      </form>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App 
