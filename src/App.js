@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import Contact from './components/Contact';
+import React, { useState, useEffect } from 'react';
+import ContactList from './components/ContactList';
+import axios from "axios";
 
 const App = (props) => {
   const [contacts, setContacts] = useState([
@@ -10,37 +11,36 @@ const App = (props) => {
     { name: 'Mary Poppendieck', number: '39-23-6423122' }
   ])
   const [newName, setNewName] = useState("")
+  const [newNumber, setNewNumber] = useState("")
   
-
-  // const addNote = (event) => {
-  //   event.preventDefault();
-    
-  //   const noteObj = {
-  //     content: newNote,
-  //     date: new Date().toISOString(),
-  //     important: Math.random() < 0.5,
-  //     id: notes.length + 1,
-  //   }
-
-  //   setNotes(notes.concat(noteObj))
-  //   createNewNote("")
-  // }
 
   const addContact = (event) => {
     event.preventDefault();
 
     const contactObj = {
       name: newName,
-    
+      number: newNumber
     }
 
     setContacts(contacts.concat(contactObj));
     setNewName("")
+    setNewNumber("")
   }
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
+
+  const handleNumChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
+  const hook = () => {
+    // axios.get
+    // setContacts
+  }
+
+  useEffect(hook,[])
 
   return (
     <div>
@@ -55,14 +55,20 @@ const App = (props) => {
               onChange={handleNameChange}
             />
           </div>
+
+          <div>
+            Name:
+            <input type="text" 
+              value={newNumber}
+              onChange={handleNumChange}
+            />
+          </div>
           
           <button type="submit">Save Contact</button>
       </form>
 
       <div className="all-contacts">
-        <ul>
-          {contacts.map(contact => <Contact key={contact.name} contact={contact} /> )}    
-        </ul>
+        <ContactList contacts={contacts} />
       </div>
     </div>
   )
